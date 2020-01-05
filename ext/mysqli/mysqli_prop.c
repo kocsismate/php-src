@@ -37,9 +37,8 @@
 #define MYSQLI_GET_MYSQL(statusval) \
 MYSQL *p; \
 if (!obj->ptr || !(MY_MYSQL *)((MYSQLI_RESOURCE *)(obj->ptr))->ptr) { \
-	php_error_docref(NULL, E_WARNING, "Couldn't fetch %s", ZSTR_VAL(obj->zo.ce->name));\
-	ZVAL_FALSE(retval);\
-	return retval; \
+	zend_throw_error(NULL, "%s object is already closed", ZSTR_VAL(obj->zo.ce->name));\
+	return NULL; \
 } else { \
 	CHECK_STATUS(statusval);\
     p = (MYSQL *)((MY_MYSQL *)((MYSQLI_RESOURCE *)(obj->ptr))->ptr)->mysql;\
@@ -48,9 +47,8 @@ if (!obj->ptr || !(MY_MYSQL *)((MYSQLI_RESOURCE *)(obj->ptr))->ptr) { \
 #define MYSQLI_GET_RESULT(statusval) \
 MYSQL_RES *p; \
 if (!obj->ptr) { \
-	php_error_docref(NULL, E_WARNING, "Couldn't fetch %s", ZSTR_VAL(obj->zo.ce->name));\
-	ZVAL_NULL(retval);\
-	return retval; \
+	zend_throw_error(NULL, "%s object is already closed", ZSTR_VAL(obj->zo.ce->name));\
+    return NULL; \
 } else { \
 	CHECK_STATUS(statusval);\
 	p = (MYSQL_RES *)((MYSQLI_RESOURCE *)(obj->ptr))->ptr; \
@@ -60,9 +58,8 @@ if (!obj->ptr) { \
 #define MYSQLI_GET_STMT(statusval) \
 MYSQL_STMT *p; \
 if (!obj->ptr) { \
-	php_error_docref(NULL, E_WARNING, "Couldn't fetch %s", ZSTR_VAL(obj->zo.ce->name));\
-	ZVAL_NULL(retval);\
-	return retval; \
+	zend_throw_error(NULL, "%s object is already closed", ZSTR_VAL(obj->zo.ce->name));\
+	return NULL; \
 } else { \
 	CHECK_STATUS(statusval);\
 	p = (MYSQL_STMT *)((MY_STMT *)((MYSQLI_RESOURCE *)(obj->ptr))->ptr)->stmt;\

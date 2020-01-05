@@ -111,7 +111,11 @@ mysqli.allow_local_infile=1
 	}
 
 	mysqli_close($link);
-	@var_dump($link);
+	try {
+        @var_dump($link);
+	} catch (Error $exception) {
+	    echo $exception->getMessage() . "\n";
+	}
 
 	if ($IS_MYSQLND) {
 		ini_set('mysqli.default_host', 'p:' . $host);
@@ -140,8 +144,11 @@ mysqli.allow_local_infile=1
 		@mysqli_close($link);
 	}
 
-	if (false !== ($tmp = mysqli_real_connect($link, $host, $user, $passwd, $db, $port, $socket)))
-		printf("[026] Expecting false, got %s/%s\n", gettype($tmp), $tmp);
+	try {
+        mysqli_real_connect($link, $host, $user, $passwd, $db, $port, $socket);
+    } catch (Error $exception) {
+        echo $exception->getMessage() . "\n";
+    }
 
 	print "done!";
 ?>
@@ -162,33 +169,9 @@ object(mysqli)#%d (%d) {
   int(%d)
   ["connect_error"]=>
   NULL
-  ["errno"]=>
-  %s
-  ["error"]=>
-  %s
   ["error_list"]=>
-  bool(false)
-  ["field_count"]=>
-  bool(false)
-  ["host_info"]=>
-  bool(false)
-  ["info"]=>
-  bool(false)
-  ["insert_id"]=>
-  bool(false)
-  ["server_info"]=>
-  bool(false)
-  ["server_version"]=>
-  bool(false)
-  ["sqlstate"]=>
-  bool(false)
-  ["protocol_version"]=>
-  bool(false)
-  ["thread_id"]=>
-  bool(false)
-  ["warning_count"]=>
-  bool(false)
+  %s
 }
-
-Warning: mysqli_real_connect(): Couldn't fetch mysqli in %s on line %d
+mysqli object is already closed
+mysqli object is already closed
 done!
