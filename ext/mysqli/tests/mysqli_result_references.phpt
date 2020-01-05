@@ -59,7 +59,12 @@ require_once('skipifconnectfailure.inc');
 
 	$references[$idx++] = &$res;
 	mysqli_free_result($res);
-	@debug_zval_dump($references);
+
+	try {
+	    @debug_zval_dump($references);
+	} catch (Error $exception) {
+	    echo $exception->getMessage() . "\n";
+	}
 
 	if (!(mysqli_real_query($link, "SELECT id, label FROM test ORDER BY id ASC LIMIT 1")) ||
 			!($res = mysqli_use_result($link)))
@@ -70,7 +75,7 @@ require_once('skipifconnectfailure.inc');
 		$tmp[] = $row;
 	}
 	$tmp = unserialize(serialize($tmp));
-	debug_zval_dump($tmp);
+	@debug_zval_dump($tmp);
 	mysqli_free_result($res);
 
 	mysqli_close($link);
@@ -129,19 +134,14 @@ array(7) refcount(2){
     &int(4)
   }
   [6]=>
-  &object(mysqli_result)#%d (5) refcount(%d){
-    ["current_field"]=>
-    NULL
-    ["field_count"]=>
-    NULL
+  &object(mysqli_result)#%d (2) refcount(%d){
     ["lengths"]=>
     bool(false)
-    ["num_rows"]=>
-    NULL
     ["type"]=>
     bool(false)
   }
 }
+mysqli_result object is already closed
 array(1) refcount(2){
   [0]=>
   array(2) refcount(1){

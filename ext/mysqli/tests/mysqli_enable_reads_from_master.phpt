@@ -39,5 +39,5 @@ if (!function_exists('mysqli_enable_reads_from_master')) {
 	print "done!";
 ?>
 --EXPECTF--
-Warning: mysqli_enable_reads_from_master(): Couldn't fetch mysqli in %s on line %d
+Warning: mysqli_enable_reads_from_master(): mysqli object is already closed in %s on line %d
 done!

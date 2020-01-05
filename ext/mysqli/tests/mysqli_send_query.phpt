@@ -46,5 +46,5 @@ if (!$TEST_EXPERIMENTAL)
 	print "done!";
 ?>
 --EXPECTF--
-Warning: mysqli_send_query(): Couldn't fetch mysqli in %s on line %d
+Warning: mysqli_send_query(): mysqli object is already closed in %s on line %d
 done!
