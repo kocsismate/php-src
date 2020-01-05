@@ -465,7 +465,7 @@ static MYSQLND *mysqli_convert_zv_to_mysqlnd(zval * zv)
 		mysqli_object *intern = Z_MYSQLI_P(zv);
 		if (!(my_res = (MYSQLI_RESOURCE *)intern->ptr)) {
 			/* We know that we have a mysqli object, so this failure should be emitted */
-			php_error_docref(NULL, E_WARNING, "Couldn't fetch %s", ZSTR_VAL(intern->zo.ce->name));
+			zend_throw_error(NULL, "%s object is already closed", ZSTR_VAL(intern->zo.ce->name));
 			return NULL;
 		}
 		mysql = (MY_MYSQL *)(my_res->ptr);
