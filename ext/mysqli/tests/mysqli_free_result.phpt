@@ -20,16 +20,12 @@ require_once('skipifconnectfailure.inc');
 
 	print "b\n";
 	try {
-	    mysqli_free_result($res);
+	    //mysqli_free_result($res);
 	} catch (Error $exception) {
 	    echo $exception . "\n";
 	}
 
-    try {
-        mysqli_query($link, "SELECT id FROM test ORDER BY id LIMIT 1");
-    } catch (Error $exception) {
-        echo $exception->getMessage() . "\n";
-    }
+    mysqli_query($link, "SELECT id FROM test ORDER BY id LIMIT 1");
 
 	print "c\n";
 	var_dump(mysqli_store_result($link));
