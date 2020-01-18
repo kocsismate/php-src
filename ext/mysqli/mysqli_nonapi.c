@@ -731,7 +731,7 @@ static int mysqlnd_zval_array_to_mysqlnd_array(zval *in_array, MYSQLND ***out_ar
 	int i = 0, current = 0;
 
 	if (Z_TYPE_P(in_array) != IS_ARRAY) {
-		return 0;
+		return SUCCESS;
 	}
 	*out_array = ecalloc(zend_hash_num_elements(Z_ARRVAL_P(in_array)) + 1, sizeof(MYSQLND *));
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(in_array), elem) {
@@ -745,17 +745,17 @@ static int mysqlnd_zval_array_to_mysqlnd_array(zval *in_array, MYSQLND ***out_ar
 			mysqli_object *intern = Z_MYSQLI_P(elem);
 			if (!(my_res = (MYSQLI_RESOURCE *)intern->ptr)) {
 		  		zend_throw_error(NULL, "%s object is already closed", ZSTR_VAL(intern->zo.ce->name));
-				return -1;
+				return FAILURE;
 		  	}
 			mysql = (MY_MYSQL*) my_res->ptr;
 			if (MYSQLI_STATUS_VALID && my_res->status < MYSQLI_STATUS_VALID) {
-				zend_throw_error(NULL, "%s object is already closed", ZSTR_VAL(intern->zo.ce->name));
-				return -1;
+				zend_throw_error(NULL, "%s object is not fully initialized", ZSTR_VAL(intern->zo.ce->name));
+				return FAILURE;
 			}
 			(*out_array)[current++] = mysql->mysql;
 		}
 	} ZEND_HASH_FOREACH_END();
-	return 0;
+	return SUCCESS;
 }
 /* }}} */
 
@@ -859,13 +859,13 @@ PHP_FUNCTION(mysqli_poll)
 	}
 
 	if (r_array != NULL) {
-		if (mysqlnd_zval_array_to_mysqlnd_array(r_array, &new_r_array) == -1) {
+		if (mysqlnd_zval_array_to_mysqlnd_array(r_array, &new_r_array) == FAILURE) {
 			efree(new_r_array);
 			RETURN_THROWS();
 		}
 	}
 	if (e_array != NULL) {
-		if (mysqlnd_zval_array_to_mysqlnd_array(e_array, &new_e_array) == -1) {
+		if (mysqlnd_zval_array_to_mysqlnd_array(e_array, &new_e_array) == FAILURE) {
 			efree(new_e_array);
 			RETURN_THROWS();
 		}

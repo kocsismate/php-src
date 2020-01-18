@@ -303,6 +303,10 @@ zval *mysqli_read_property(zend_object *object, zend_string *name, int type, voi
 
 	obj = php_mysqli_fetch_object(object);
 
+	if (type == BP_VAR_IS && !obj->ptr) {
+		return &EG(uninitialized_zval);
+	}
+
 	if (obj->prop_handler != NULL) {
 		hnd = zend_hash_find_ptr(obj->prop_handler, name);
 	}
@@ -404,6 +408,7 @@ HashTable *mysqli_object_get_debug_info(zend_object *object, int *is_temp)
 	ZEND_HASH_FOREACH_PTR(props, entry) {
 		zval rv;
 		zval *value;
+
 		value = mysqli_read_property(object, entry->name, BP_VAR_IS, 0, &rv);
 		if (value != &EG(uninitialized_zval)) {
 			zend_hash_add(retval, entry->name, value);

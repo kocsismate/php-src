@@ -111,11 +111,7 @@ mysqli.allow_local_infile=1
 	}
 
 	mysqli_close($link);
-	try {
-        @var_dump($link);
-	} catch (Error $exception) {
-	    echo $exception->getMessage() . "\n";
-	}
+	var_dump($link);
 
 	if ($IS_MYSQLND) {
 		ini_set('mysqli.default_host', 'p:' . $host);
@@ -159,19 +155,6 @@ mysqli.allow_local_infile=1
 --EXPECTF--
 Warning: mysqli_real_connect(): (%s/%d): Access denied for user '%s'@'%s' (using password: YES) in %s on line %d
 object(mysqli)#%d (%d) {
-  ["affected_rows"]=>
-  bool(false)
-  ["client_info"]=>
-  %s
-  ["client_version"]=>
-  int(%d)
-  ["connect_errno"]=>
-  int(%d)
-  ["connect_error"]=>
-  NULL
-  ["error_list"]=>
-  %s
 }
-mysqli object is already closed
 mysqli object is already closed
 done!
