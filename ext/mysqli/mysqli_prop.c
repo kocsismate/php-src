@@ -34,7 +34,6 @@
 		if (!quiet) { \
 			php_error_docref(NULL, E_WARNING, "Property access is not allowed yet"); \
 		} \
-		ZVAL_FALSE(retval); \
 		return FAILURE; \
 	} \
 
@@ -44,7 +43,6 @@ if (!obj->ptr || !(MY_MYSQL *)((MYSQLI_RESOURCE *)(obj->ptr))->ptr) { \
 	if (!quiet) { \
 		php_error_docref(NULL, E_WARNING, "Couldn't fetch %s", ZSTR_VAL(obj->zo.ce->name)); \
 	} \
-	ZVAL_FALSE(retval);\
 	return FAILURE; \
 } else { \
 	CHECK_STATUS(statusval, quiet);\
@@ -57,7 +55,6 @@ if (!obj->ptr) { \
 	if (!quiet) { \
 		php_error_docref(NULL, E_WARNING, "Couldn't fetch %s", ZSTR_VAL(obj->zo.ce->name)); \
 	} \
-	ZVAL_NULL(retval);\
 	return FAILURE; \
 } else { \
 	CHECK_STATUS(statusval, quiet);\
@@ -70,7 +67,6 @@ if (!obj->ptr) { \
 	if (!quiet) { \
 		php_error_docref(NULL, E_WARNING, "Couldn't fetch %s", ZSTR_VAL(obj->zo.ce->name)); \
 	} \
-	ZVAL_NULL(retval);\
 	return FAILURE; \
 } else { \
 	CHECK_STATUS(statusval, quiet); \

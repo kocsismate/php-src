@@ -40,5 +40,5 @@ array(2) {
 }
 
 Warning: main(): Couldn't fetch my_mysql in %s on line %d
-bool(false)
+NULL
 bool(true)

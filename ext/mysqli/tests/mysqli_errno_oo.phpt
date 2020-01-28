@@ -45,5 +45,5 @@ int(0)
 int(%d)
 
 Warning: main(): Couldn't fetch mysqli in %s on line %d
-bool(false)
+NULL
 done!

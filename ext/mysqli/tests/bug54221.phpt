@@ -42,6 +42,9 @@ mysqli.reconnect = Off
 	print "done!";
 ?>
 --EXPECT--
-Warning: : 
+Warning: main(): Couldn't fetch mysqli_warning in %s on line %d
+
+Warning: main(): Couldn't fetch mysqli_warning in %s on line %d
+Warning: :
 Warning: 1050: Table 't54221' already exists
 done!
