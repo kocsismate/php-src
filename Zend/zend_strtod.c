@@ -159,7 +159,6 @@
  *	floating-point numbers and flushes underflows to zero rather
  *	than implementing gradual underflow, then you must also #define
  *	Sudden_Underflow.
- * #define USE_LOCALE to use the current locale's decimal_point value.
  * #define SET_INEXACT if IEEE arithmetic is being used and extra
  *	computation should be done to set the inexact flag when the
  *	result is inexact and avoid setting inexact when the result
@@ -205,10 +204,6 @@ static void Bug(const char *message) {
 
 #include "stdlib.h"
 #include "string.h"
-
-#ifdef USE_LOCALE
-#include "locale.h"
-#endif
 
 #ifdef Honor_FLT_ROUNDS
 #ifndef Trust_FLT_ROUNDS
@@ -1827,25 +1822,6 @@ gethex( CONST char **sp, U *rvp, int rounding, int sign)
 #endif
 #endif /*}}*/
 		};
-#ifdef USE_LOCALE
-	int i;
-#ifdef NO_LOCALE_CACHE
-	const unsigned char *decimalpoint = (unsigned char*)
-		localeconv()->decimal_point;
-#else
-	const unsigned char *decimalpoint;
-	static unsigned char *decimalpoint_cache;
-	if (!(s0 = decimalpoint_cache)) {
-		s0 = (unsigned char*)localeconv()->decimal_point;
-		if ((decimalpoint_cache = (unsigned char*)
-				MALLOC(strlen((CONST char*)s0) + 1))) {
-			strcpy((char*)decimalpoint_cache, (CONST char*)s0);
-			s0 = decimalpoint_cache;
-			}
-		}
-	decimalpoint = s0;
-#endif
-#endif
 
 	/**** if (!hexdig['0']) hexdig_init(); ****/
 	havedig = 0;
@@ -1861,17 +1837,9 @@ gethex( CONST char **sp, U *rvp, int rounding, int sign)
 		havedig++;
 	else {
 		zret = 1;
-#ifdef USE_LOCALE
-		for(i = 0; decimalpoint[i]; ++i) {
-			if (s[i] != decimalpoint[i])
-				goto pcheck;
-			}
-		decpt = s += i;
-#else
 		if (*s != '.')
 			goto pcheck;
 		decpt = ++s;
-#endif
 		if (!hexdig[*s])
 			goto pcheck;
 		while(*s == '0')
@@ -1883,17 +1851,8 @@ gethex( CONST char **sp, U *rvp, int rounding, int sign)
 		}
 	while(hexdig[*s])
 		s++;
-#ifdef USE_LOCALE
-	if (*s == *decimalpoint && !decpt) {
-		for(i = 1; decimalpoint[i]; ++i) {
-			if (s[i] != decimalpoint[i])
-				goto pcheck;
-			}
-		decpt = s += i;
-#else
 	if (*s == '.' && !decpt) {
 		decpt = ++s;
-#endif
 		while(hexdig[*s])
 			s++;
 		}/*}*/
@@ -1982,19 +1941,9 @@ gethex( CONST char **sp, U *rvp, int rounding, int sign)
 	x = b->x;
 	n = 0;
 	L = 0;
-#ifdef USE_LOCALE
-	for(i = 0; decimalpoint[i+1]; ++i);
-#endif
 	while(s1 > s0) {
-#ifdef USE_LOCALE
-		if (*--s1 == decimalpoint[i]) {
-			s1 -= i;
-			continue;
-			}
-#else
 		if (*--s1 == '.')
 			continue;
-#endif
 		if (n == ULbits) {
 			*x++ = L;
 			L = 0;
@@ -2566,10 +2515,6 @@ zend_strtod
 	  }
 #endif /*}}*/
 #endif /*}*/
-#ifdef USE_LOCALE
-	CONST char *s2;
-#endif
-
 	sign = nz0 = nz1 = nz = bc.dplen = bc.uflchk = 0;
 	dval(&rv) = 0.;
 	for(s = s00;;s++) switch(*s) {
@@ -2622,25 +2567,6 @@ zend_strtod
 	bc.dp0 = bc.dp1 = s - s0;
 	for(s1 = s; s1 > s0 && *--s1 == '0'; )
 		++nz1;
-#ifdef USE_LOCALE
-	s1 = localeconv()->decimal_point;
-	if (c == *s1) {
-		c = '.';
-		if (*++s1) {
-			s2 = s;
-			for(;;) {
-				if (*++s2 != *s1) {
-					c = 0;
-					break;
-					}
-				if (!*++s1) {
-					s = s2;
-					break;
-					}
-				}
-			}
-		}
-#endif
 	if (c == '.') {
 		c = *++s;
 		bc.dp1 = s - s0;
