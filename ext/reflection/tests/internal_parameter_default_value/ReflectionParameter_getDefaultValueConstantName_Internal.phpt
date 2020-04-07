@@ -33,7 +33,7 @@ $method = $class->getMethod('listIdentifiers');
 
 foreach ($method->getParameters() as $parameter) {
     try {
-        var_dump(@$parameter->getDefaultValueConstantName());
+        var_dump($parameter->getDefaultValueConstantName());
     } catch (ReflectionException $exception) {
         echo $exception->getMessage() . "\n";
     }

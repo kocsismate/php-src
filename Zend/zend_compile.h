@@ -381,7 +381,7 @@ typedef struct _zend_internal_arg_info {
 typedef struct _zend_arg_info {
 	zend_string *name;
 	zend_type type;
-	zend_string *default_value;
+	void *_unused;
 } zend_arg_info;
 
 /* the following structure repeats the layout of zend_internal_arg_info,
