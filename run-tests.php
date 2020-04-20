@@ -1875,6 +1875,8 @@ TEST $file
 
             if (!isset($section_text['PHPDBG']) && isset($section_text['FILE']) + isset($section_text['FILEEOF']) + isset($section_text['FILE_EXTERNAL']) != 1) {
                 $bork_info = "missing section --FILE--";
+            } else {
+                $section_text['FILE'] = str_replace("<?php\n", "<?php setlocale(LC_ALL, 'de_DE');\n", $section_text['FILE']);
             }
 
             if (isset($section_text['FILEEOF'])) {
