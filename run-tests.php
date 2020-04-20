@@ -1875,13 +1875,15 @@ TEST $file
 
             if (!isset($section_text['PHPDBG']) && isset($section_text['FILE']) + isset($section_text['FILEEOF']) + isset($section_text['FILE_EXTERNAL']) != 1) {
                 $bork_info = "missing section --FILE--";
-            } else {
-                $section_text['FILE'] = str_replace("<?php\n", "<?php setlocale(LC_ALL, 'de_DE');\n", $section_text['FILE']);
             }
 
             if (isset($section_text['FILEEOF'])) {
                 $section_text['FILE'] = preg_replace("/[\r\n]+$/", '', $section_text['FILEEOF']);
                 unset($section_text['FILEEOF']);
+            }
+
+            if (isset($section_text['FILE'])) {
+                $section_text['FILE'] = str_replace("<?php\n", "<?php setlocale(LC_ALL, 'de_DE');\n", $section_text['FILE']);
             }
 
             foreach (array('FILE', 'EXPECT', 'EXPECTF', 'EXPECTREGEX') as $prefix) {
