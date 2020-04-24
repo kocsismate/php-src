@@ -10510,13 +10510,15 @@ static int zend_jit_fetch_obj_read(dasm_State **Dst, const zend_op *opline, cons
 			}
 			|.if X64
 				|	mov CARG1, E_WARNING
-				|	LOAD_ADDR CARG2, "Trying to get property '%s' of non-object"
+				|	LOAD_ADDR CARG2, "Access to property '%s' on %s"
 				|	LOAD_ADDR CARG3, Z_STRVAL_P(member)
+				|	LOAD_ADDR CARG4, "non-object"
 				|	EXT_CALL zend_error, r0
 			|.else
 				|	sub r4, 4
+				|	push "non-object"
 				|	push Z_STRVAL_P(member)
-				|	push "Trying to get property '%s' of non-object"
+				|	push "Access to property '%s' on %s"
 				|	push E_WARNING
 				|	EXT_CALL zend_error, r0
 				|	add r4, 16

@@ -7,4 +7,4 @@ $a->{"a"."b"};
 --EXPECTF--
 Warning: Undefined variable $a in %s on line %d
 
-Warning: Trying to get property 'ab' of non-object in %s on line %d
+Warning: Access to property 'ab' on null in %s on line %d

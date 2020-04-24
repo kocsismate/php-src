@@ -1494,11 +1494,13 @@ static zend_never_inline ZEND_COLD void zend_wrong_string_offset(EXECUTE_DATA_D)
 	zend_throw_error(NULL, "%s", msg);
 }
 
-static zend_never_inline ZEND_COLD void ZEND_FASTCALL zend_wrong_property_read(zval *property)
+static zend_never_inline ZEND_COLD void ZEND_FASTCALL zend_wrong_property_read(zval *object, zval *property)
 {
 	zend_string *tmp_property_name;
 	zend_string *property_name = zval_get_tmp_string(property, &tmp_property_name);
-	zend_error(E_WARNING, "Trying to get property '%s' of non-object", ZSTR_VAL(property_name));
+	zend_error(E_WARNING, "Access to property '%s' on %s",
+		ZSTR_VAL(property_name), zend_get_type_by_const(Z_TYPE_P(object) == IS_UNDEF ? IS_NULL : Z_TYPE_P(object))
+	);
 	zend_tmp_string_release(tmp_property_name);
 }
 
@@ -1919,7 +1921,9 @@ static zend_never_inline ZEND_COLD void ZEND_FASTCALL zend_undefined_method(cons
 
 static zend_never_inline ZEND_COLD void ZEND_FASTCALL zend_invalid_method_call(zval *object, zval *function_name)
 {
-	zend_throw_error(NULL, "Call to a member function %s() on %s", Z_STRVAL_P(function_name), zend_get_type_by_const(Z_TYPE_P(object)));
+	zend_throw_error(NULL, "Call to a member function %s() on %s",
+		Z_STRVAL_P(function_name), zend_get_type_by_const(Z_TYPE_P(object) == IS_UNDEF ? IS_NULL : Z_TYPE_P(object))
+	);
 }
 
 static zend_never_inline ZEND_COLD void ZEND_FASTCALL zend_non_static_method_call(const zend_function *fbc)

@@ -61,6 +61,6 @@ Warning: Trying to access array offset on value of type null in %s on line %d
 
 Warning: Trying to access array offset on value of type null in %s on line %d
 
-Warning: Trying to get property 'foo' of non-object in %s on line %d
+Warning: Access to property 'foo' on null in %s on line %d
 Attempt to assign property 'foo' of non-object
 Attempt to assign property 'bar' of non-object

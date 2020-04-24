@@ -5220,7 +5220,7 @@ static ZEND_VM_COLD ZEND_OPCODE_HANDLER_RET ZEND_FASTCALL ZEND_FETCH_OBJ_R_SPEC_
 			if (IS_CONST == IS_CV && UNEXPECTED(Z_TYPE_P(offset) == IS_UNDEF)) {
 				ZVAL_UNDEFINED_OP2();
 			}
-			zend_wrong_property_read(offset);
+			zend_wrong_property_read(container, offset);
 			ZVAL_NULL(EX_VAR(opline->result.var));
 			goto fetch_obj_r_finish;
 		} while (0);
@@ -7395,7 +7395,7 @@ static ZEND_VM_COLD ZEND_OPCODE_HANDLER_RET ZEND_FASTCALL ZEND_FETCH_OBJ_R_SPEC_
 			if ((IS_TMP_VAR|IS_VAR) == IS_CV && UNEXPECTED(Z_TYPE_P(offset) == IS_UNDEF)) {
 				ZVAL_UNDEFINED_OP2();
 			}
-			zend_wrong_property_read(offset);
+			zend_wrong_property_read(container, offset);
 			ZVAL_NULL(EX_VAR(opline->result.var));
 			goto fetch_obj_r_finish;
 		} while (0);
@@ -9651,7 +9651,7 @@ static ZEND_VM_COLD ZEND_OPCODE_HANDLER_RET ZEND_FASTCALL ZEND_FETCH_OBJ_R_SPEC_
 			if (IS_CV == IS_CV && UNEXPECTED(Z_TYPE_P(offset) == IS_UNDEF)) {
 				ZVAL_UNDEFINED_OP2();
 			}
-			zend_wrong_property_read(offset);
+			zend_wrong_property_read(container, offset);
 			ZVAL_NULL(EX_VAR(opline->result.var));
 			goto fetch_obj_r_finish;
 		} while (0);
@@ -13971,7 +13971,7 @@ static ZEND_OPCODE_HANDLER_RET ZEND_FASTCALL ZEND_FETCH_OBJ_R_SPEC_TMPVAR_CONST_
 			if (IS_CONST == IS_CV && UNEXPECTED(Z_TYPE_P(offset) == IS_UNDEF)) {
 				ZVAL_UNDEFINED_OP2();
 			}
-			zend_wrong_property_read(offset);
+			zend_wrong_property_read(container, offset);
 			ZVAL_NULL(EX_VAR(opline->result.var));
 			goto fetch_obj_r_finish;
 		} while (0);
@@ -15352,7 +15352,7 @@ static ZEND_OPCODE_HANDLER_RET ZEND_FASTCALL ZEND_FETCH_OBJ_R_SPEC_TMPVAR_TMPVAR
 			if ((IS_TMP_VAR|IS_VAR) == IS_CV && UNEXPECTED(Z_TYPE_P(offset) == IS_UNDEF)) {
 				ZVAL_UNDEFINED_OP2();
 			}
-			zend_wrong_property_read(offset);
+			zend_wrong_property_read(container, offset);
 			ZVAL_NULL(EX_VAR(opline->result.var));
 			goto fetch_obj_r_finish;
 		} while (0);
@@ -16627,7 +16627,7 @@ static ZEND_OPCODE_HANDLER_RET ZEND_FASTCALL ZEND_FETCH_OBJ_R_SPEC_TMPVAR_CV_HAN
 			if (IS_CV == IS_CV && UNEXPECTED(Z_TYPE_P(offset) == IS_UNDEF)) {
 				ZVAL_UNDEFINED_OP2();
 			}
-			zend_wrong_property_read(offset);
+			zend_wrong_property_read(container, offset);
 			ZVAL_NULL(EX_VAR(opline->result.var));
 			goto fetch_obj_r_finish;
 		} while (0);
@@ -29418,7 +29418,7 @@ static zend_always_inline ZEND_OPCODE_HANDLER_RET ZEND_FASTCALL ZEND_FETCH_OBJ_R
 			if (IS_CONST == IS_CV && UNEXPECTED(Z_TYPE_P(offset) == IS_UNDEF)) {
 				ZVAL_UNDEFINED_OP2();
 			}
-			zend_wrong_property_read(offset);
+			zend_wrong_property_read(container, offset);
 			ZVAL_NULL(EX_VAR(opline->result.var));
 			goto fetch_obj_r_finish;
 		} while (0);
@@ -31290,7 +31290,7 @@ static ZEND_OPCODE_HANDLER_RET ZEND_FASTCALL ZEND_FETCH_OBJ_R_SPEC_UNUSED_TMPVAR
 			if ((IS_TMP_VAR|IS_VAR) == IS_CV && UNEXPECTED(Z_TYPE_P(offset) == IS_UNDEF)) {
 				ZVAL_UNDEFINED_OP2();
 			}
-			zend_wrong_property_read(offset);
+			zend_wrong_property_read(container, offset);
 			ZVAL_NULL(EX_VAR(opline->result.var));
 			goto fetch_obj_r_finish;
 		} while (0);
@@ -33685,7 +33685,7 @@ static ZEND_OPCODE_HANDLER_RET ZEND_FASTCALL ZEND_FETCH_OBJ_R_SPEC_UNUSED_CV_HAN
 			if (IS_CV == IS_CV && UNEXPECTED(Z_TYPE_P(offset) == IS_UNDEF)) {
 				ZVAL_UNDEFINED_OP2();
 			}
-			zend_wrong_property_read(offset);
+			zend_wrong_property_read(container, offset);
 			ZVAL_NULL(EX_VAR(opline->result.var));
 			goto fetch_obj_r_finish;
 		} while (0);
@@ -37992,7 +37992,7 @@ static zend_always_inline ZEND_OPCODE_HANDLER_RET ZEND_FASTCALL ZEND_FETCH_OBJ_R
 			if (IS_CONST == IS_CV && UNEXPECTED(Z_TYPE_P(offset) == IS_UNDEF)) {
 				ZVAL_UNDEFINED_OP2();
 			}
-			zend_wrong_property_read(offset);
+			zend_wrong_property_read(container, offset);
 			ZVAL_NULL(EX_VAR(opline->result.var));
 			goto fetch_obj_r_finish;
 		} while (0);
@@ -41474,7 +41474,7 @@ static ZEND_OPCODE_HANDLER_RET ZEND_FASTCALL ZEND_FETCH_OBJ_R_SPEC_CV_TMPVAR_HAN
 			if ((IS_TMP_VAR|IS_VAR) == IS_CV && UNEXPECTED(Z_TYPE_P(offset) == IS_UNDEF)) {
 				ZVAL_UNDEFINED_OP2();
 			}
-			zend_wrong_property_read(offset);
+			zend_wrong_property_read(container, offset);
 			ZVAL_NULL(EX_VAR(opline->result.var));
 			goto fetch_obj_r_finish;
 		} while (0);
@@ -46282,7 +46282,7 @@ static ZEND_OPCODE_HANDLER_RET ZEND_FASTCALL ZEND_FETCH_OBJ_R_SPEC_CV_CV_HANDLER
 			if (IS_CV == IS_CV && UNEXPECTED(Z_TYPE_P(offset) == IS_UNDEF)) {
 				ZVAL_UNDEFINED_OP2();
 			}
-			zend_wrong_property_read(offset);
+			zend_wrong_property_read(container, offset);
 			ZVAL_NULL(EX_VAR(opline->result.var));
 			goto fetch_obj_r_finish;
 		} while (0);
