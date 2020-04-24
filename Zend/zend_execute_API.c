@@ -722,10 +722,15 @@ int zend_call_function(zend_fcall_info *fci, zend_fcall_info_cache *fci_cache) /
 		func, fci->param_count, object_or_called_scope);
 
 	if (UNEXPECTED(func->common.fn_flags & ZEND_ACC_DEPRECATED)) {
-		zend_error(E_DEPRECATED, "Function %s%s%s() is deprecated",
-			func->common.scope ? ZSTR_VAL(func->common.scope->name) : "",
-			func->common.scope ? "::" : "",
-			ZSTR_VAL(func->common.function_name));
+		if (func->common.scope) {
+			zend_error(E_DEPRECATED, "Method %s::%s() is deprecated",
+				ZSTR_VAL(func->common.scope->name),
+				ZSTR_VAL(func->common.function_name)
+			);
+		} else {
+			zend_error(E_DEPRECATED, "Function %s() is deprecated", ZSTR_VAL(func->common.function_name));
+		}
+
 		if (UNEXPECTED(EG(exception))) {
 			zend_vm_stack_free_call_frame(call);
 			if (EG(current_execute_data) == &dummy_execute_data) {
