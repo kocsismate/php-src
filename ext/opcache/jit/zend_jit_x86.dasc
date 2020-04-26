@@ -10512,11 +10512,11 @@ static int zend_jit_fetch_obj_read(dasm_State **Dst, const zend_op *opline, cons
 				|	mov CARG1, E_WARNING
 				|	LOAD_ADDR CARG2, "Access to property '%s' on %s"
 				|	LOAD_ADDR CARG3, Z_STRVAL_P(member)
-				|	LOAD_ADDR CARG4, "non-object"
+				|	LOAD_ADDR CARG4, zend_get_type_by_const(op1_info & MAY_BE_UNDEF ? IS_NULL : zend_jit_may_be_to_is(op1_info))
 				|	EXT_CALL zend_error, r0
 			|.else
 				|	sub r4, 4
-				|	push "non-object"
+				|	push zend_get_type_by_const(op1_info & MAY_BE_UNDEF ? IS_NULL : zend_jit_may_be_to_is(op1_info))
 				|	push Z_STRVAL_P(member)
 				|	push "Access to property '%s' on %s"
 				|	push E_WARNING

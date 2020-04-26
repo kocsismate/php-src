@@ -1533,3 +1533,28 @@ static void ZEND_FASTCALL zend_jit_pre_dec(zval *var_ptr, zval *ret)
 	decrement_function(var_ptr);
 	ZVAL_COPY(ret, var_ptr);
 }
+
+static int ZEND_FASTCALL zend_jit_may_be_to_is(int type)
+{
+	if (type & MAY_BE_LONG) {
+		return IS_LONG;
+	}
+
+	if (type & MAY_BE_DOUBLE) {
+		return IS_DOUBLE;
+	}
+
+	if (type & MAY_BE_STRING) {
+		return IS_STRING;
+	}
+
+	if (type & MAY_BE_FALSE || type & MAY_BE_TRUE) {
+		return IS_FALSE;
+	}
+
+	if (type & MAY_BE_NULL) {
+		return IS_NULL;
+	}
+
+	return IS_ARRAY;
+}
