@@ -21,6 +21,7 @@ imageresolution($exp, 71, 299);
 imagejpeg($exp, $filename);
 $act = imagecreatefromjpeg($filename);
 var_dump(imageresolution($act));
+
 ?>
 --EXPECT--
 array(2) {

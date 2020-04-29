@@ -42,6 +42,7 @@ makeFilter($im, $edgeMatrix);
 
 require_once __DIR__ . '/func.inc';
 test_image_equals_file(__DIR__ . '/bug47946_exp.png', $im);
+
 ?>
 --EXPECT--
 The images are equal.

@@ -6,7 +6,7 @@ $tz = 'UTC';
 date_default_timezone_set($tz);
 
 $ts = strtotime('2006-01-01');
-$dt = new DateTime('@'.$ts);
+$dt = new DateTime('@' . $ts);
 $dt->setTimezone(new DateTimeZone($tz));
 
 var_dump($dt->format('o-\WW-N | Y-m-d | H:i:s | U'));
@@ -19,6 +19,7 @@ var_dump($dt->format('o-\WW-N | Y-m-d | H:i:s | U'));
 
 $dt->setTime(20, 30, 40);
 var_dump($dt->format('o-\WW-N | Y-m-d | H:i:s | U'));
+
 ?>
 --EXPECT--
 string(47) "2005-W52-7 | 2006-01-01 | 00:00:00 | 1136073600"

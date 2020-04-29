@@ -10,7 +10,7 @@ if (!extension_loaded('intl'))
 <?php
 ini_set("intl.error_level", E_WARNING);
 
-$c = new IntlGregorianCalendar(NULL, 'pt_PT');
+$c = new IntlGregorianCalendar(null, 'pt_PT');
 
 var_dump($c->get(-1));
 var_dump($c->getActualMaximum(-1));

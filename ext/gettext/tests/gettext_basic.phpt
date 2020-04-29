@@ -15,8 +15,8 @@ Gettext basic test
 chdir(__DIR__);
 putenv('LC_ALL=fi_FI');
 setlocale(LC_ALL, 'fi_FI');
-bindtextdomain ("messages", "./locale");
-textdomain ("messages");
+bindtextdomain("messages", "./locale");
+textdomain("messages");
 echo gettext("Basic test"), "\n";
 echo _("Basic test"), "\n";
 

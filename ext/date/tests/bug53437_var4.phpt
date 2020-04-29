@@ -8,7 +8,8 @@ $dt = new DateTime('2009-10-11');
 
 $df = $dt->diff(new DateTime('2009-10-13'));
 
-var_dump($df,
+var_dump(
+    $df,
     $df->y,
     $df->m,
     $df->d,
@@ -17,7 +18,8 @@ var_dump($df,
     $df->s,
     $df->f,
     $df->invert,
-    $df->days);
+    $df->days
+);
 
 ?>
 --EXPECTF--

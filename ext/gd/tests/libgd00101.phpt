@@ -9,6 +9,7 @@ libgd #101 (imagecreatefromgd can crash if gdImageCreate fails)
 <?php
 $im = imagecreatefromgd(__DIR__ . '/libgd00101.gd');
 var_dump($im);
+
 ?>
 --EXPECTF--
 Warning: imagecreatefromgd(): Product of memory allocation multiplication would exceed INT_MAX, failing operation gracefully

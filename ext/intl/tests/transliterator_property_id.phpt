@@ -11,6 +11,8 @@ echo $revtr->id, "\n";
 var_dump($revtr);
 
 echo "Done.\n";
+
+?>
 --EXPECTF--
 Katakana-Latin
 Latin-Katakana

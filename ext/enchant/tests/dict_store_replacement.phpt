@@ -21,9 +21,9 @@ if (is_resource($broker)) {
 
     if ($requestDict) {
         echo("OK\n");
-        $AddtoPersonalDict = enchant_dict_store_replacement($requestDict,$wrongWord,$rightWord);
+        $AddtoPersonalDict = enchant_dict_store_replacement($requestDict, $wrongWord, $rightWord);
 
-        if (NULL === $AddtoPersonalDict) {
+        if (null === $AddtoPersonalDict) {
             var_dump($AddtoPersonalDict);
         } else {
             echo("dict add to personal failed\n");
@@ -35,6 +35,7 @@ if (is_resource($broker)) {
     echo("broker is not a resource; failed;\n");
 }
 echo "OK\n";
+
 ?>
 --EXPECT--
 OK

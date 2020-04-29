@@ -97,6 +97,7 @@ $v = date_create($current);
 $z = $v;
 $x = $z->setTimestamp(2012234222);
 dump($v, $z, $x);
+
 ?>
 --EXPECT--
 modify():

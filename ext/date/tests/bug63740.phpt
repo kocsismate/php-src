@@ -16,16 +16,16 @@ $dates = [
     '2015-07-14',
 ];
 
-foreach ( $dates as $date )
-{
-    $dt = new DateTimeImmutable( "$date 00:00 UTC" );
+foreach ($dates as $date) {
+    $dt = new DateTimeImmutable("$date 00:00 UTC");
 
-    echo $dt->format( "D Y-m-d H:i" ), " → ";
+    echo $dt->format("D Y-m-d H:i"), " → ";
 
-    $dtn = $dt->modify( "this week" );
+    $dtn = $dt->modify("this week");
 
-    echo $dtn->format( "D Y-m-d H:i" ), "\n";
+    echo $dtn->format("D Y-m-d H:i"), "\n";
 }
+
 ?>
 --EXPECT--
 Sat 2015-07-04 00:00 → Mon 2015-06-29 00:00

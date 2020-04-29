@@ -48,13 +48,14 @@ $values = array(
        );
 
 $iterator = 1;
-foreach($values as $value) {
+foreach ($values as $value) {
       echo "\n-- Iteration $iterator --\n";
-      var_dump( ctype_xdigit($value) );
+      var_dump(ctype_xdigit($value));
       $iterator++;
 };
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_xdigit() : usage variations ***

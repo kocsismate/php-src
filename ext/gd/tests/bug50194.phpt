@@ -31,6 +31,7 @@ if (isset($matches[1]) && $matches[1] > 2000) {
 }
 
 imagedestroy($im);
+
 ?>
 --EXPECT--
 The images are similar.

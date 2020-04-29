@@ -10,9 +10,9 @@ Test timezone_open() function : basic functionality
 
 echo "*** Testing timezone_open() : basic functionality ***\n";
 
-var_dump( timezone_open("GMT") );
-var_dump( timezone_open("Europe/London") );
-var_dump( timezone_open("America/Los_Angeles") );
+var_dump(timezone_open("GMT"));
+var_dump(timezone_open("Europe/London"));
+var_dump(timezone_open("America/Los_Angeles"));
 
 ?>
 --EXPECTF--

@@ -13,6 +13,7 @@ file_put_contents($magic_file, "
 
 $finfo = new finfo(FILEINFO_NONE, $magic_file);
 var_dump($finfo->buffer("buffer\n"));
+
 ?>
 --CLEAN--
 <?php

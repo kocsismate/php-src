@@ -20,6 +20,7 @@ var_dump(ctype_graph($c1));
 var_dump(ctype_graph($c2));
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_graph() : basic functionality ***

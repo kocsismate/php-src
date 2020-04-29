@@ -29,6 +29,7 @@ foreach ($aTz as $sTz) {
 }
 
 var_dump('this should be the only output');
+
 ?>
 --EXPECT--
 string(30) "this should be the only output"

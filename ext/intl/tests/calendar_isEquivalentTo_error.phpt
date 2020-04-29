@@ -10,10 +10,11 @@ if (!extension_loaded('intl'))
 <?php
 ini_set("intl.error_level", E_WARNING);
 
-$c = new IntlGregorianCalendar(NULL, 'pt_PT');
+$c = new IntlGregorianCalendar(null, 'pt_PT');
 
-function eh($errno, $errstr) {
-echo "error: $errno, $errstr\n";
+function eh($errno, $errstr)
+{
+    echo "error: $errno, $errstr\n";
 }
 set_error_handler('eh');
 
@@ -48,6 +49,8 @@ try {
 } catch (Error $ex) {
     echo "error: " . $ex->getCode() . ", " . $ex->getMessage() . "\n\n";
 }
+
+?>
 --EXPECT--
 error: 0, IntlCalendar::isEquivalentTo(): Argument #1 ($calendar) must be of type IntlCalendar, int given
 

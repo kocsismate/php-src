@@ -18,6 +18,7 @@ $ts = date_create("Sun Oct 30 01:59:59 2005");
 echo date_format($ts, 'D, d M Y H:i:s T'), "\n";
 $ts->modify("+ 1 hour 1 second");
 echo date_format($ts, 'D, d M Y H:i:s T'), "\n";
+
 ?>
 --EXPECT--
 Fri, 20 Aug 1993 23:59:59 -12

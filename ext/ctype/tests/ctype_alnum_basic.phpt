@@ -20,6 +20,7 @@ var_dump(ctype_alnum($c1));
 var_dump(ctype_alnum($c2));
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_alnum() : basic functionality ***

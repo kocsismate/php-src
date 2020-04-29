@@ -15,6 +15,7 @@ $ftp or die("Couldn't connect to the server");
 var_dump(ftp_set_option($ftp, FTP_TIMEOUT_SEC, 10));
 var_dump(ftp_set_option($ftp, FTP_AUTOSEEK, false));
 var_dump(ftp_set_option($ftp, FTP_USEPASVADDRESS, true));
+
 ?>
 --EXPECT--
 bool(true)

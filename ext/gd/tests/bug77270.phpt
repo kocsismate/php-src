@@ -14,6 +14,7 @@ $img2 = imagecreate(0xfff, 0xfff);
 imagecolorallocate($img2, 0, 0, 0);
 imagesetpixel($img2, 0, 0, 255);
 imagecolormatch($img1, $img2);
+
 ?>
 ===DONE===
 --EXPECT--

@@ -8,6 +8,7 @@ Transliterator::createInverse (error)
 ini_set("intl.error_level", E_WARNING);
 
 transliterator_create_inverse("jj");
+
 ?>
 --EXPECTF--
 Fatal error: Uncaught TypeError: transliterator_create_inverse(): Argument #1 ($orig_trans) must be of type Transliterator, string given in %s:%d

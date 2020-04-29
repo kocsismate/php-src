@@ -15,11 +15,11 @@ date_default_timezone_set("GMT");
 
 $abbr = DateTimeZone::listAbbreviations();
 
-var_dump( gettype($abbr) );
-var_dump( count($abbr) );
+var_dump(gettype($abbr));
+var_dump(count($abbr));
 
 echo "\n-- Format a sample entry --\n";
-var_dump( $abbr["acst"] );
+var_dump($abbr["acst"]);
 
 ?>
 --EXPECTF--

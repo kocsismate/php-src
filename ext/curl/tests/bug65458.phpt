@@ -20,6 +20,7 @@ curl_close($ch);
 // the number of iterations in the loop, if we're wasting memory here, we
 // should have megs and megs of extra allocations.
 var_dump(($preclose - $init) < 10000);
+
 ?>
 --EXPECT--
 bool(true)

@@ -9,6 +9,7 @@ if (!extension_loaded('gd')) die("skip gd extension not available\n");
 
 $ref = new ReflectionFunction('imagepng');
 var_dump(count($ref->getParameters()));
+
 ?>
 --EXPECT--
 int(4)

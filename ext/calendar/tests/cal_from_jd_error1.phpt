@@ -11,6 +11,7 @@ try {
 } catch (ValueError $ex) {
     echo "{$ex->getMessage()}\n";
 }
+
 ?>
 --EXPECT--
 cal_from_jd(): Argument #2 ($calendar) must be a valid calendar ID

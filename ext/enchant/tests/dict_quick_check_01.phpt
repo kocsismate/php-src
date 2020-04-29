@@ -19,7 +19,7 @@ if (is_resource($broker)) {
     $requestDict = enchant_broker_request_dict($broker, $dicts[0]['lang_tag']);
 
     if ($requestDict) {
-        enchant_dict_quick_check($requestDict,$word,$sugs);
+        enchant_dict_quick_check($requestDict, $word, $sugs);
 
         if (is_array($sugs)) {
             echo("OK\n");
@@ -32,6 +32,7 @@ if (is_resource($broker)) {
 } else {
     echo("broker is not a resource; failed;\n");
 }
+
 ?>
 --EXPECT--
 OK

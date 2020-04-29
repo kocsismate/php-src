@@ -23,6 +23,7 @@ imagedestroy($im);
 $im = imagecreatefromwebp($filename);
 $color = imagecolorat($im, 4, 4);
 var_dump($color & 0xffffff);
+
 ?>
 --CLEAN--
 <?php

@@ -24,6 +24,7 @@ var_dump($d1_clone);
 echo "\n-- clone it --\n";
 $d2_clone = clone $d1_clone;
 var_dump($d2_clone);
+
 ?>
 --EXPECTF--
 *** Testing clone on DateTime objects ***

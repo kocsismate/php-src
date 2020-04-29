@@ -14,9 +14,9 @@ if ($curl_version['version_number'] < 0x073d00) {
 --FILE--
 <?php
 $transfers = 1;
-$callback = function($parent, $passed) use (&$transfers) {
+$callback = function ($parent, $passed) use (&$transfers) {
     curl_setopt($passed, CURLOPT_WRITEFUNCTION, function ($ch, $data) {
-        echo "Received ".strlen($data);
+        echo "Received " . strlen($data);
         return strlen($data);
     });
     $transfers++;
@@ -48,6 +48,7 @@ do {
     } while ($info);
 } while ($transfers);
 curl_multi_close($mh);
+
 ?>
 --EXPECTREGEX--
 (Received \d+)+

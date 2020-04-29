@@ -14,26 +14,27 @@ echo "*** Testing timezone_name_from_abbr() : basic functionality ***\n";
 date_default_timezone_set("Europe/London");
 
 echo "-- Tests with special cases first - no lookup needed --\n";
-var_dump( timezone_name_from_abbr("GMT") );
-var_dump( timezone_name_from_abbr("UTC") );
+var_dump(timezone_name_from_abbr("GMT"));
+var_dump(timezone_name_from_abbr("UTC"));
 
 echo "-- Lookup with just name --\n";
-var_dump( timezone_name_from_abbr("CET") );
-var_dump( timezone_name_from_abbr("EDT") );
+var_dump(timezone_name_from_abbr("CET"));
+var_dump(timezone_name_from_abbr("EDT"));
 
 echo "-- Lookup with name and offset--\n";
-var_dump( timezone_name_from_abbr("ADT", -10800) );
-var_dump( timezone_name_from_abbr("ADT", 14400) );
+var_dump(timezone_name_from_abbr("ADT", -10800));
+var_dump(timezone_name_from_abbr("ADT", 14400));
 
 echo "-- Tests without valid name - uses gmtOffset and isdst to find match --\n";
-var_dump( timezone_name_from_abbr("", 3600, 1) );
-var_dump( timezone_name_from_abbr("FOO", -7200, 1) );
-var_dump( timezone_name_from_abbr("", -14400, 1) );
-var_dump( timezone_name_from_abbr("", -14400, 0) );
+var_dump(timezone_name_from_abbr("", 3600, 1));
+var_dump(timezone_name_from_abbr("FOO", -7200, 1));
+var_dump(timezone_name_from_abbr("", -14400, 1));
+var_dump(timezone_name_from_abbr("", -14400, 0));
 
 echo "-- Tests with invalid offsets --\n";
-var_dump( timezone_name_from_abbr("", 5400) ); // offset = 1.5 hrs
-var_dump( timezone_name_from_abbr("", 62400) ); // offset = 24 hrs
+var_dump(timezone_name_from_abbr("", 5400)); // offset = 1.5 hrs
+var_dump(timezone_name_from_abbr("", 62400)); // offset = 24 hrs
+
 ?>
 --EXPECT--
 *** Testing timezone_name_from_abbr() : basic functionality ***

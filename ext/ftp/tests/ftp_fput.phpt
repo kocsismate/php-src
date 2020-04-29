@@ -16,6 +16,7 @@ $destination_file = basename(__FILE__);
 $source_file = fopen(__FILE__, 'r');
 
 var_dump(ftp_fput($ftp, $destination_file, $source_file, FTP_ASCII));
+
 ?>
 --EXPECT--
 bool(true)

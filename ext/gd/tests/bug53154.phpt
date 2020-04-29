@@ -16,6 +16,7 @@ var_dump(imagecolorat($im, 5, 4) !== $red);
 var_dump(imagecolorat($im, 5, 6) !== $red);
 var_dump(imagecolorat($im, 95, 4) !== $red);
 var_dump(imagecolorat($im, 95, 6) !== $red);
+
 ?>
 --EXPECT--
 bool(true)

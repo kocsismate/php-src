@@ -7,7 +7,8 @@ include 'skipif.inc';
 --FILE--
 <?php
 include 'server.inc';
-function checkForClosedFilePointer($target_url, $curl_option, $description) {
+function checkForClosedFilePointer($target_url, $curl_option, $description)
+{
     $fp = fopen(__DIR__ . '/bug48203.tmp', 'w');
 
     $ch1 = curl_init();
@@ -59,7 +60,7 @@ $options_to_check = array(
 );
 
 $target_url = curl_cli_server_start();
-foreach($options_to_check as $option) {
+foreach ($options_to_check as $option) {
     checkForClosedFilePointer($target_url, constant($option), $option);
 }
 

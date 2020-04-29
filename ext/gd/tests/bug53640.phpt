@@ -13,7 +13,8 @@ $im = imagecreate(9, 9);
 imagecolorallocate($im, 0, 0, 0); // background
 $white = imagecolorallocate($im, 255, 255, 255);
 imagefilledrectangle($im, 2, 2, 6, 6, $white);
-imagexbm($im, NULL);
+imagexbm($im, null);
+
 ?>
 --EXPECT--
 #define image_width 9

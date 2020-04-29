@@ -9,7 +9,7 @@ if (getenv("SKIP_SLOW_TESTS")) die("skip slow test");
 memory_limit=2G
 --FILE--
 <?php
-$im = imagecreate(2**28, 1);
+$im = imagecreate(2 ** 28, 1);
 imagescale($im, 1, 1, IMG_TRIANGLE);
 
 ?>

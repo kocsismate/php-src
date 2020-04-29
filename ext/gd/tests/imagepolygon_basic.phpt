@@ -28,12 +28,15 @@ $bg = imagecolorallocate($image, 0, 0, 0);
 $col_poly = imagecolorallocate($image, 255, 0, 0);
 
 // draw the polygon
-imagepolygon($image, array (
+imagepolygon(
+    $image,
+    array (
         0,   0,
         100, 200,
         300, 200
     ),
-    $col_poly);
+    $col_poly
+);
 
 // output the picture to a file
 imagepng($image, $dest);
@@ -47,6 +50,7 @@ var_dump($color1, $color2);
 imagedestroy($image);
 
 echo "Done\n";
+
 ?>
 --CLEAN--
 <?php

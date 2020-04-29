@@ -11,6 +11,7 @@ $tz = IntlTimeZone::createDefault();
 print_r($tz);
 $tz = intltz_create_default();
 print_r($tz);
+
 ?>
 --EXPECTF--
 IntlTimeZone Object

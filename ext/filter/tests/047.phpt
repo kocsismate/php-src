@@ -4,7 +4,8 @@ Octal integer overflow
 <?php if (!extension_loaded("filter")) die("skip"); ?>
 --FILE--
 <?php
-function octal_inc($s) {
+function octal_inc($s)
+{
     $len = strlen($s);
     while ($len > 0) {
         $len--;
@@ -14,21 +15,22 @@ function octal_inc($s) {
         }
         $s[$len] = '0';
     }
-    return '1'.$s;
+    return '1' . $s;
 }
 
 
 $s = sprintf("%o", PHP_INT_MAX);
-var_dump(is_long(filter_var('0'.$s, FILTER_VALIDATE_INT, array("flags"=>FILTER_FLAG_ALLOW_OCTAL))));
+var_dump(is_long(filter_var('0' . $s, FILTER_VALIDATE_INT, array("flags" => FILTER_FLAG_ALLOW_OCTAL))));
 
 $s = octal_inc($s);
-var_dump(is_long(filter_var('0'.$s, FILTER_VALIDATE_INT, array("flags"=>FILTER_FLAG_ALLOW_OCTAL))));
+var_dump(is_long(filter_var('0' . $s, FILTER_VALIDATE_INT, array("flags" => FILTER_FLAG_ALLOW_OCTAL))));
 
 $s = sprintf("%o", ~0);
-var_dump(is_long(filter_var('0'.$s, FILTER_VALIDATE_INT, array("flags"=>FILTER_FLAG_ALLOW_OCTAL))));
+var_dump(is_long(filter_var('0' . $s, FILTER_VALIDATE_INT, array("flags" => FILTER_FLAG_ALLOW_OCTAL))));
 
 $s = octal_inc($s);
-var_dump(filter_var('0'.$s, FILTER_VALIDATE_INT, array("flags"=>FILTER_FLAG_ALLOW_OCTAL)));
+var_dump(filter_var('0' . $s, FILTER_VALIDATE_INT, array("flags" => FILTER_FLAG_ALLOW_OCTAL)));
+
 ?>
 --EXPECT--
 bool(true)

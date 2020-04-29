@@ -11,6 +11,8 @@ $fi = new finfo(FILEINFO_MIME_TYPE);
 var_dump($fi->file($f));
 ?>
 +++DONE+++
+
+?>
 --EXPECT--
 string(15) "video/quicktime"
 +++DONE+++

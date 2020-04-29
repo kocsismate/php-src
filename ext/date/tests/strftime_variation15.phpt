@@ -24,10 +24,10 @@ $inputs = array(
 
 // loop through each element of the array for timestamp
 
-foreach($inputs as $key =>$value) {
+foreach ($inputs as $key => $value) {
       echo "\n--$key--\n";
-      var_dump( strftime($value) );
-      var_dump( strftime($value, $timestamp) );
+      var_dump(strftime($value));
+      var_dump(strftime($value, $timestamp));
 }
 
 ?>

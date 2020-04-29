@@ -32,6 +32,7 @@ echo bccomp("1e1", "2");
 echo bccomp("1,1", "2");
 echo bccomp("Hello", "2");
 echo bccomp("1 1", "2");
+
 ?>
 --EXPECTF--
 3

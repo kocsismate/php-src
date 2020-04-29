@@ -25,6 +25,7 @@ for ($i = 0; $i < 256; $i++) {
 var_dump($white);
 
 imagedestroy($im);
+
 ?>
 --EXPECT--
 int(0)

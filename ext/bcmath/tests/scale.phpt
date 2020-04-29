@@ -14,6 +14,7 @@ echo
     'bcpowmod: ', bcpowmod('2', '1', '3', 5), PHP_EOL,
     'bcsqrt:   ', bcsqrt('4', 5), PHP_EOL,
     'bcsub:    ', bcsub('2', '1', 5), PHP_EOL;
+
 ?>
 --EXPECT--
 bcadd:    3.00000

@@ -8,11 +8,12 @@ DBA GDBM handler test
 --FILE--
 <?php
     $handler = 'gdbm';
-    require_once __DIR__ .'/test.inc';
+    require_once __DIR__ . '/test.inc';
     $lock_flag = ''; // lock in library
-    require_once __DIR__ .'/dba_handler.inc';
+    require_once __DIR__ . '/dba_handler.inc';
 
     // Read during write is system dependent. Important is that there is no deadlock
+
 ?>
 --EXPECTF--
 database handler: gdbm

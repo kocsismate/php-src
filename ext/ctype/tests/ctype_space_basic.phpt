@@ -20,6 +20,7 @@ $c2 = "Hello, world!\n";
 var_dump(ctype_space($c2));
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_space() : basic functionality ***

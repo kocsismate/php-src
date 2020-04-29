@@ -22,5 +22,7 @@ $tests = <<<TESTS
 TESTS;
 
 include(__DIR__ . '/../../../tests/quicktester.inc');
+
+?>
 --EXPECT--
 OK

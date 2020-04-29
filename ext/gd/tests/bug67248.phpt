@@ -9,11 +9,12 @@ Bug #67248 (imageaffinematrixget missing check of parameters)
 <?php
 require __DIR__ . '/func.inc';
 
-for($i=0;$i<7;$i++) {
+for ($i = 0; $i < 7; $i++) {
     trycatch_dump(
         fn() => imageaffinematrixget($i)
     );
 }
+
 ?>
 --EXPECT--
 !! [TypeError] imageaffinematrixget(): Argument #1 ($type) must be of type array when using translate or scale

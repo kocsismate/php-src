@@ -9,9 +9,10 @@ $d[] = strtotime("2005-07-14 22:30:41 GMT");
 $d[] = strtotime("@1121373041");
 $d[] = strtotime("@1121373041 CEST");
 
-foreach($d as $date) {
+foreach ($d as $date) {
     echo date(DATE_ISO8601, $date), "\n";
 }
+
 ?>
 --EXPECT--
 2005-07-14T22:30:41+0200

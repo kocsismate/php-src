@@ -34,6 +34,7 @@ jpeg <--> gd1/gd2 conversion test
     @unlink($cwd . "/test_jpeg.gd2");
     @unlink($cwd . "/test_gd1.jpeg");
     @unlink($cwd . "/test_gd2.jpeg");
+
 ?>
 --EXPECT--
 JPEG to GD1 conversion: ok

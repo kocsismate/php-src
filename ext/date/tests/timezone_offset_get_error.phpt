@@ -18,21 +18,21 @@ echo "*** Testing timezone_offset_get() : error conditions ***\n";
 echo "\n-- Testing timezone_offset_get() function with an invalid values for \$object argument --\n";
 $invalid_obj = new stdClass();
 try {
-    var_dump( timezone_offset_get($invalid_obj, $date) );
+    var_dump(timezone_offset_get($invalid_obj, $date));
 } catch (Error $ex) {
     var_dump($ex->getMessage());
     echo "\n";
 }
 $invalid_obj = 10;
 try {
-    var_dump( timezone_offset_get($invalid_obj, $date) );
+    var_dump(timezone_offset_get($invalid_obj, $date));
 } catch (Error $ex) {
     var_dump($ex->getMessage());
     echo "\n";
 }
 $invalid_obj = null;
 try {
-    var_dump( timezone_offset_get($invalid_obj, $date) );
+    var_dump(timezone_offset_get($invalid_obj, $date));
 } catch (Error $ex) {
     var_dump($ex->getMessage());
     echo "\n";
@@ -41,25 +41,26 @@ try {
 echo "\n-- Testing timezone_offset_get() function with an invalid values for \$datetime argument --\n";
 $invalid_obj = new stdClass();
 try {
-    var_dump( timezone_offset_get($tz, $invalid_obj) );
+    var_dump(timezone_offset_get($tz, $invalid_obj));
 } catch (Error $ex) {
     var_dump($ex->getMessage());
     echo "\n";
 }
 $invalid_obj = 10;
 try {
-    var_dump( timezone_offset_get($tz, $invalid_obj) );
+    var_dump(timezone_offset_get($tz, $invalid_obj));
 } catch (Error $ex) {
     var_dump($ex->getMessage());
     echo "\n";
 }
 $invalid_obj = null;
 try {
-    var_dump( timezone_offset_get($tz, $invalid_obj) );
+    var_dump(timezone_offset_get($tz, $invalid_obj));
 } catch (Error $ex) {
     var_dump($ex->getMessage());
     echo "\n";
 }
+
 ?>
 --EXPECT--
 *** Testing timezone_offset_get() : error conditions ***

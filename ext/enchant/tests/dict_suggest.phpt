@@ -20,22 +20,20 @@ if (is_resource($broker)) {
 
     if ($requestDict) {
         echo("OK\n");
-        $dictSuggest = enchant_dict_suggest($requestDict,$sugs);
+        $dictSuggest = enchant_dict_suggest($requestDict, $sugs);
 
         if (is_array($dictSuggest)) {
             echo("OK\n");
         } else {
             echo("dict suggest failed\n");
         }
-
     } else {
-    echo("broker request dict failed\n");
-
+        echo("broker request dict failed\n");
     }
-
 } else {
     echo("broker is not a resource; failed;\n");
 }
+
 ?>
 --EXPECT--
 OK

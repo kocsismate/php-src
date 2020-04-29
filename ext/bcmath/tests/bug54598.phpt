@@ -8,6 +8,7 @@ if (!extension_loaded('bcmath')) die('skip bcmath extension is not available');
 <?php
 var_dump(bcpowmod(5, 0, 1));
 var_dump(bcpowmod(5, 0, 1, 3));
+
 ?>
 --EXPECT--
 string(1) "0"

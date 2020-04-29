@@ -18,6 +18,7 @@ if (enchant_broker_dict_exists($broker, $dicts[0]['lang_tag'])) {
 } else {
     echo("dicts dont exist failed\n");
 }
+
 ?>
 --EXPECT--
 OK

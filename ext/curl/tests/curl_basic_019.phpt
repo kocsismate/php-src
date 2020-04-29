@@ -17,6 +17,7 @@ Jean-Marc Fontaine <jmf@durcommefaire.net>
   $info = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
   var_dump($url == $info);
   curl_close($ch);
+
 ?>
 --EXPECT--
 Hello World!

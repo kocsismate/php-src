@@ -11,6 +11,7 @@ var_dump(filter_var("", FILTER_SANITIZE_ADD_SLASHES));
 var_dump(filter_var(-1, FILTER_SANITIZE_ADD_SLASHES));
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 string(36) "test\'asd\'asd\'\' asd\\\'\"asdfasdf"

@@ -36,6 +36,7 @@ foreach ($urls as $i => $url) {
 }
 
 curl_multi_close($mh);
+
 ?>
 --EXPECTF--
 int(1)

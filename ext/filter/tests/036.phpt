@@ -21,6 +21,7 @@ var_dump($data); //should be separated, i.e. not reference anymore. looks like w
 var_dump($var); //should be still string(1) "1"
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 array(2) {

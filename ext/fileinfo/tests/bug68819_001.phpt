@@ -13,6 +13,7 @@ $finfo = new finfo();
 $type = $finfo->buffer($string);
 
 var_dump($type);
+
 ?>
 --EXPECT--
 string(60) "ASCII text, with very long lines, with CRLF line terminators"

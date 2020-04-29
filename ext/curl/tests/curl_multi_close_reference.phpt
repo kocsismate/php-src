@@ -15,6 +15,7 @@ curl_multi_add_handle($mh, curl_init());
 curl_multi_add_handle($mh, curl_init());
 curl_multi_add_handle($mh, curl_init());
 echo "okey";
+
 ?>
 --EXPECT--
 okey

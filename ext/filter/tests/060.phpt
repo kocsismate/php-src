@@ -52,6 +52,7 @@ var_dump(filter_var(
         ]
     ]
 ));
+
 ?>
 --EXPECT--
 array(9) {

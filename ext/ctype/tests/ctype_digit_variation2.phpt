@@ -25,6 +25,7 @@ for ($i = 0; $i < 256; $i++) {
 }
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_digit() : usage variations ***

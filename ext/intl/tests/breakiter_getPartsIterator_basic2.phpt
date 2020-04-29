@@ -21,6 +21,7 @@ $pi = $bi->getPartsIterator();
 var_dump(get_class($pi->getBreakIterator()));
 print_r(iterator_to_array($pi));
 var_dump($pi->getRuleStatus());
+
 ?>
 --EXPECTF--
 string(17) "IntlPartsIterator"

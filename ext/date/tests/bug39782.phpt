@@ -12,6 +12,7 @@ echo $dttTest->format('D M j Y - H:i:s') . "\n";
 
 $dttTest->setTime(12, 0, 0);
 echo $dttTest->format('D M j Y - H:i:s') . "\n";
+
 ?>
 --EXPECT--
 Wed Dec 13 2006 - 00:00:00

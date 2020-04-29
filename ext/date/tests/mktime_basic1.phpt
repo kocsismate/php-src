@@ -20,12 +20,12 @@ $month = 7;
 $day = 2;
 $year = 1963;
 
-var_dump( mktime($hour) );
-var_dump( mktime($hour, $minute) );
-var_dump( mktime($hour, $minute, $sec) );
-var_dump( mktime($hour, $minute, $sec, $month) );
-var_dump( mktime($hour, $minute, $sec, $month, $day) );
-var_dump( mktime($hour, $minute, $sec, $month, $day, $year) );
+var_dump(mktime($hour));
+var_dump(mktime($hour, $minute));
+var_dump(mktime($hour, $minute, $sec));
+var_dump(mktime($hour, $minute, $sec, $month));
+var_dump(mktime($hour, $minute, $sec, $month, $day));
+var_dump(mktime($hour, $minute, $sec, $month, $day, $year));
 
 ?>
 --EXPECTF--

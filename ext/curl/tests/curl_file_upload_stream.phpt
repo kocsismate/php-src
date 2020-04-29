@@ -20,6 +20,7 @@ var_dump(curl_setopt($ch, CURLOPT_POSTFIELDS, $params));
 
 var_dump(curl_exec($ch));
 curl_close($ch);
+
 ?>
 --EXPECT--
 bool(true)

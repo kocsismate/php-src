@@ -5,7 +5,7 @@ filter_var() and FILTER_VALIDATE_DOMAIN
 --FILE--
 <?php
 
-$values = Array(
+$values = array(
 'example.com',
 'www.thelongestdomainnameintheworldandthensomeandthensomemoreandmore.com',
 'toolongtoolongtoolongtoolongtoolongtoolongtoolongtoolongtoolongtoolong.com',
@@ -38,6 +38,7 @@ var_dump(filter_var('test._example.com', FILTER_VALIDATE_DOMAIN));
 var_dump(filter_var('test._example.com', FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME));
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 string(11) "example.com"

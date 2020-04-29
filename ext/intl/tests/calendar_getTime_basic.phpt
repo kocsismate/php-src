@@ -19,7 +19,7 @@ $intlcal->set(IntlCalendar::FIELD_DAY_OF_MONTH, 29);
 
 $time = strtotime('2012-02-29 00:00:00 +0000');
 
-var_dump((float)$time*1000, $intlcal->getTime());
+var_dump((float)$time * 1000, $intlcal->getTime());
 
 ?>
 --EXPECT--

@@ -26,10 +26,10 @@ $inputs = array(
 
 // loop through each element of the array for timestamp
 
-foreach($inputs as $key =>$value) {
+foreach ($inputs as $key => $value) {
       echo "\n--$key--\n";
-      var_dump( gmstrftime($value) );
-      var_dump( gmstrftime($value, $timestamp) );
+      var_dump(gmstrftime($value));
+      var_dump(gmstrftime($value, $timestamp));
 };
 
 ?>

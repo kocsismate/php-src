@@ -308,18 +308,19 @@ $tests = array(
 
 $i = 0;
 $pass = true;
-foreach($tests as $test) {
+foreach ($tests as $test) {
     $result = hash('fnv1a64', $test[0]);
     if ($result != $test[1]) {
         echo "Iteration " . $i . " failed - expected '" . $test[1] . "', got '" . $result . "' for '" . $test[1] . "'\n";
-    $pass = false;
+        $pass = false;
     }
     $i++;
 }
 
-if($pass) {
+if ($pass) {
     echo "PASS";
 }
+
 ?>
 --EXPECT--
 PASS

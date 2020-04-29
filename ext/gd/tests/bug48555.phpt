@@ -18,10 +18,10 @@ $with_line_break = $box[7];
 
 var_dump($without_line_break);
 var_dump($with_line_break);
-if ($with_line_break==$without_line_break) {
-  echo "with line break == without line break".PHP_EOL;
+if ($with_line_break == $without_line_break) {
+    echo "with line break == without line break" . PHP_EOL;
 } else {
-  echo "with line break != without line break".PHP_EOL;
+    echo "with line break != without line break" . PHP_EOL;
 }
 
 ?>

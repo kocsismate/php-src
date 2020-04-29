@@ -23,6 +23,7 @@ var_dump(datefmt_create(
     \IntlDateFormatter::GREGORIAN,
     'yyyy-MM-dd HH:mm:ss.SSSSSS'
 )->format(new \DateTime('2017-01-01 01:02:03.123456', new \DateTimeZone('UTC'))));
+
 ?>
 --EXPECT--
 string(26) "2017-01-01T01:02:03.123456"

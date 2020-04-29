@@ -14,6 +14,7 @@ open_basedir="/tmp"
   var_dump(curl_setopt($ch, CURLOPT_COOKIEFILE, "/tmp/foo"));
   var_dump(curl_setopt($ch, CURLOPT_COOKIEFILE, "/xxx/bar"));
   curl_close($ch);
+
 ?>
 --EXPECTF--
 bool(true)

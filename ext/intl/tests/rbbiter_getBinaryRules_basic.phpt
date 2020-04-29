@@ -30,6 +30,7 @@ $rbbi2 = new IntlRuleBasedBreakIterator($br, true);
 
 var_dump($rbbi->getRules(), $rbbi2->getRules());
 var_dump($rbbi->getRules() == $rbbi2->getRules());
+
 ?>
 --EXPECT--
 string(128) "$LN = [[:letter:] [:number:]];$S = [.;,:];!!forward;$LN+ {1};$S+ {42};!!reverse;$LN+ {1};$S+ {42};!!safe_forward;!!safe_reverse;"

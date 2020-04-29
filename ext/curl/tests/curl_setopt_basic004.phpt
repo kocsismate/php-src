@@ -23,7 +23,7 @@ curl_setopt($ch, CURLOPT_URL, $url);
 $curl_content = curl_exec($ch);
 curl_close($ch);
 
-var_dump( $curl_content );
+var_dump($curl_content);
 
 echo "*** curl_setopt() call with CURLOPT_RETURNTRANSFER set to 0\n";
 
@@ -36,7 +36,8 @@ $curl_content = curl_exec($ch);
 ob_end_clean();
 curl_close($ch);
 
-var_dump( $curl_content );
+var_dump($curl_content);
+
 ?>
 --EXPECTF--
 *** curl_setopt() call with CURLOPT_RETURNTRANSFER set to 1

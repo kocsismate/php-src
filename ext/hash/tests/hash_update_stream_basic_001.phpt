@@ -9,8 +9,7 @@ if (!extension_loaded('openssl')) die('skip openssl extension not available');
 --FILE--
 <?php
 
-for ($j=0; $j<3; $j++)
-{
+for ($j = 0; $j < 3; $j++) {
     // Create pseudo-random hash
     $bytes = openssl_random_pseudo_bytes(15, $cstrong);
     $hash   = sha1(bin2hex($bytes));

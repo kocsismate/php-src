@@ -26,9 +26,10 @@ Check for number base recognition
         $test[] = gmp_init("4d2");
         $test[] = gmp_init("4d2", 16);
 
-        for ($i = 0; $i < count($test); $i++) {
-                printf("%s\n", gmp_strval($test[$i]));
-        }
+for ($i = 0; $i < count($test); $i++) {
+        printf("%s\n", gmp_strval($test[$i]));
+}
+
 ?>
 --EXPECTF--
 Warning: gmp_init(): Unable to convert variable to GMP - string is not an integer in %s on line %d

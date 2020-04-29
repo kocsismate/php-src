@@ -15,10 +15,11 @@ $dir = $stream . "#dir/";
 $png = $stream . "#dir/test.png";
 
 var_dump(
-         finfo_file($fp, $zip),
-         finfo_file($fp, $dir),
-         finfo_file($fp, $png)
+    finfo_file($fp, $zip),
+    finfo_file($fp, $dir),
+    finfo_file($fp, $png)
 );
+
 ?>
 --EXPECT--
 string(15) "application/zip"

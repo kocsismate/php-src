@@ -60,6 +60,7 @@ imagedestroy($image);
 imagedestroy($image_in);
 
 echo "Done\n";
+
 ?>
 --CLEAN--
 <?php

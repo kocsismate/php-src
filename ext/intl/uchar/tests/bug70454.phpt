@@ -9,6 +9,7 @@ var_dump(IntlChar::forDigit(3));
 var_dump(IntlChar::forDigit(3, 10));
 var_dump(IntlChar::forDigit(10));
 var_dump(IntlChar::forDigit(10, 16));
+
 ?>
 --EXPECT--
 int(48)

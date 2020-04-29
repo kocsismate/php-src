@@ -19,7 +19,7 @@ $supported_hash_al = array(
 "MHASH_CRC32B"     => "65ab6cb5fb7d3ea67f5da92a9bd746b6628a13368fcbcd43af49092e9c6a960fd030a5ce3c1f0ddb512ec698be96e77969748db66278b0fd837d24d8c898f50bd70993b48cc8accf4b44c54431e91385ddf04c7560a1a7368fc9e6f763457c90b07f04f1"
 );
 
-foreach ($supported_hash_al as $hash=>$wanted) {
+foreach ($supported_hash_al as $hash => $wanted) {
     $passwd = str_repeat($hash, 10);
     $salt = str_repeat($hash, 2);
     $result = mhash_keygen_s2k(constant($hash), $passwd, $salt, 100);
@@ -33,6 +33,7 @@ foreach ($supported_hash_al as $hash=>$wanted) {
     }
     echo "\n";
 }
+
 ?>
 --EXPECT--
 MHASH_MD5

@@ -7,6 +7,8 @@ Rodrigo Wanderley de Melo Cardoso <rodrigogepem@gmail.com>
 date.timezone=UTC
 --FILE--
 <?php $versionTimezone = timezone_version_get();
-echo $versionTimezone; ?>
+echo $versionTimezone;
+
+?>
 --EXPECTREGEX--
 ^[12][0-9]{3}.[0-9]+$

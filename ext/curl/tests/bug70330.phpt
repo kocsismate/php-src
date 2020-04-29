@@ -13,5 +13,9 @@ $t5 = curl_init();
 $t6 = curl_copy_handle($t5);
 ?>
 okey
+
+?>
+
+?>
 --EXPECT--
 okey

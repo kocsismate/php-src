@@ -7,9 +7,11 @@ extension_loaded("exif") or die("skip need exif");
 --FILE--
 <?php
 echo "Test\n";
-var_dump(exif_read_data(__DIR__."/bug62523_3.jpg"));
+var_dump(exif_read_data(__DIR__ . "/bug62523_3.jpg"));
 ?>
 Done
+
+?>
 --EXPECTF--
 Test
 

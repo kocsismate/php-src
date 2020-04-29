@@ -23,10 +23,10 @@ $inputs = array(
       'Hexa-decimal -10' => -0XA
 );
 
-foreach($inputs as $key =>$value) {
+foreach ($inputs as $key => $value) {
       echo "\n--$key--\n";
-      var_dump( localtime($value) );
-      var_dump( localtime($value, $is_associative) );
+      var_dump(localtime($value));
+      var_dump(localtime($value, $is_associative));
 }
 
 ?>

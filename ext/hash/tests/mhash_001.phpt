@@ -21,9 +21,9 @@ $supported_hash_al = array(
 
 $data = "This is the test of the mhash extension...";
 
-foreach ($supported_hash_al as $hash=>$wanted) {
+foreach ($supported_hash_al as $hash => $wanted) {
     $result = mhash(constant($hash), $data);
-    if (bin2hex($result)==$wanted) {
+    if (bin2hex($result) == $wanted) {
         echo "$hash\nok\n";
     } else {
         echo "$hash: ";
@@ -33,6 +33,7 @@ foreach ($supported_hash_al as $hash=>$wanted) {
     }
     echo "\n";
 }
+
 ?>
 --EXPECT--
 MHASH_MD5

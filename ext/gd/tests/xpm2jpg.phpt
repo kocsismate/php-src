@@ -22,6 +22,7 @@ xpm --> jpeg conversion test
     echo "\n";
 
     @unlink($cwd . "/test_xpm.jpeg");
+
 ?>
 --EXPECT--
 XPM to JPEG conversion: ok

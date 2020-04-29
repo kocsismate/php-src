@@ -22,7 +22,7 @@ $hex_values = array  (0x61, 0x62, 0x63, 0x64);
 
 echo "\n-- Octal Values --\n";
 $iterator = 1;
-foreach($octal_values as $c) {
+foreach ($octal_values as $c) {
     echo "-- Iteration $iterator --\n";
     var_dump(ctype_lower($c));
     $iterator++;
@@ -30,13 +30,14 @@ foreach($octal_values as $c) {
 
 echo "\n-- Hexadecimal Values --\n";
 $iterator = 1;
-foreach($hex_values as $c) {
+foreach ($hex_values as $c) {
     echo "-- Iteration $iterator --\n";
     var_dump(ctype_lower($c));
     $iterator++;
 }
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_lower() : usage variations ***

@@ -60,6 +60,7 @@ while (1) {
 }
 
 echo "Done\n";
+
 ?>
 --EXPECTF--
 Warning: gmp_random_range(): The minimum value must be less than the maximum value in %s on line %d

@@ -42,7 +42,7 @@ function ut_main()
     return $result;
 }
 
-include_once( 'ut_common.inc' );
+include_once('ut_common.inc');
 ut_run();
 
 ?>

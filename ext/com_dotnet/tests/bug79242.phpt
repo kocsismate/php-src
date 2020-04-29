@@ -13,6 +13,7 @@ var_dump(
     DISP_E_BADINDEX,
     MK_E_UNAVAILABLE
 );
+
 ?>
 --EXPECT--
 int(-2147352558)

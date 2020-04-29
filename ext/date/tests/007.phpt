@@ -4,7 +4,7 @@ localtime() tests
 <?php
 date_default_timezone_set('UTC');
 
-$t = mktime(0,0,0, 6, 27, 2006);
+$t = mktime(0, 0, 0, 6, 27, 2006);
 
 var_dump(localtime());
 var_dump(localtime($t));
@@ -12,6 +12,7 @@ var_dump(localtime($t, true));
 var_dump(localtime($t, false));
 
 echo "Done\n";
+
 ?>
 --EXPECTF--
 array(9) {

@@ -22,6 +22,7 @@ gif --> png conversion test
     echo "\n";
 
     @unlink($cwd . "/test_gif.png");
+
 ?>
 --EXPECT--
 GIF to PNG conversion: ok

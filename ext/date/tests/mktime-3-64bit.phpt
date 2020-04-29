@@ -15,14 +15,15 @@ foreach ($tzs as $tz) {
     foreach ($years as $year) {
         printf("Y: %4d - ", $year);
         $ret = mktime(1, 1, 1, 1, 1, $year);
-        if ($ret == FALSE) {
+        if ($ret == false) {
             echo "out of range\n";
         } else {
-            echo date("F ".DATE_ISO8601, $ret), "\n";
+            echo date("F " . DATE_ISO8601, $ret), "\n";
         }
     }
     echo "\n";
 }
+
 ?>
 --EXPECTF--
 America/Toronto

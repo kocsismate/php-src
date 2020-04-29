@@ -16,6 +16,7 @@ $destination_file = basename(__FILE__);
 $source_file = __FILE__;
 
 var_dump(ftp_nb_put($ftp, $destination_file, $source_file, FTP_ASCII));
+
 ?>
 --EXPECT--
 int(1)

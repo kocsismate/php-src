@@ -13,5 +13,7 @@ try {
 } catch (TypeError $e) {
     echo $e->getMessage(), "\n";
 }
+
+?>
 --EXPECT--
 finfo::__construct() expects at most 2 parameters, 3 given

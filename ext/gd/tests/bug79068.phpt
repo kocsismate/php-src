@@ -12,6 +12,7 @@ imageline($src, 10, 10, 90, 90, 0x000000);
 imagesetinterpolation($src, IMG_BSPLINE);
 imageaffine($src, [1, 1, 1, 1, 1, 1]);
 var_dump(imagegetinterpolation($src) === IMG_BSPLINE);
+
 ?>
 --EXPECT--
 bool(true)

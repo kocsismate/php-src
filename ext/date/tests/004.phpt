@@ -24,6 +24,7 @@ foreach ($tz as $zone) {
 }
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 string(1) "2"

@@ -21,28 +21,25 @@ if (is_resource($broker)) {
         echo("OK\n");
         $AddtoPersonalDict = enchant_dict_add_to_personal($requestDict, $newWord);
 
-        if (NULL === $AddtoPersonalDict) {
+        if (null === $AddtoPersonalDict) {
             var_dump($AddtoPersonalDict);
 
             if (enchant_broker_free_dict($requestDict)) {
                 echo("OK\n");
-
             } else {
                 echo("dict broker free has failed\n");
             }
-
         } else {
             echo("dict add to personal failed\n");
         }
-
     } else {
         echo("broker request dict failed\n");
     }
-
 } else {
     echo("broker is not a resource; failed;\n");
 }
 echo "OK\n";
+
 ?>
 --EXPECT--
 OK

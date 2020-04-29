@@ -13,6 +13,7 @@ Test basic date_parse()
     var_dump(date_parse("0-0"));
     var_dump(date_parse(""));
     echo "Done\n";
+
 ?>
 --EXPECTF--
 array(12) {

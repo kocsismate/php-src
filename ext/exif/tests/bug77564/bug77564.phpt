@@ -7,6 +7,8 @@ Bug 77564 (Memory leak in exif_process_IFD_TAG)
 var_dump(exif_read_data(__DIR__ . '/bug77564.jpg'));
 ?>
 DONE
+
+?>
 --EXPECTF--
 
 Warning: exif_read_data(bug77564.jpg): Illegal IFD offset in %sbug77564.php on line %d

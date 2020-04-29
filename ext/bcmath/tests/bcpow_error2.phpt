@@ -7,6 +7,7 @@ if (!extension_loaded('bcmath')) die('skip bcmath extension is not available');
 --FILE--
 <?php
 var_dump(bcpow('0', '9223372036854775808', 2));
+
 ?>
 --EXPECTF--
 Warning: bcpow(): Exponent too large in %s on line %d

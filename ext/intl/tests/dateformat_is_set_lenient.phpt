@@ -16,64 +16,64 @@ function ut_main()
         $res_str = '';
 
     //Create
-        $fmt = ut_datefmt_create( "en-US",  IntlDateFormatter::SHORT, IntlDateFormatter::SHORT , 'America/New_York', IntlDateFormatter::GREGORIAN );
+        $fmt = ut_datefmt_create("en-US", IntlDateFormatter::SHORT, IntlDateFormatter::SHORT, 'America/New_York', IntlDateFormatter::GREGORIAN);
         $res_str .= "\nIntlDateFormatter Created.\n";
 
-        $resLenient1 = ut_datefmt_is_lenient( $fmt);
+        $resLenient1 = ut_datefmt_is_lenient($fmt);
         $res_str .= "After call to get_lenient :  lenient= ";
-    if( $resLenient1){
+    if ($resLenient1) {
         $res_str .= "TRUE\n";
-    }else{
+    } else {
         $res_str .= "FALSE\n";
     }
 
     //Set and test
         $res_str .= "--------------------\n";
-        $isLenient = TRUE;
+        $isLenient = true;
     $res_str .= "Setting IntlDateFormatter with lenient = ";
-    if( $isLenient){
+    if ($isLenient) {
         $res_str .= "TRUE\n";
-    }else{
+    } else {
         $res_str .= "FALSE\n";
     }
-    ut_datefmt_set_lenient( $fmt , $isLenient );
-    $resLenient = ut_datefmt_is_lenient( $fmt);
+    ut_datefmt_set_lenient($fmt, $isLenient);
+    $resLenient = ut_datefmt_is_lenient($fmt);
     $res_str .= "After call to is_lenient :  lenient= ";
-    if( $resLenient){
+    if ($resLenient) {
         $res_str .= "TRUE\n";
-    }else{
+    } else {
         $res_str .= "FALSE\n";
     }
 
 
     //Set and test
         $res_str .= "--------------------\n";
-        $isLenient = FALSE;
+        $isLenient = false;
     $res_str .= "Setting IntlDateFormatter with lenient =";
-    if( $isLenient){
+    if ($isLenient) {
         $res_str .= "TRUE\n";
-    }else{
+    } else {
         $res_str .= "FALSE\n";
     }
-    ut_datefmt_set_lenient( $fmt , $isLenient);
-    $resLenient = ut_datefmt_is_lenient( $fmt);
+    ut_datefmt_set_lenient($fmt, $isLenient);
+    $resLenient = ut_datefmt_is_lenient($fmt);
     $res_str .= "After call to is_lenient :  lenient= ";
-    if( $resLenient){
+    if ($resLenient) {
         $res_str .= "TRUE\n";
-    }else{
+    } else {
         $res_str .= "FALSE\n";
     }
 
         $res_str .= "--------------------\n";
 
         return $res_str;
-
 }
 
-include_once( 'ut_common.inc' );
+include_once('ut_common.inc');
 
 // Run the test
 ut_run();
+
 ?>
 --EXPECT--
 IntlDateFormatter Created.

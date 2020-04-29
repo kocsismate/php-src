@@ -17,7 +17,8 @@ var_dump($bi->next());
 var_dump($bi->next(2));
 var_dump($bi->next(-1));
 var_dump($bi->next(0));
-var_dump($bi->next(NULL));
+var_dump($bi->next(null));
+
 ?>
 --EXPECT--
 int(0)

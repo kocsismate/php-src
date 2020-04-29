@@ -4,7 +4,7 @@ filter_var() and FILTER_VALIDATE_MAC
 <?php if (!extension_loaded("filter")) die("skip"); ?>
 --FILE--
 <?php
-$values = Array(
+$values = array(
     array("01-23-45-67-89-ab", null),
     array("01-23-45-67-89-ab", array("options" => array("separator" => "-"))),
     array("01-23-45-67-89-ab", array("options" => array("separator" => "."))),
@@ -25,6 +25,7 @@ foreach ($values as $value) {
 }
 
 echo "Done\n";
+
 ?>
 --EXPECTF--
 string(17) "01-23-45-67-89-ab"

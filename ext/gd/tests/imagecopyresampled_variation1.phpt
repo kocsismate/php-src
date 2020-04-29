@@ -21,7 +21,7 @@ $transparent = imagecolorallocatealpha($im, 200, 0, 100, 64);
 /* draw a checker pattern */
 for ($i = 0; $i < imagesx($im); $i++) {
     for ($j = 0; $j < imagesy($im); $j++) {
-        imagesetpixel($im, $i, $j, ($i%2 != $j%2 ? $solid : $transparent));
+        imagesetpixel($im, $i, $j, ($i % 2 != $j % 2 ? $solid : $transparent));
     }
 }
 
@@ -29,7 +29,7 @@ for ($i = 0; $i < imagesx($im); $i++) {
 $copy = imagecreatetruecolor(5, 5);
 imagealphablending($copy, false);
 imagesavealpha($copy, true);
-imagecopyresampled($copy, $im, 0,0, 0,0, 5,5, 10, 10);
+imagecopyresampled($copy, $im, 0, 0, 0, 0, 5, 5, 10, 10);
 
 /* assert all pixels have the same color */
 $color = imagecolorat($copy, 3, 3);
@@ -65,6 +65,7 @@ imagedestroy($copy);
 imagedestroy($im);
 
 echo 'DONE';
+
 ?>
 --EXPECT--
 DONE

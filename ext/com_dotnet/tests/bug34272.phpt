@@ -10,12 +10,13 @@ error_reporting(E_ALL);
 try {
     $dict = new COM("Scripting.Dictionary");
     $dict->add('foo', array());
-    print sizeof($dict['foo'])."\n";
+    print sizeof($dict['foo']) . "\n";
     $dict->add('bar', array(23));
-    print sizeof($dict['bar'])." \n";
+    print sizeof($dict['bar']) . " \n";
 } catch (Exception $e) {
     print $e;
 }
+
 ?>
 --EXPECT--
 0

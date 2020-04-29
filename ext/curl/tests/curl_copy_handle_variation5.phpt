@@ -36,6 +36,7 @@ curl_close($ch2);
 
 var_dump(curl_exec($ch3));
 curl_close($ch3);
+
 ?>
 ===DONE===
 --EXPECTF--

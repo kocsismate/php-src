@@ -6,6 +6,7 @@ a=1&b=&c=3
 <?php echo $_GET['a'];
 echo $_GET['b'];
 echo $_GET['c'];
+
 ?>
 --EXPECT--
 13

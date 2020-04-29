@@ -14,7 +14,8 @@ zlib.output_compression=0
 */
 echo "*** Testing exif_imagetype() : basic functionality ***\n";
 
-var_dump(exif_imagetype(__DIR__.'/test2.jpg'));
+var_dump(exif_imagetype(__DIR__ . '/test2.jpg'));
+
 ?>
 --EXPECT--
 *** Testing exif_imagetype() : basic functionality ***

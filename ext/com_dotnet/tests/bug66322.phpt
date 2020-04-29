@@ -19,6 +19,7 @@ $filename = __DIR__ . '\\..\\' . basename(__DIR__) . '\\66322.docx';
 $ph->SaveToFile($filename);
 var_dump(file_exists($filename));
 $w->Quit();
+
 ?>
 --EXPECT--
 bool(true)

@@ -7,6 +7,7 @@ if (!extension_loaded('gd')) die('skip gd extension not available');
 --FILE--
 <?php
 var_dump(function_exists('imagewebp') === (bool) (imagetypes() & IMG_WEBP));
+
 ?>
 --EXPECT--
 bool(true)

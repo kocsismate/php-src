@@ -6,14 +6,15 @@ date.timezone=Europe/London
 <?php
 $current = "2014-03-02 16:24:08";
 
-$i = DateTimeImmutable::createFromMutable( date_create( $current ) );
-var_dump( $i );
+$i = DateTimeImmutable::createFromMutable(date_create($current));
+var_dump($i);
 
 try {
-    DateTimeImmutable::createFromMutable( date_create_immutable( $current ) );
+    DateTimeImmutable::createFromMutable(date_create_immutable($current));
 } catch (TypeError $e) {
     echo $e->getMessage(), "\n";
 }
+
 ?>
 --EXPECTF--
 object(DateTimeImmutable)#%d (3) {

@@ -12,6 +12,7 @@ if (!extension_loaded("gd")) die("skip GD not present");
 
 $image = imagecreatetruecolor(100, 100);
 var_dump(imageinterlace($image));
+
 ?>
 --EXPECT--
 int(0)

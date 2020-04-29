@@ -32,6 +32,7 @@ if (is_resource($broker)) {
     echo("broker is not a resource; failed;\n");
 }
 echo "OK\n";
+
 ?>
 --EXPECT--
 OK

@@ -11,14 +11,14 @@ if (!extension_loaded("curl")) {
 $ch = curl_init();
 
 $opt = array(
-    CURLOPT_AUTOREFERER  => TRUE,
-    CURLOPT_BINARYTRANSFER => TRUE
+    CURLOPT_AUTOREFERER  => true,
+    CURLOPT_BINARYTRANSFER => true
 );
 
-curl_setopt( $ch, CURLOPT_AUTOREFERER  , TRUE );
+curl_setopt($ch, CURLOPT_AUTOREFERER, true);
 
-foreach( $opt as $option => $value ) {
-    curl_setopt( $ch, $option, $value );
+foreach ($opt as $option => $value) {
+    curl_setopt($ch, $option, $value);
 }
 
 var_dump($opt); // with this bug, $opt[58] becomes NULL

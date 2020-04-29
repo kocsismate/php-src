@@ -18,19 +18,19 @@ $mon = 8;
 $day = 8;
 
 echo "\n-- Testing gmmktime() function with one optional argument --\n";
-var_dump( gmmktime($hour) );
+var_dump(gmmktime($hour));
 
 echo "\n-- Testing gmmktime() function with two optional argument --\n";
-var_dump( gmmktime($hour, $min) );
+var_dump(gmmktime($hour, $min));
 
 echo "\n-- Testing gmmktime() function with three optional argument --\n";
-var_dump( gmmktime($hour, $min, $sec) );
+var_dump(gmmktime($hour, $min, $sec));
 
 echo "\n-- Testing gmmktime() function with four optional argument --\n";
-var_dump( gmmktime($hour, $min, $sec, $mon) );
+var_dump(gmmktime($hour, $min, $sec, $mon));
 
 echo "\n-- Testing gmmktime() function with five optional argument --\n";
-var_dump( gmmktime($hour, $min, $sec, $mon, $day) );
+var_dump(gmmktime($hour, $min, $sec, $mon, $day));
 
 ?>
 --EXPECTF--

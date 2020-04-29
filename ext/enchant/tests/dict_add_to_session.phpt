@@ -20,23 +20,21 @@ if (is_resource($broker)) {
 
     if ($requestDict) {
         echo("OK\n");
-        $AddtoSessionDict = enchant_dict_add_to_session($requestDict,$newWord);
+        $AddtoSessionDict = enchant_dict_add_to_session($requestDict, $newWord);
 
-        if (NULL === $AddtoSessionDict) {
+        if (null === $AddtoSessionDict) {
             var_dump($AddtoSessionDict);
         } else {
             echo("dict add to session failed\n");
-
         }
-
     } else {
         echo("broker request dict failed\n");
     }
 } else {
     echo("broker is not a resource; failed;\n");
-
 }
 echo "OK\n";
+
 ?>
 --EXPECT--
 OK

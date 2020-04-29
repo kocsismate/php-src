@@ -14,7 +14,7 @@ echo "*** Testing hash_file() : error conditions ***\n";
 
 // Set up file
 $filename = 'hash_file_error_example.txt';
-file_put_contents( $filename, 'The quick brown fox jumped over the lazy dog.' );
+file_put_contents($filename, 'The quick brown fox jumped over the lazy dog.');
 
 
 // hash_file() error tests

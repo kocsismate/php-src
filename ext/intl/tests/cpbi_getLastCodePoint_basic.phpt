@@ -21,10 +21,11 @@ var_dump($codepoint_it->getLastCodePoint());
 $p = $codepoint_it->first();
 while ($p != IntlBreakIterator::DONE) {
     $c = $codepoint_it->getLastCodePoint();
-    if ($c > 0)
+    if ($c > 0) {
         var_dump(sprintf('U+%04X', $codepoint_it->getLastCodePoint()));
-    else
+    } else {
         var_dump($c);
+    }
     //it's a post-increment operation as to the codepoint, i.e., it gives the codepoint
     //starting at the initial position and only then moves the pointer forward
     $p = $codepoint_it->next();
@@ -34,13 +35,13 @@ echo "Now backwards\n";
 $p = $codepoint_it->last();
 while ($p != IntlBreakIterator::DONE) {
     $c = $codepoint_it->getLastCodePoint();
-    if ($c > 0)
+    if ($c > 0) {
         var_dump(sprintf('U+%04X', $codepoint_it->getLastCodePoint()));
-    else
+    } else {
         var_dump($c);
+    }
     $p = $codepoint_it->previous();
 }
-
 
 ?>
 --EXPECT--

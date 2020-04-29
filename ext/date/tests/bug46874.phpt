@@ -14,6 +14,7 @@ echo "\n";
 foreach ($dp as $date) {
     echo $date->format("Y-m-d H:i:s\n");
 }
+
 ?>
 --EXPECT--
 2008-03-01 13:00:00

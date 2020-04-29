@@ -20,11 +20,11 @@ if (is_resource($broker)) {
 
     if ($requestDict) {
         echo("OK\n");
-        for($x=0;$x<count($newWord);$x++) {
-            $AddtoPersonalDict = enchant_dict_add_to_personal($requestDict,$newWord[$x]);
+        for ($x = 0; $x < count($newWord); $x++) {
+            $AddtoPersonalDict = enchant_dict_add_to_personal($requestDict, $newWord[$x]);
         }
 
-        if (NULL === $AddtoPersonalDict) {
+        if (null === $AddtoPersonalDict) {
             var_dump($AddtoPersonalDict);
 
             if (enchant_broker_free_dict($requestDict)) {
@@ -32,7 +32,6 @@ if (is_resource($broker)) {
 
                 if (enchant_broker_free($broker)) {
                     echo("OK\n");
-
                 } else {
                     echo("broker free failed\n");
                 }
@@ -49,6 +48,7 @@ if (is_resource($broker)) {
     echo("init failed\n");
 }
 echo("OK\n");
+
 ?>
 --EXPECT--
 OK

@@ -14,17 +14,17 @@ $magicFile = __DIR__ . DIRECTORY_SEPARATOR . 'magic';
 
 echo "*** Testing finfo_open() : error functionality ***\n";
 
-var_dump( finfo_open( FILEINFO_MIME, 'foobarfile' ) );
-var_dump( finfo_open( PHP_INT_MAX - 1, $magicFile ) );
+var_dump(finfo_open(FILEINFO_MIME, 'foobarfile'));
+var_dump(finfo_open(PHP_INT_MAX - 1, $magicFile));
 
 try {
-    var_dump( finfo_open( 'foobar' ) );
+    var_dump(finfo_open('foobar'));
 } catch (TypeError $e) {
     echo $e->getMessage(), "\n";
 }
 
 try {
-    var_dump( new finfo('foobar') );
+    var_dump(new finfo('foobar'));
 } catch (TypeError $e) {
     echo $e->getMessage(), "\n";
 }

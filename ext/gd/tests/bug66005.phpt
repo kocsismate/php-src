@@ -27,6 +27,7 @@ imagecopy($dest, $png_full, 100, 0, 0, 0, 50, 50);
 
 include_once __DIR__ . '/func.inc';
 test_image_equals_file(__DIR__ . '/bug66005.png', $dest);
+
 ?>
 --EXPECT--
 The images are equal.

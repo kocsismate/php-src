@@ -7,8 +7,10 @@ Bug #60192 (SegFault when Collator not constructed properly)
 --FILE--
 <?php
 
-class Collator2 extends Collator{
-    public function __construct() {
+class Collator2 extends Collator
+{
+    public function __construct()
+    {
         // omitting parent::__construct($someLocale);
     }
 }
@@ -16,6 +18,8 @@ class Collator2 extends Collator{
 $c = new Collator2();
 $a = array('a', 'b');
 $c->sortWithSortKeys($a);
+
+?>
 --EXPECTF--
 Fatal error: Uncaught Error: Object not initialized in %s:%d
 Stack trace:

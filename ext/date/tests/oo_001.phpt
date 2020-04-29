@@ -2,21 +2,26 @@
 date OO interface
 --FILE--
 <?php
+
 date_default_timezone_set('UTC');
-class _d extends DateTime {
-    function __construct() {
+class _d extends DateTime
+{
+    function __construct()
+    {
     }
 }
-class _t extends DateTimeZone {
-    function __construct() {
+class _t extends DateTimeZone
+{
+    function __construct()
+    {
     }
 }
 
-$d = new DateTime;
+$d = new DateTime();
 var_dump($d->format("Y-m-d H:i:s"));
 
 try {
-    $d = new _d;
+    $d = new _d();
     var_dump($d->format("Y-m-d H:i:s"));
 } catch (Error $e) {
     echo $e->getMessage(),"\n";
@@ -32,7 +37,7 @@ $t = new DateTimeZone("UTC");
 var_dump($t->getName());
 
 try {
-    $t = new _t;
+    $t = new _t();
     var_dump($t->getName());
 } catch (Error $e) {
     echo $e->getMessage(),"\n";
@@ -45,6 +50,7 @@ try {
 }
 
 echo "DONE\n";
+
 ?>
 --EXPECTF--
 string(19) "%d-%d-%d %d:%d:%d"

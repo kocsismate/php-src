@@ -8,6 +8,7 @@ Jean-Marc Fontaine <jmf@durcommefaire.net>
 <?php
   $ch = curl_init();
   var_dump($ch);
+
 ?>
 --EXPECTF--
 resource(%d) of type (curl)

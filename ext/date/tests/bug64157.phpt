@@ -9,6 +9,7 @@ date.timezone = UTC
 DateTime::createFromFormat('s', '0');
 $lastErrors = DateTime::getLastErrors();
 print_r($lastErrors['errors'][0]);
+
 ?>
 --EXPECT--
 A two digit second could not be found

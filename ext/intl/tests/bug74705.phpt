@@ -11,6 +11,7 @@ var_dump($rm->getNumberOfRequiredParameters());
 $rf = new ReflectionFunction('collator_get_sort_key');
 var_dump($rf->getNumberOfParameters());
 var_dump($rf->getNumberOfRequiredParameters());
+
 ?>
 --EXPECT--
 int(1)

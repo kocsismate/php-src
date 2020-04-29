@@ -10,6 +10,7 @@ Bug #39780 (PNG image with CRC/data error raises a fatal error)
 
 $im = imagecreatefrompng(__DIR__ . '/bug39780.png');
 var_dump($im);
+
 ?>
 --EXPECTF--
 gd-png:  fatal libpng error: Read Error: truncated data

@@ -6,6 +6,7 @@ date.timezone=US/Eastern
 <?php
 $di = new DateInterval('P1D');
 var_dump($di->format("%"));
+
 ?>
 --EXPECT--
 string(0) ""

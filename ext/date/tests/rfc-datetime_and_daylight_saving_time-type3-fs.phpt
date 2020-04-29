@@ -56,6 +56,7 @@ $interval_spec = 'P1D';
 $interval = new DateInterval($interval_spec);
 echo 'fs7 ' . $end->format($date_format) . " - $interval_spec = "
     . $end->sub($interval)->format($date_format) . "\n";
+
 ?>
 --EXPECT--
 fs1 2010-03-14 03:00:00 EDT America/New_York - PT1S = 2010-03-14 01:59:59 EST America/New_York

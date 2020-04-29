@@ -23,7 +23,7 @@ if (!empty($host)) {
 } else {
     // Create a temporary file for the test
     $tempname = tempnam(sys_get_temp_dir(), 'CURL_HANDLE');
-    $url = 'file://'. $tempname;
+    $url = 'file://' . $tempname;
     // add the test data to the file
     file_put_contents($tempname, "Hello World!\nHello World!");
 }

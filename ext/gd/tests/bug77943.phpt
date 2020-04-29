@@ -15,13 +15,14 @@ $white = imagecolorallocate($im, 255, 255, 255);
 $blue = imagecolorallocate($im, 0, 0, 255);
 
 imageantialias($im, false);
-imagefilledrectangle($im, 0, 0, $width-1, $height-1, $white);
+imagefilledrectangle($im, 0, 0, $width - 1, $height - 1, $white);
 
 imageline($im, 0, 0, $width, $height, $blue);
 imagesetthickness($im, 3);
-imageline($im, 10, 0, $width, $height-10, $blue);
+imageline($im, 10, 0, $width, $height - 10, $blue);
 
 test_image_equals_file(__DIR__ . '/bug77943.png', $im);
+
 ?>
 --EXPECT--
 The images are equal.

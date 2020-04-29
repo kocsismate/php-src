@@ -16,11 +16,11 @@ $dates = array(
     "2008-04-11 00:00:00 Europe/Oslo",
     "2008-04-11 00:00:00 Asia/Singapore",
 );
-foreach ($dates as $date)
-{
+foreach ($dates as $date) {
     $date = date_create($date);
     var_dump(timezone_offset_get(date_timezone_get($date), $date));
 }
+
 ?>
 --EXPECT--
 int(0)

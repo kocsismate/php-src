@@ -17,6 +17,7 @@ try {
 } catch (TypeError $e) {
     echo $e->getMessage(), "\n";
 }
+
 ?>
 --EXPECTF--
 resource(%d) of type (curl_multi)

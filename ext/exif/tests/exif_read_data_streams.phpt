@@ -12,6 +12,7 @@ $fp = fopen(__DIR__ . '/image027.tiff', 'rb');
 var_dump(exif_read_data($fp));
 
 fclose($fp);
+
 ?>
 --EXPECTF--
 array(31) {

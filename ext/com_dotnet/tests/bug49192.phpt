@@ -8,6 +8,7 @@ if (!extension_loaded("com_dotnet")) print "skip COM/.Net support not present"; 
 
 $dbConnection = new Com('ADODB.Connection');
 var_dump(gc_collect_cycles());
+
 ?>
 --EXPECT--
 int(0)

@@ -5,17 +5,19 @@ filter_var() and FILTER_VALIDATE_BOOLEAN
 --FILE--
 <?php
 
-class test {
+class test
+{
 
-    function __toString() {
+    function __toString()
+    {
         return "blah";
     }
 }
 
-$t = new test;
+$t = new test();
 
 var_dump(filter_var("no", FILTER_VALIDATE_BOOLEAN));
-var_dump(filter_var(NULL, FILTER_VALIDATE_BOOLEAN));
+var_dump(filter_var(null, FILTER_VALIDATE_BOOLEAN));
 var_dump(filter_var($t, FILTER_VALIDATE_BOOLEAN));
 var_dump(filter_var(array(1,2,3,0,array("", "123")), FILTER_VALIDATE_BOOLEAN, FILTER_REQUIRE_ARRAY));
 var_dump(filter_var("yes", FILTER_VALIDATE_BOOLEAN));
@@ -33,6 +35,7 @@ var_dump(filter_var("111111", FILTER_VALIDATE_BOOLEAN));
 
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 bool(false)

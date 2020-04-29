@@ -18,6 +18,7 @@ var_dump($beginTimestamp);
 // Test the DateTime feature alias in function date_timestamp_get().
 $dateTimeTz = (new DateTime('1970-01-01T00:00:00UTC'))->getTimeStamp();
 var_dump($dateTimeTz === $beginTimestamp);
+
 ?>
 --EXPECT--
 int(0)

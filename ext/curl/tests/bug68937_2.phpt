@@ -27,13 +27,15 @@ curl_setopt_array($ch, array(
     CURLOPT_TIMEOUT => 1
 ));
 
-function curl_read($ch, $fp, $len) {
+function curl_read($ch, $fp, $len)
+{
     var_dump($fp);
     exit;
 }
 
 curl_exec($ch);
 curl_close($ch);
+
 ?>
 --EXPECTF--
 resource(%d) of type (stream)

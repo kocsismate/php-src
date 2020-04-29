@@ -13,7 +13,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
 var_dump(curl_exec($ch));
 
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, NULL);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, null);
 var_dump(curl_exec($ch));
 
 curl_close($ch);

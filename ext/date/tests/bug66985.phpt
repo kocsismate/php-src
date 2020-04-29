@@ -11,11 +11,11 @@ $zones = array(
     "UTC", "GMT", "GMT+0100", "-0230",
 );
 
-foreach ( $zones as $zone )
-{
-    $d = new DateTimeZone( $zone );
+foreach ($zones as $zone) {
+    $d = new DateTimeZone($zone);
     print_r($d);
 }
+
 ?>
 --EXPECT--
 DateTimeZone Object

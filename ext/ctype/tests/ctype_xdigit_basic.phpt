@@ -19,6 +19,7 @@ var_dump(ctype_xdigit($c1));
 var_dump(ctype_xdigit($c2));
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_xdigit() : basic functionality ***

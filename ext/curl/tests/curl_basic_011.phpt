@@ -29,7 +29,8 @@ TestFest 2009 - AFUP - Xavier Gorse <xgorse@elao.com>
   $curl_content = curl_exec($ch);
   curl_close($ch);
 
-  var_dump( $curl_content );
+  var_dump($curl_content);
+
 ?>
 --EXPECT--
 *** Testing curl with cookie ***

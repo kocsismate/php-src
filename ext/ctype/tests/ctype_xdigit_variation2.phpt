@@ -18,13 +18,14 @@ echo "*** Testing ctype_xdigit() : usage variations ***\n";
 
 $orig = setlocale(LC_CTYPE, "C");
 
-for($c = 1; $c < 256; $c++) {
+for ($c = 1; $c < 256; $c++) {
     if (ctype_xdigit($c)) {
         echo "character code $c is a hexadecimal 'digit'\n";
     }
 }
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_xdigit() : usage variations ***

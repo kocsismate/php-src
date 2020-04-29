@@ -12,7 +12,8 @@ $pattern2 = 'y년 MMM'; // yMM format for Korean
 $date = IntlCalendar::createInstance('Asia/Ho_Chi_Minh');
 $date->setTime($millitimestamp);
 echo IntlDateFormatter::formatObject($date, $pattern1, 'vi_VN'), "\n";
-echo IntlDateFormatter::formatObject ($date, $pattern2, 'ko_KR'), "\n";
+echo IntlDateFormatter::formatObject($date, $pattern2, 'ko_KR'), "\n";
+
 ?>
 --EXPECT--
 tháng 04, 2015

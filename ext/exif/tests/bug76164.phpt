@@ -10,6 +10,7 @@ $var1 = 'nonexistentfile';
 $var2 = 2200000000;
 @exif_read_data($var1, $var2); // we're not interested in the warning, here
 $var2 = 1;
+
 ?>
 ===DONE===
 --EXPECT--

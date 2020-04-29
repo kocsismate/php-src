@@ -9,6 +9,7 @@ if (!extension_loaded('intl')) die('skip intl extension not available');
 var_dump(grapheme_strlen("\r\n"));
 var_dump(grapheme_substr(implode("\r\n", ['abc', 'def', 'ghi']), 5));
 var_dump(grapheme_strrpos("a\r\nb", 'b'));
+
 ?>
 --EXPECT--
 int(1)

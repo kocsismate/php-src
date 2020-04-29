@@ -30,6 +30,7 @@ fclose($handle); // causes glibc memory error
 
 curl_close($ch);
 echo "Closed correctly\n";
+
 ?>
 --CLEAN--
 <?php

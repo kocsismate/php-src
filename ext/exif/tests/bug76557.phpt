@@ -7,6 +7,8 @@ Bug 76557 (heap-buffer-overflow (READ of size 48) while reading exif data)
 var_dump(exif_read_data(__DIR__ . "/bug76557.jpg"));
 ?>
 DONE
+
+?>
 --EXPECTF--
 Warning: exif_read_data(bug76557.jpg): Process tag(x010F=Make): Illegal format code 0x3030, suppose BYTE in %sbug76557.php on line %d
 

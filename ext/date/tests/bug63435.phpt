@@ -4,7 +4,7 @@ Bug #63435 	Datetime::format('u') sometimes wrong by 1 microsecond
 date.timezone=UTC
 --FILE--
 <?php
-for ($i=1 ; $i<999 ; $i++) {
+for ($i = 1; $i < 999; $i++) {
     $datetime = Datetime::createFromFormat("u", sprintf("%06ld", $i));
     $res = $datetime->format("u");
     if ($res != $i) {
@@ -12,5 +12,7 @@ for ($i=1 ; $i<999 ; $i++) {
     }
 }
 echo "Done";
+
+?>
 --EXPECT--
 Done

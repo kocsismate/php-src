@@ -16,6 +16,7 @@ var_dump($intlcal1->setLenient(false));
 var_dump($intlcal1->isLenient());
 var_dump(intlcal_set_lenient($intlcal1, true));
 var_dump($intlcal1->isLenient());
+
 ?>
 --EXPECT--
 bool(true)

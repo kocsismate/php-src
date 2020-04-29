@@ -8,6 +8,7 @@ date_default_timezone_set("America/Sao_Paulo");
 --FILE--
 <?php
 var_dump(timezone_version_get());
+
 ?>
 --EXPECTREGEX--
 string\([6-7]\) \"20[0-9][0-9]\.[1-9][0-9]?\"

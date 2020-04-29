@@ -19,7 +19,7 @@ $day = 8;
 $year = 2008;
 
 // Calling gmmktime() with all possible arguments
-var_dump( gmmktime($hour, $min, $sec, $mon, $day, $year) );
+var_dump(gmmktime($hour, $min, $sec, $mon, $day, $year));
 
 ?>
 --EXPECTF--

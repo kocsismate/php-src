@@ -15,8 +15,8 @@ Gettext basic test with en_US locale that should be on nearly every system
 chdir(__DIR__);
 putenv('LC_ALL=en_US.UTF-8');
 setlocale(LC_ALL, 'en_US.UTF-8');
-bindtextdomain ("messages", "./locale");
-textdomain ("messages");
+bindtextdomain("messages", "./locale");
+textdomain("messages");
 echo gettext("Basic test"), "\n";
 echo _("Basic test"), "\n";
 

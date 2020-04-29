@@ -9,7 +9,7 @@ if (!extension_loaded('intl'))
 ini_set("intl.error_level", E_WARNING);
 ini_set("intl.default_locale", "pt_PT");
 
-$it = IntlBreakIterator::createWordInstance(NULL);
+$it = IntlBreakIterator::createWordInstance(null);
 var_dump($it->getPartsIterator(-1));
 
 ?>

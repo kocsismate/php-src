@@ -7,7 +7,8 @@ output_handler=
 zlib.output_compression=0
 --FILE--
 <?php
-var_dump(exif_read_data(__DIR__.'/image026.tiff'));
+var_dump(exif_read_data(__DIR__ . '/image026.tiff'));
+
 ?>
 --EXPECTF--
 array(31) {

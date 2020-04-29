@@ -19,8 +19,9 @@ Bug #42910 (Constructing DateTime with TimeZone Indicator invalidates DateTimeZo
 
     date_default_timezone_set('Australia/Sydney');
 
-    $date= date_create('2007-11-04 12:00:00+0200');
+    $date = date_create('2007-11-04 12:00:00+0200');
     var_dump(date_format($date, 'O e'));
+
 ?>
 --EXPECT--
 2007-03-11T00:00:00-0800 - America/Los_Angeles - 1173600000

@@ -8,6 +8,7 @@ filter_list()
 var_dump(filter_list());
 
 echo "Done\n";
+
 ?>
 --EXPECTF--
 array(21) {

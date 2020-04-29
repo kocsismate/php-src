@@ -21,6 +21,7 @@ foreach ($funcs as $ctype_func) {
     }
 }
 echo "ok\n";
+
 ?>
 --EXPECT--
 ok

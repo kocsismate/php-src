@@ -11,6 +11,7 @@ $tz = IntlTimeZone::getGMT();
 print_r($tz);
 $tz = intltz_get_gmt();
 print_r($tz);
+
 ?>
 --EXPECT--
 IntlTimeZone Object

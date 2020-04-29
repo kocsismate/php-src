@@ -24,6 +24,7 @@ $ch2 = curl_copy_handle($ch);
 curl_setopt($ch2, CURLOPT_URL, 'http://www.bar.com/');
 
 var_dump(curl_getinfo($ch) === curl_getinfo($ch2));
+
 ?>
 --EXPECT--
 *** Testing curl_copy_handle(): basic ***

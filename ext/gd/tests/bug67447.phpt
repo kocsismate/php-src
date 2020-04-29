@@ -26,6 +26,7 @@ $cropped = imagecrop($image, ['x' => 0, 'y' => 0, 'width' => 250, 'height' => 25
 var_dump(imagecolorsforindex($cropped, imagecolorat($cropped, 249, 249)));
 imagedestroy($image);
 imagedestroy($cropped);
+
 ?>
 --EXPECT--
 bool(true)

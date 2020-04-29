@@ -14,7 +14,7 @@ echo "*** Testing hash_hmac_file() : basic functionality ***\n";
 
 $file = __DIR__ . "hash_hmac_file.txt";
 /* Creating a temporary file file */
-if (($fp = fopen( $file, "w+")) == FALSE) {
+if (($fp = fopen($file, "w+")) == false) {
     echo "Cannot create file ($file)";
     exit;
 }
@@ -22,10 +22,10 @@ if (($fp = fopen( $file, "w+")) == FALSE) {
 /* Writing into file */
 $content = "This is a sample string used to test the hash_hmac_file function with various hashing algorithms";
 if (is_writable($file)) {
-  if (fwrite($fp, $content) === FALSE) {
-    echo "Cannot write to file ($file)";
-    exit;
-  }
+    if (fwrite($fp, $content) === false) {
+        echo "Cannot write to file ($file)";
+        exit;
+    }
 }
 
 // close the files
@@ -51,8 +51,8 @@ echo "snefru: " . hash_hmac_file('snefru', $file, $key) . "\n";
 echo "tiger192,3: " . hash_hmac_file('tiger192,3', $file, $key) . "\n";
 echo "whirlpool: " . hash_hmac_file('whirlpool', $file, $key) . "\n";
 
-echo "md5(raw): " . bin2hex(hash_hmac_file('md5', $file, $key, TRUE)). "\n";
-echo "sha256(raw): " . bin2hex(hash_hmac_file('sha256', $file, $key, TRUE)). "\n";
+echo "md5(raw): " . bin2hex(hash_hmac_file('md5', $file, $key, true)) . "\n";
+echo "sha256(raw): " . bin2hex(hash_hmac_file('sha256', $file, $key, true)) . "\n";
 
 unlink($file);
 

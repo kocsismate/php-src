@@ -8,6 +8,7 @@ if (!extension_loaded('bcmath')) die('skip bcmath extension is not available');
 <?php
 var_dump(bcadd('-0.0', '-0.0', 1));
 var_dump(bccomp('-0.0', '0', 1));
+
 ?>
 --EXPECT--
 string(3) "0.0"

@@ -8,8 +8,9 @@ DBA DB2 handler test
 --FILE--
 <?php
     $handler = 'db2';
-    require_once __DIR__ .'/test.inc';
-    require_once __DIR__ .'/dba_handler.inc';
+    require_once __DIR__ . '/test.inc';
+    require_once __DIR__ . '/dba_handler.inc';
+
 ?>
 --EXPECT--
 database handler: db2

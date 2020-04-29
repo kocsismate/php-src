@@ -8,6 +8,7 @@ if (!extension_loaded('gd')) die('skip gd extension not available');
 <?php
 $im = imagerotate(imagecreate(10, 10), -90, 0);
 var_dump(imagesy($im), imagesx($im));
+
 ?>
 --EXPECT--
 int(10)

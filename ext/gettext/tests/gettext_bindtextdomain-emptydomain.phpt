@@ -9,6 +9,8 @@ if (!extension_loaded("gettext")) {
 <?php
 chdir(__DIR__);
 bindtextdomain('', 'foobar');
+
+?>
 --EXPECTF--
 Warning: The first parameter of bindtextdomain must not be empty in %s on line %d
 --CREDITS--

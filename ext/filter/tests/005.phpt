@@ -15,6 +15,7 @@ echo "\n";
 echo $_REQUEST['id'];
 echo "\n";
 echo $_REQUEST['pgurl'];
+
 ?>
 --EXPECT--
 f03_photos

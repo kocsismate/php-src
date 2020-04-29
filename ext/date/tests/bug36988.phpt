@@ -11,6 +11,7 @@ try {
 } catch (TypeError $e) {
     echo $e->getMessage(), "\n";
 }
+
 ?>
 --EXPECT--
 mktime(): Argument #6 ($year) must be of type int, float given

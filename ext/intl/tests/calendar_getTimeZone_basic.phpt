@@ -12,6 +12,7 @@ ini_set("intl.default_locale", "nl");
 $intlcal = IntlCalendar::createInstance('GMT+00:01');
 print_r($intlcal->getTimeZone());
 print_r(intlcal_get_time_zone($intlcal));
+
 ?>
 --EXPECT--
 IntlTimeZone Object

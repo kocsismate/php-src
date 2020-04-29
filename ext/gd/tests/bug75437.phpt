@@ -11,6 +11,7 @@ if (!function_exists('imagewebp')) die('skip WebP support not available');
 $rf = new ReflectionFunction('imagewebp');
 var_dump($rf->getNumberOfParameters());
 var_dump($rf->getNumberOfRequiredParameters());
+
 ?>
 --EXPECT--
 int(3)

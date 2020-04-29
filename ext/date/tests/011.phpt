@@ -10,6 +10,7 @@ var_dump(timezone_name_from_abbr("", 3600));
 var_dump(timezone_name_from_abbr("", 3600, 0));
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 string(13) "Europe/Berlin"

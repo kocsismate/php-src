@@ -13,6 +13,7 @@ ftp_login($ftp, 'user', 'pass');
 $ftp or die("Couldn't connect to the server");
 
 var_dump(ftp_pasv($ftp, false));
+
 ?>
 --EXPECT--
 bool(true)

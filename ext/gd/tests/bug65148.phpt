@@ -35,15 +35,16 @@ $img = imagecreate(40, 20);
 $results = array();
 
 foreach ($interpolations as $name => $interpolation) {
-  imagesetinterpolation($img, $interpolation);
-  $t = imagecolorallocatealpha($img, 0, 0, 0, 127);
-  $imgr = imagerotate($img, -5, $t);
-  $results[$name] = array('x' => imagesx($imgr), 'y' => imagesy($imgr));
-  imagedestroy($imgr);
+    imagesetinterpolation($img, $interpolation);
+    $t = imagecolorallocatealpha($img, 0, 0, 0, 127);
+    $imgr = imagerotate($img, -5, $t);
+    $results[$name] = array('x' => imagesx($imgr), 'y' => imagesy($imgr));
+    imagedestroy($imgr);
 }
 
 imagedestroy($img);
 print_r($results);
+
 ?>
 --EXPECT--
 Array

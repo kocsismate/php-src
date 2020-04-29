@@ -17,6 +17,7 @@ var_dump(ftp_get_option($ftp, FTP_TIMEOUT_SEC));
 var_dump(ftp_get_option($ftp, FTP_AUTOSEEK));
 var_dump(ftp_get_option($ftp, FTP_USEPASVADDRESS));
 var_dump(ftp_get_option($ftp, FOO_BAR));
+
 ?>
 --EXPECTF--
 int(%d)

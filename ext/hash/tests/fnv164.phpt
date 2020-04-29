@@ -3,11 +3,13 @@ Hash: FNV164 algorithm
 --FILE--
 <?php
 
-function R10($t) {
+function R10($t)
+{
     return str_repeat($t, 10);
 }
 
-function R500($t) {
+function R500($t)
+{
     return str_repeat($t, 500);
 }
 
@@ -183,7 +185,7 @@ $tests = array(
 
 $i = 0;
 $pass = true;
-foreach($tests as $test) {
+foreach ($tests as $test) {
     $result = hash('fnv164', $test[0]);
     if ($result != $test[1]) {
         echo "Iteration " . $i . " failed - expected '" . $test[1] . "', got '" . $result . "' for '" . $test[1] . "'\n";
@@ -192,9 +194,10 @@ foreach($tests as $test) {
     $i++;
 }
 
-if($pass) {
+if ($pass) {
     echo "PASS";
 }
+
 ?>
 --EXPECT--
 PASS

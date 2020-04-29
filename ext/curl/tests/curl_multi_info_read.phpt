@@ -9,8 +9,8 @@ if (!extension_loaded('curl')) { print("skip"); }
 --FILE--
 <?php
 $urls = array(
-    "file://".__DIR__."/curl_testdata1.txt",
-    "file://".__DIR__."/curl_testdata2.txt",
+    "file://" . __DIR__ . "/curl_testdata1.txt",
+    "file://" . __DIR__ . "/curl_testdata2.txt",
 );
 
 $mh = curl_multi_init();
@@ -31,6 +31,7 @@ while ($info = curl_multi_info_read($mh)) {
 foreach ($urls as $i => $url) {
     curl_close($conn[$i]);
 }
+
 ?>
 --EXPECTF--
 array(3) {

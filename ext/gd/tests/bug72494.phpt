@@ -8,7 +8,7 @@ if (!extension_loaded('gd')) die('skip gd extension not available');
 <?php
 require __DIR__ . '/func.inc';
 
-$im = imagecreate(10,10);
+$im = imagecreate(10, 10);
 
 trycatch_dump(
     fn() => imagecropauto($im, IMG_CROP_THRESHOLD, 0, 1337)

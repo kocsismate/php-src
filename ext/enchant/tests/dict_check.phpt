@@ -24,20 +24,17 @@ if (is_resource($broker)) {
 
         if (enchant_dict_check($requestDict, $newWord)) {
             echo("OK\n");
-
         } else {
             echo("dict check new word failed\n");
         }
-
     } else {
-    echo("broker request dict failed\n");
-
+        echo("broker request dict failed\n");
     }
-
 } else {
     echo("broker is not a resource; failed;\n");
 }
 echo "OK\n";
+
 ?>
 --EXPECT--
 OK

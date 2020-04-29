@@ -6,6 +6,7 @@ $f = "ext/exif/tests/bug77950.tiff";
 for ($i = 0; $i < 10; $i++) {
     @exif_read_data($f);
 }
+
 ?>
 ===DONE===
 --EXPECT--

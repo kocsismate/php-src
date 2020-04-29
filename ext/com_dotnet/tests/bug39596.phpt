@@ -9,13 +9,14 @@ error_reporting(E_ALL);
 
 try {
     $binding_string = array('aaa','bbb','ccc');
-    $v = new VARIANT( $binding_string, VT_ARRAY );
-    foreach ($v AS $element) {
-        print $element."\n";
+    $v = new VARIANT($binding_string, VT_ARRAY);
+    foreach ($v as $element) {
+        print $element . "\n";
     }
 } catch (Exception $e) {
     print $e;
 }
+
 ?>
 --EXPECT--
 aaa

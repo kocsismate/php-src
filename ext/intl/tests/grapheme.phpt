@@ -14,22 +14,22 @@ function ut_main()
 {
     $res_str = '';
 
-    $char_a_diaeresis = "\xC3\xA4";	// 'LATIN SMALL LETTER A WITH DIAERESIS' (U+00E4)
-    $char_a_ring = "\xC3\xA5";		// 'LATIN SMALL LETTER A WITH RING ABOVE' (U+00E5)
+    $char_a_diaeresis = "\xC3\xA4"; // 'LATIN SMALL LETTER A WITH DIAERESIS' (U+00E4)
+    $char_a_ring = "\xC3\xA5";      // 'LATIN SMALL LETTER A WITH RING ABOVE' (U+00E5)
     $char_o_diaeresis = "\xC3\xB6";    // 'LATIN SMALL LETTER O WITH DIAERESIS' (U+00F6)
     $char_O_diaeresis = "\xC3\x96";    // 'LATIN CAPITAL LETTER O WITH DIAERESIS' (U+00D6)
 
     $char_angstrom_sign = "\xE2\x84\xAB"; // 'ANGSTROM SIGN' (U+212B)
-    $char_A_ring = "\xC3\x85";	// 'LATIN CAPITAL LETTER A WITH RING ABOVE' (U+00C5)
+    $char_A_ring = "\xC3\x85";  // 'LATIN CAPITAL LETTER A WITH RING ABOVE' (U+00C5)
 
-    $char_ohm_sign = "\xE2\x84\xA6";	// 'OHM SIGN' (U+2126)
+    $char_ohm_sign = "\xE2\x84\xA6";    // 'OHM SIGN' (U+2126)
     $char_omega = "\xCE\xA9";  // 'GREEK CAPITAL LETTER OMEGA' (U+03A9)
 
     $char_combining_ring_above = "\xCC\x8A";  // 'COMBINING RING ABOVE' (U+030A)
 
     $char_fi_ligature = "\xEF\xAC\x81";  // 'LATIN SMALL LIGATURE FI' (U+FB01)
 
-    $char_long_s_dot = "\xE1\xBA\x9B";	// 'LATIN SMALL LETTER LONG S WITH DOT ABOVE' (U+1E9B)
+    $char_long_s_dot = "\xE1\xBA\x9B";  // 'LATIN SMALL LETTER LONG S WITH DOT ABOVE' (U+1E9B)
 
     // the word 'hindi' using Devanagari characters:
     $hindi = "\xe0\xa4\xb9\xe0\xa4\xbf\xe0\xa4\xa8\xe0\xa5\x8d\xe0\xa4\xa6\xe0\xa5\x80";
@@ -100,25 +100,23 @@ function ut_main()
         array( $char_o_diaeresis_nfd . $char_a_ring_nfd . "a" . $char_a_ring_nfd . "bc" . $char_a_ring_nfd . "def", $char_a_ring_nfd . "bc" . $char_a_ring_nfd, 2, 3 ),
     );
 
-    foreach( $tests as $test ) {
+    foreach ($tests as $test) {
         $arg1 = urlencode($test[1]);
         $arg0 = urlencode($test[0]);
         $res_str .= "find \"$arg1\" in \"$arg0\" - grapheme_strpos";
-        if ( 3 == count( $test ) ) {
+        if (3 == count($test)) {
             $result = grapheme_strpos($test[0], $test[1]);
-        }
-        else {
+        } else {
             $res_str .= " from $test[2]";
             $result = grapheme_strpos($test[0], $test[1], $test[2]);
         }
         $res_str .= " = ";
-        if ( $result === false ) {
+        if ($result === false) {
             $res_str .= 'false';
-        }
-        else {
+        } else {
             $res_str .= $result;
         }
-        $res_str .= " == " . $test[count($test)-1] . check_result($result, $test[count($test)-1]) . "\n";
+        $res_str .= " == " . $test[count($test) - 1] . check_result($result, $test[count($test) - 1]) . "\n";
     }
 
     //=====================================================================================
@@ -167,25 +165,23 @@ function ut_main()
         array( $char_o_diaeresis_nfd . $char_a_ring_nfd . "a" . $char_A_ring_nfd . "bC" . $char_a_ring_nfd . "def", $char_a_ring_nfd . "Bc" . $char_a_ring_nfd, 2, 3 ),
     );
 
-    foreach( $tests as $test ) {
+    foreach ($tests as $test) {
         $arg1 = urlencode($test[1]);
         $arg0 = urlencode($test[0]);
         $res_str .= "find \"$arg1\" in \"$arg0\" - grapheme_stripos";
-        if ( 3 == count( $test ) ) {
+        if (3 == count($test)) {
             $result = grapheme_stripos($test[0], $test[1]);
-        }
-        else {
+        } else {
             $res_str .= " from $test[2]";
             $result = grapheme_stripos($test[0], $test[1], $test[2]);
         }
         $res_str .= " = ";
-        if ( $result === false ) {
+        if ($result === false) {
             $res_str .= 'false';
-        }
-        else {
+        } else {
             $res_str .= $result;
         }
-        $res_str .= " == " . $test[count($test)-1] . check_result($result, $test[count($test)-1]) . "\n";
+        $res_str .= " == " . $test[count($test) - 1] . check_result($result, $test[count($test) - 1]) . "\n";
     }
 
 
@@ -233,25 +229,23 @@ function ut_main()
         array( $char_o_diaeresis_nfd . $char_a_ring_nfd . "a" . $char_a_ring_nfd . "bc" . $char_a_ring_nfd . "def", $char_a_ring_nfd . "bc" . $char_a_ring_nfd, 2, 3 ),
     );
 
-    foreach( $tests as $test ) {
+    foreach ($tests as $test) {
         $arg1 = urlencode($test[1]);
         $arg0 = urlencode($test[0]);
         $res_str .= "find \"$arg1\" in \"$arg0\" - grapheme_strrpos";
-        if ( 3 == count( $test ) ) {
+        if (3 == count($test)) {
             $result = grapheme_strrpos($test[0], $test[1]);
-        }
-        else {
+        } else {
             $res_str .= " from $test[2]";
             $result = grapheme_strrpos($test[0], $test[1], $test[2]);
         }
         $res_str .= " = ";
-        if ( $result === false ) {
+        if ($result === false) {
             $res_str .= 'false';
-        }
-        else {
+        } else {
             $res_str .= $result;
         }
-        $res_str .= " == " . $test[count($test)-1] .  check_result($result, $test[count($test)-1]) . "\n";
+        $res_str .= " == " . $test[count($test) - 1] .  check_result($result, $test[count($test) - 1]) . "\n";
     }
 
 
@@ -298,25 +292,23 @@ function ut_main()
         array( $char_o_diaeresis_nfd . $char_a_ring_nfd . "a" . $char_A_ring_nfd . "bC" . $char_a_ring_nfd . "def", $char_a_ring_nfd . "Bc" . $char_a_ring_nfd, 2, 3 ),
     );
 
-    foreach( $tests as $test ) {
+    foreach ($tests as $test) {
         $arg1 = urlencode($test[1]);
         $arg0 = urlencode($test[0]);
         $res_str .= "find \"$arg1\" in \"$arg0\" - grapheme_strripos";
-        if ( 3 == count( $test ) ) {
+        if (3 == count($test)) {
             $result = grapheme_strripos($test[0], $test[1]);
-        }
-        else {
+        } else {
             $res_str .= " from $test[2]";
             $result = grapheme_strripos($test[0], $test[1], $test[2]);
         }
         $res_str .= " = ";
-        if ( $result === false ) {
+        if ($result === false) {
             $res_str .= 'false';
-        }
-        else {
+        } else {
             $res_str .= $result;
         }
-        $res_str .= " == " . $test[count($test)-1] . check_result($result, $test[count($test)-1]) . "\n";
+        $res_str .= " == " . $test[count($test) - 1] . check_result($result, $test[count($test) - 1]) . "\n";
     }
 
 
@@ -396,24 +388,22 @@ function ut_main()
 
     );
 
-    foreach( $tests as $test ) {
+    foreach ($tests as $test) {
         $arg0 = urlencode($test[0]);
         $res_str .= "substring of \"$arg0\" from \"$test[1]\" - grapheme_substr";
-        if ( 3 == count( $test ) ) {
+        if (3 == count($test)) {
             $result = grapheme_substr($test[0], $test[1]);
-        }
-        else {
+        } else {
             $res_str .= " with length $test[2]";
             $result = grapheme_substr($test[0], $test[1], $test[2]);
         }
         $res_str .= " = ";
-        if ( $result === false ) {
+        if ($result === false) {
             $res_str .= 'false';
-        }
-        else {
+        } else {
             $res_str .= urlencode($result);
         }
-        $res_str .= " == " . urlencode($test[count($test)-1]) . check_result($result, $test[count($test)-1]) . "\n";
+        $res_str .= " == " . urlencode($test[count($test) - 1]) . check_result($result, $test[count($test) - 1]) . "\n";
     }
 
 
@@ -435,13 +425,13 @@ function ut_main()
         array( "abc", "ab", "abc" ),
         array( "abc", "abc", "abc" ),
         array( "abc", "bc", "bc" ),
-        array( "abc", "a", FALSE, "abc" ),
-        array( "abc", "a", TRUE, "" ),
-        array( "abc", "b", TRUE, "a" ),
-        array( "abc", "c", TRUE, "ab" ),
-        array( "ababc", "bab", TRUE, "a" ),
-        array( "ababc", "abc", TRUE, "ab" ),
-        array( "ababc", "abc", FALSE, "abc" ),
+        array( "abc", "a", false, "abc" ),
+        array( "abc", "a", true, "" ),
+        array( "abc", "b", true, "a" ),
+        array( "abc", "c", true, "ab" ),
+        array( "ababc", "bab", true, "a" ),
+        array( "ababc", "abc", true, "ab" ),
+        array( "ababc", "abc", false, "abc" ),
 
         array( "ab" . $char_a_ring_nfd . "c", "d", "false" ),
         array( "bc" . $char_a_ring_nfd . "a", "a", "a" ),
@@ -450,35 +440,33 @@ function ut_main()
         array( $char_a_ring_nfd . "abc", "ab", "abc" ),
         array( "abc" . $char_a_ring_nfd, "abc", "abc" . $char_a_ring_nfd),
         array( "a" . $char_a_ring_nfd . "bc", $char_a_ring_nfd . "bc", $char_a_ring_nfd . "bc" ),
-        array( "a" . $char_a_ring_nfd . "bc", $char_a_ring_nfd, FALSE, $char_a_ring_nfd . "bc"),
-        array( "a" . $char_a_ring_nfd . "bc", "a", TRUE, "" ),
-        array( $char_a_ring_nfd . "abc", "b", TRUE, $char_a_ring_nfd . "a" ),
-        array( "ab" . $char_a_ring_nfd . "c", "c", TRUE, "ab" . $char_a_ring_nfd ),
-        array( "aba" . $char_a_ring_nfd . "bc", "ba" . $char_a_ring_nfd . "b", TRUE, "a" ),
-        array( "ababc" . $char_a_ring_nfd, "abc" . $char_a_ring_nfd, TRUE, "ab" ),
-        array( "abab" . $char_a_ring_nfd . "c", "ab" . $char_a_ring_nfd . "c", FALSE, "ab" . $char_a_ring_nfd . "c" ),
+        array( "a" . $char_a_ring_nfd . "bc", $char_a_ring_nfd, false, $char_a_ring_nfd . "bc"),
+        array( "a" . $char_a_ring_nfd . "bc", "a", true, "" ),
+        array( $char_a_ring_nfd . "abc", "b", true, $char_a_ring_nfd . "a" ),
+        array( "ab" . $char_a_ring_nfd . "c", "c", true, "ab" . $char_a_ring_nfd ),
+        array( "aba" . $char_a_ring_nfd . "bc", "ba" . $char_a_ring_nfd . "b", true, "a" ),
+        array( "ababc" . $char_a_ring_nfd, "abc" . $char_a_ring_nfd, true, "ab" ),
+        array( "abab" . $char_a_ring_nfd . "c", "ab" . $char_a_ring_nfd . "c", false, "ab" . $char_a_ring_nfd . "c" ),
 
     );
 
-    foreach( $tests as $test ) {
+    foreach ($tests as $test) {
         $arg1 = urlencode($test[1]);
         $arg0 = urlencode($test[0]);
         $res_str .= "find \"$arg1\" in \"$arg0\" - grapheme_strstr";
-        if ( 3 == count( $test ) ) {
+        if (3 == count($test)) {
             $result = grapheme_strstr($test[0], $test[1]);
-        }
-        else {
+        } else {
             $res_str .= " before flag is " . ( $test[2] ? "TRUE" : "FALSE" );
             $result = grapheme_strstr($test[0], $test[1], $test[2]);
         }
         $res_str .= " = ";
-        if ( $result === false ) {
+        if ($result === false) {
             $res_str .= 'false';
-        }
-        else {
+        } else {
             $res_str .= urlencode($result);
         }
-        $res_str .= " == " . urlencode($test[count($test)-1]) . check_result($result, $test[count($test)-1]) . "\n";
+        $res_str .= " == " . urlencode($test[count($test) - 1]) . check_result($result, $test[count($test) - 1]) . "\n";
     }
 
 
@@ -500,13 +488,13 @@ function ut_main()
         array( "abC", "ab", "abC" ),
         array( "abc", "aBc", "abc" ),
         array( "abC", "bc", "bC" ),
-        array( "abc", "A", FALSE, "abc" ),
-        array( "abc", "a", TRUE, "" ),
-        array( "aBc", "b", TRUE, "a" ),
-        array( "abc", "C", TRUE, "ab" ),
-        array( "aBabc", "bab", TRUE, "a" ),
-        array( "ababc", "aBc", TRUE, "ab" ),
-        array( "ababc", "abC", FALSE, "abc" ),
+        array( "abc", "A", false, "abc" ),
+        array( "abc", "a", true, "" ),
+        array( "aBc", "b", true, "a" ),
+        array( "abc", "C", true, "ab" ),
+        array( "aBabc", "bab", true, "a" ),
+        array( "ababc", "aBc", true, "ab" ),
+        array( "ababc", "abC", false, "abc" ),
 
         array( "ab" . $char_a_ring_nfd . "c", "d", "false" ),
         array( "bc" . $char_a_ring_nfd . "A", "a", "A" ),
@@ -515,35 +503,33 @@ function ut_main()
         array( $char_a_ring_nfd . "abc", "Ab", "abc" ),
         array( "abc" . $char_A_ring_nfd, "abc", "abc" . $char_A_ring_nfd),
         array( "a" . $char_a_ring_nfd . "bc", $char_A_ring_nfd . "bc", $char_a_ring_nfd . "bc" ),
-        array( "a" . $char_A_ring_nfd . "bc", $char_a_ring_nfd, FALSE, $char_A_ring_nfd . "bc" ),
-        array( "a" . $char_a_ring_nfd . "bc", "A", TRUE, "" ),
-        array( $char_a_ring_nfd . "aBc", "b", TRUE, $char_a_ring_nfd . "a" ),
-        array( "ab" . $char_a_ring_nfd . "c", "C", TRUE, "ab" . $char_a_ring_nfd ),
-        array( "aba" . $char_A_ring_nfd . "bc", "ba" . $char_a_ring_nfd . "b", TRUE, "a" ),
-        array( "ababc" . $char_a_ring_nfd, "aBc" . $char_A_ring_nfd, TRUE, "ab" ),
-        array( "abAB" . $char_A_ring_nfd . "c", "ab" . $char_a_ring_nfd . "c", FALSE, "AB" . $char_A_ring_nfd . "c" ),
+        array( "a" . $char_A_ring_nfd . "bc", $char_a_ring_nfd, false, $char_A_ring_nfd . "bc" ),
+        array( "a" . $char_a_ring_nfd . "bc", "A", true, "" ),
+        array( $char_a_ring_nfd . "aBc", "b", true, $char_a_ring_nfd . "a" ),
+        array( "ab" . $char_a_ring_nfd . "c", "C", true, "ab" . $char_a_ring_nfd ),
+        array( "aba" . $char_A_ring_nfd . "bc", "ba" . $char_a_ring_nfd . "b", true, "a" ),
+        array( "ababc" . $char_a_ring_nfd, "aBc" . $char_A_ring_nfd, true, "ab" ),
+        array( "abAB" . $char_A_ring_nfd . "c", "ab" . $char_a_ring_nfd . "c", false, "AB" . $char_A_ring_nfd . "c" ),
 
     );
 
-    foreach( $tests as $test ) {
+    foreach ($tests as $test) {
         $arg1 = urlencode($test[1]);
         $arg0 = urlencode($test[0]);
         $res_str .= "find \"$arg1\" in \"$arg0\" - grapheme_stristr";
-        if ( 3 == count( $test ) ) {
+        if (3 == count($test)) {
             $result = grapheme_stristr($test[0], $test[1]);
-        }
-        else {
+        } else {
             $res_str .= " before flag is " . ( $test[2] ? "TRUE" : "FALSE" );
             $result = grapheme_stristr($test[0], $test[1], $test[2]);
         }
         $res_str .= " = ";
-        if ( $result === false ) {
+        if ($result === false) {
             $res_str .= 'false';
-        }
-        else {
+        } else {
             $res_str .= urlencode($result);
         }
-        $res_str .= " == " . urlencode($test[count($test)-1]) . check_result($result, $test[count($test)-1]) . "\n";
+        $res_str .= " == " . urlencode($test[count($test) - 1]) . check_result($result, $test[count($test) - 1]) . "\n";
     }
 
 
@@ -606,31 +592,28 @@ function ut_main()
     );
 
     $next = -1;
-    foreach( $tests as $test ) {
+    foreach ($tests as $test) {
         $arg0 = urlencode($test[0]);
         $res_str .= "extract from \"$arg0\" \"$test[1]\" graphemes - grapheme_extract";
-        if ( 3 == count( $test ) ) {
+        if (3 == count($test)) {
             $result = grapheme_extract($test[0], $test[1]);
-        }
-        elseif ( 4 == count ( $test ) ) {
+        } elseif (4 == count($test)) {
             $res_str .= " starting at byte position $test[2]";
             $result = grapheme_extract($test[0], $test[1], GRAPHEME_EXTR_COUNT, $test[2]);
-        }
-        else {
+        } else {
             $res_str .= " starting at byte position $test[2] with \$next";
             $result = grapheme_extract($test[0], $test[1], GRAPHEME_EXTR_COUNT, $test[2], $next);
         }
         $res_str .= " = ";
-        if ( $result === false ) {
+        if ($result === false) {
             $res_str .= 'false';
-        }
-        else {
+        } else {
             $res_str .= urlencode($result);
         }
-        $res_str .= " == " . urlencode($test[count($test)-1]) . check_result($result, $test[count($test)-1]);
-        if ( 5 == count ( $test ) ) {
+        $res_str .= " == " . urlencode($test[count($test) - 1]) . check_result($result, $test[count($test) - 1]);
+        if (5 == count($test)) {
             $res_str .= " \$next=$next == $test[3] ";
-            if ( $next != $test[3] ) {
+            if ($next != $test[3]) {
                 $res_str .= "***FAILED***";
             }
         }
@@ -675,24 +658,22 @@ function ut_main()
 
     );
 
-    foreach( $tests as $test ) {
+    foreach ($tests as $test) {
         $arg0 = urlencode($test[0]);
         $res_str .= "extract from \"$arg0\" \"$test[1]\" graphemes - grapheme_extract GRAPHEME_EXTR_MAXBYTES";
-        if ( 3 == count( $test ) ) {
+        if (3 == count($test)) {
             $result = grapheme_extract($test[0], $test[1], GRAPHEME_EXTR_MAXBYTES);
-        }
-        else {
+        } else {
             $res_str .= " starting at byte position $test[2]";
             $result = grapheme_extract($test[0], $test[1], GRAPHEME_EXTR_MAXBYTES, $test[2]);
         }
         $res_str .= " = ";
-        if ( $result === false ) {
+        if ($result === false) {
             $res_str .= 'false';
-        }
-        else {
+        } else {
             $res_str .= urlencode($result);
         }
-        $res_str .= " == " . urlencode($test[count($test)-1]) . check_result($result, $test[count($test)-1]) . "\n";
+        $res_str .= " == " . urlencode($test[count($test) - 1]) . check_result($result, $test[count($test) - 1]) . "\n";
     }
 
 
@@ -739,24 +720,22 @@ function ut_main()
 
     );
 
-    foreach( $tests as $test ) {
+    foreach ($tests as $test) {
         $arg0 = urlencode($test[0]);
         $res_str .= "extract from \"$arg0\" \"$test[1]\" graphemes - grapheme_extract GRAPHEME_EXTR_MAXCHARS";
-        if ( 3 == count( $test ) ) {
+        if (3 == count($test)) {
             $result = grapheme_extract($test[0], $test[1], GRAPHEME_EXTR_MAXCHARS);
-        }
-        else {
+        } else {
             $res_str .= " starting at byte position $test[2]";
             $result = grapheme_extract($test[0], $test[1], GRAPHEME_EXTR_MAXCHARS, $test[2]);
         }
         $res_str .= " = ";
-        if ( $result === false ) {
+        if ($result === false) {
             $res_str .= 'false';
-        }
-        else {
+        } else {
             $res_str .= urlencode($result);
         }
-        $res_str .= " == " . urlencode($test[count($test)-1]) . check_result($result, $test[count($test)-1]) . "\n";
+        $res_str .= " == " . urlencode($test[count($test) - 1]) . check_result($result, $test[count($test) - 1]) . "\n";
     }
 
 
@@ -767,13 +746,14 @@ function ut_main()
 
 echo ut_main();
 
-function check_result($result, $expected) {
+function check_result($result, $expected)
+{
 
-    if ( $result === false ) {
+    if ($result === false) {
             $result = 'false';
     }
 
-    if ( strcmp($result, $expected) != 0 ) {
+    if (strcmp($result, $expected) != 0) {
         return " **FAILED** ";
     }
 

@@ -23,17 +23,19 @@ curl_setopt_array($ch, array(
         'Content-Length: 1',
     ),
     CURLOPT_READFUNCTION => 'curl_read',
-    CURLOPT_CONNECTTIMEOUT=> 1,
-    CURLOPT_TIMEOUT=>1
+    CURLOPT_CONNECTTIMEOUT => 1,
+    CURLOPT_TIMEOUT => 1
 ));
 
-function curl_read($ch, $fp, $len) {
+function curl_read($ch, $fp, $len)
+{
     var_dump($fp);
     exit;
 }
 
 curl_exec($ch);
 curl_close($ch);
+
 ?>
 --EXPECT--
 NULL

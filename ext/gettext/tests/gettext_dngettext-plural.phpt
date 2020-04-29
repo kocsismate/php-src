@@ -17,6 +17,8 @@ bindtextdomain('dngettextTest', './locale');
 
 var_dump(dngettext('dngettextTest', 'item', 'items', 1));
 var_dump(dngettext('dngettextTest', 'item', 'items', 2));
+
+?>
 --EXPECT--
 string(7) "Produkt"
 string(8) "Produkte"

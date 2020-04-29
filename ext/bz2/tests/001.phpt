@@ -32,7 +32,7 @@ try {
     echo $e->getMessage() . \PHP_EOL;
 }
 
-$fp = fopen(__FILE__,"r");
+$fp = fopen(__FILE__, "r");
 var_dump(bzopen($fp, "r"));
 
 ?>

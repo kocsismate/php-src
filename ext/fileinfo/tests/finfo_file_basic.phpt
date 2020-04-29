@@ -11,15 +11,15 @@ Test finfo_file() function : basic functionality
  */
 
 $magicFile = __DIR__ . DIRECTORY_SEPARATOR . 'magic';
-$finfo = finfo_open( FILEINFO_MIME );
+$finfo = finfo_open(FILEINFO_MIME);
 
 echo "*** Testing finfo_file() : basic functionality ***\n";
 
 // Calling finfo_file() with all possible arguments
-var_dump( finfo_file( $finfo, __FILE__) );
-var_dump( finfo_file( $finfo, __FILE__, FILEINFO_CONTINUE ) );
-var_dump( finfo_file( $finfo, $magicFile ) );
-var_dump( finfo_file( $finfo, $magicFile.chr(0).$magicFile) );
+var_dump(finfo_file($finfo, __FILE__));
+var_dump(finfo_file($finfo, __FILE__, FILEINFO_CONTINUE));
+var_dump(finfo_file($finfo, $magicFile));
+var_dump(finfo_file($finfo, $magicFile . chr(0) . $magicFile));
 
 ?>
 --EXPECTF--

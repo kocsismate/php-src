@@ -16,6 +16,7 @@ $bi->setText('foo bar trans zoo bee');
 var_dump($bi->preceding(5));
 var_dump($bi->preceding(50));
 var_dump($bi->preceding(-1));
+
 ?>
 --EXPECTF--
 int(4)

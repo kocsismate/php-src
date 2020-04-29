@@ -14,6 +14,7 @@ $buffer = ob_get_clean();
 
 $header = unpack('@12/nformat', $buffer);
 printf("format: %d\n", $header['format']);
+
 ?>
 --EXPECT--
 format: 4

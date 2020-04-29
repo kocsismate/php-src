@@ -2,6 +2,7 @@
 Test DateTime class inheritance : with user space format() method
 --FILE--
 <?php
+
 //Set the default time zone
 date_default_timezone_set("Europe/London");
 

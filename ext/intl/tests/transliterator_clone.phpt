@@ -14,6 +14,8 @@ $u = clone $t;
 echo $u->id, ": ", $u->transliterate($str), "\n";
 
 echo "Done.\n";
+
+?>
 --EXPECT--
 hex-any: a 万
 hex-any: a 万

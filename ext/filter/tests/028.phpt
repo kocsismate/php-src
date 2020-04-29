@@ -21,6 +21,7 @@ var_dump(filter_var("кириллица", FILTER_SANITIZE_SPECIAL_CHARS, FILTER_
 var_dump(filter_var("кириллица", FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FLAG_ENCODE_LOW));
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 string(55) "?&#62;&#60;!@#$%^&#38;*()}{~Qwertyuilfdsasdfgmnbvcxcvbn"

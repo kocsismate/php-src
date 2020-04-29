@@ -39,7 +39,7 @@ $values = array(
 );
 
 // loop through each element of the array for blue
-foreach($values as $key => $value) {
+foreach ($values as $key => $value) {
     echo "\n--$key--\n";
 
     trycatch_dump(
@@ -48,6 +48,7 @@ foreach($values as $key => $value) {
         fn() => imagecolorallocate($im, $red, $green, $value)
     );
 };
+
 ?>
 --EXPECT--
 *** Testing imagecolorallocate() : usage variations ***

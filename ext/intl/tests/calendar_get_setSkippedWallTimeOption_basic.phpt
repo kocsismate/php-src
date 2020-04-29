@@ -42,7 +42,6 @@ var_dump(
     $intlcal->get(IntlCalendar::FIELD_MINUTE)
 );
 
-
 ?>
 --EXPECT--
 int(0)

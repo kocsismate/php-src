@@ -26,6 +26,7 @@ imagecolorset($im, $bg, 0, 0, 255);
 include_once __DIR__ . '/func.inc';
 test_image_equals_file(__DIR__ . '/imagecolorset_basic.png', $im);
 imagedestroy($im);
+
 ?>
 --EXPECT--
 The images are equal.

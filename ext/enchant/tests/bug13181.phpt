@@ -24,7 +24,8 @@ enchant_broker_free($broker);
 ?>
 --FILE--
 <?php
-function get_dictionnary() {
+function get_dictionnary()
+{
     $rBroker = enchant_broker_init();
     $t = enchant_broker_request_dict($rBroker, 'en');
     var_dump($t);
@@ -34,7 +35,8 @@ $rDict = get_dictionnary();
 var_dump($rDict);
 enchant_dict_suggest($rDict, "soong");
 
-function get_broker() {
+function get_broker()
+{
     $t = enchant_broker_init();
     var_dump($t);
     return $t;
@@ -43,13 +45,15 @@ function get_broker() {
 $rbroker = get_broker();
 var_dump($rbroker);
 
-function get_dict($broker) {
+function get_dict($broker)
+{
     $t = enchant_broker_request_dict($broker, 'en');
     var_dump($t);
     return $t;
 }
 $rDict = get_dict($rbroker);
 var_dump($rDict);
+
 ?>
 --EXPECTF--
 resource(%d) of type (enchant_dict)

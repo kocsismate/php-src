@@ -10,6 +10,7 @@ $ok->f = $ok->f + 0.01;
 
 var_dump($buggy->f);
 var_dump($ok->f);
+
 ?>
 --EXPECT--
 float(0.01)

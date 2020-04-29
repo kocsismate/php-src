@@ -29,10 +29,10 @@ $inputs = array(
 );
 
 // loop through each element of the array for format
-foreach($inputs as $key =>$value) {
+foreach ($inputs as $key => $value) {
       echo "\n--$key--\n";
-      var_dump( gmdate($value, $timestamp) );
-      var_dump( gmdate($value) );
+      var_dump(gmdate($value, $timestamp));
+      var_dump(gmdate($value));
 };
 
 ?>

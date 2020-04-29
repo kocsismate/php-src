@@ -23,8 +23,8 @@ date_default_timezone_set("Asia/Calcutta");
 
 echo "\n-- Testing gmstrftime() function with  Abbreviated month name format %h --\n";
 $format = "%h";
-var_dump( gmstrftime($format) );
-var_dump( gmstrftime($format, $timestamp) );
+var_dump(gmstrftime($format));
+var_dump(gmstrftime($format, $timestamp));
 
 ?>
 --EXPECTF--

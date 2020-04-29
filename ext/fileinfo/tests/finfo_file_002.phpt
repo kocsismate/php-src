@@ -16,6 +16,7 @@ foreach (glob(__DIR__ . "/resources/*") as $filename) {
 ksort($results);
 
 var_dump($results);
+
 ?>
 --EXPECTF--
 array(%d) {

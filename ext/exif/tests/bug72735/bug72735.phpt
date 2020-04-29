@@ -17,6 +17,7 @@ foreach (['nokia.jpg', 'samsung.jpg', 'panasonic.jpg'] as $picture) {
 
     echo 'int(' . $len . ')', PHP_EOL;
 }
+
 ?>
 --EXPECT--
 nokia.jpg: int(5899)

@@ -13,6 +13,7 @@ var_dump(IntlChar::charName("A", IntlChar::UNICODE_CHAR_NAME));
 var_dump(IntlChar::charName("A", IntlChar::UNICODE_10_CHAR_NAME));
 // Provide an invalid value for the second parameter
 var_dump(IntlChar::charName("A", 12345));
+
 ?>
 --EXPECT--
 string(22) "LATIN CAPITAL LETTER A"

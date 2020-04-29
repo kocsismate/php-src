@@ -10,12 +10,12 @@ error_reporting(E_ALL);
  * Source code: ext/hash/hash.c
 */
 
-function trycatch_dump(...$tests) {
+function trycatch_dump(...$tests)
+{
     foreach ($tests as $test) {
         try {
             var_dump($test());
-        }
-        catch (\Error $e) {
+        } catch (\Error $e) {
             echo '[' . get_class($e) . '] ' . $e->getMessage() . "\n";
         }
     }
@@ -47,7 +47,8 @@ trycatch_dump(
     fn() => hash_hkdf('sha1', ''),
     fn() => hash_hkdf('sha1', $ikm, -1),
     fn() => hash_hkdf('sha1', $ikm, 20 * 255 + 1) // Length can't be more than 255 times the hash digest size
-)
+);
+
 ?>
 --EXPECT--
 *** Testing hash_hkdf(): error conditions ***

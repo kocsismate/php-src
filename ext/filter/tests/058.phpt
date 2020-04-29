@@ -4,7 +4,7 @@ FILTER_VALIDATE_EMAIL unicode support (https://tools.ietf.org/html/rfc6531)
 <?php if (!extension_loaded("filter")) die("skip"); ?>
 --FILE--
 <?php
-$values = Array(
+$values = array(
 'niceändsimple@example.com',
 'véry.çommon@example.com',
 'a.lîttle.lengthy.but.fiñe@dept.example.com',
@@ -31,6 +31,7 @@ foreach ($values as $value) {
     var_dump(filter_var($value, FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE));
 }
 echo "Done\n";
+
 ?>
 --EXPECT--
 string(26) "niceändsimple@example.com"

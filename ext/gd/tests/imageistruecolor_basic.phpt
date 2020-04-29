@@ -12,6 +12,7 @@ Rafael Dohms <rdohms [at] gmail [dot] com>
 $image = imagecreatetruecolor(180, 30);
 
 var_dump(imageistruecolor($image));
+
 ?>
 --EXPECT--
 bool(true)

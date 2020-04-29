@@ -68,18 +68,16 @@ function ut_main()
 
     $res_str = '';
 
-    foreach( $locales as $locale )
-    {
-        $lang = ut_loc_get_primary_language( $locale);
+    foreach ($locales as $locale) {
+        $lang = ut_loc_get_primary_language($locale);
         $res_str .= "$locale:  primary_language='$lang'";
         $res_str .= "\n";
     }
 
     return $res_str;
-
 }
 
-include_once( 'ut_common.inc' );
+include_once('ut_common.inc');
 ut_run();
 
 ?>

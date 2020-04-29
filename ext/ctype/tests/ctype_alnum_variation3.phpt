@@ -46,13 +46,14 @@ $values = array(
 
 // loop through each element of $values to test behaviour of ctype_alnum()
 $iterator = 1;
-foreach($values as $value) {
+foreach ($values as $value) {
       echo "\n-- Iteration $iterator --\n";
-      var_dump( ctype_alnum($value) );
+      var_dump(ctype_alnum($value));
       $iterator++;
 };
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_alnum() : usage variations ***

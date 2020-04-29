@@ -24,5 +24,9 @@ do {
 } while ($active);
 ?>
 okey
+
+?>
+
+?>
 --EXPECT--
 okey

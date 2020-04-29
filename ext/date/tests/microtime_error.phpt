@@ -12,8 +12,8 @@ echo "\n-- Bad Arg types --\n";
 $bad_args = array(null,
                   1.5,
                   "hello",
-                  array('k'=>'v', array(0)),
-                  new stdClass,
+                  array('k' => 'v', array(0)),
+                  new stdClass(),
                   1);
 foreach ($bad_args as $bad_arg) {
     echo "\n--> bad arg: ";

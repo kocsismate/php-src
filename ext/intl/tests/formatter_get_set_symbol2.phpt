@@ -39,51 +39,53 @@ function ut_main()
 
     $res_str = '';
 
-    foreach( $symbols as $symb_name => $data )
-    {
+    foreach ($symbols as $symb_name => $data) {
         list( $symb, $new_val, $number, $attr ) = $data;
 
-        $fmt = ut_nfmt_create( 'en_US', $attr);
+        $fmt = ut_nfmt_create('en_US', $attr);
 
         $res_str .= "\nSymbol '$symb_name'\n";
 
         // Get original symbol value.
-        $orig_val = ut_nfmt_get_symbol( $fmt, $symb );
+        $orig_val = ut_nfmt_get_symbol($fmt, $symb);
         $res_str .= "Default symbol: [$orig_val]\n";
 
         // Set a new symbol value.
-        $res_val = ut_nfmt_set_symbol( $fmt, $symb, $new_val );
-        if( !$res_val )
-            $res_str .= "set_symbol() error: " . ut_nfmt_get_error_message( $fmt ) . "\n";
+        $res_val = ut_nfmt_set_symbol($fmt, $symb, $new_val);
+        if (!$res_val) {
+            $res_str .= "set_symbol() error: " . ut_nfmt_get_error_message($fmt) . "\n";
+        }
 
         // Get the symbol value back.
-        $new_val_check = ut_nfmt_get_symbol( $fmt, $symb );
-        if( !$new_val_check )
-            $res_str .= "get_symbol() error: " . ut_nfmt_get_error_message( $fmt ) . "\n";
+        $new_val_check = ut_nfmt_get_symbol($fmt, $symb);
+        if (!$new_val_check) {
+            $res_str .= "get_symbol() error: " . ut_nfmt_get_error_message($fmt) . "\n";
+        }
 
         $res_str .= "New symbol: [$new_val_check]\n";
 
         // Check if the new value has been set.
-        if( $new_val_check !== $new_val )
+        if ($new_val_check !== $new_val) {
             $res_str .= "ERROR: New $symb_name symbol value has not been set correctly.\n";
+        }
 
         // Format the number using the new value.
-        $s = ut_nfmt_format( $fmt, $number );
+        $s = ut_nfmt_format($fmt, $number);
         $res_str .= "A number formatted with the new symbol: $s\n";
 
         // Restore attribute's symbol.
-        ut_nfmt_set_symbol( $fmt, $symb, $orig_val );
+        ut_nfmt_set_symbol($fmt, $symb, $orig_val);
     }
     $badvals = array(2147483648, -2147483648, -1, 4294901761);
-    foreach($badvals as $badval) {
-        if(ut_nfmt_get_symbol( $fmt, 2147483648 ))  {
-        $res_str .= "Bad value $badval should return false!\n";
+    foreach ($badvals as $badval) {
+        if (ut_nfmt_get_symbol($fmt, 2147483648)) {
+            $res_str .= "Bad value $badval should return false!\n";
         }
     }
     return $res_str;
 }
 
-include_once( 'ut_common.inc' );
+include_once('ut_common.inc');
 ut_run();
 
 ?>

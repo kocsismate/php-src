@@ -23,10 +23,10 @@ $inputs = array(
       'Octal -10' => -012
 );
 
-foreach($inputs as $key =>$value) {
+foreach ($inputs as $key => $value) {
       echo "\n--$key--\n";
-      var_dump( localtime($value) );
-      var_dump( localtime($value, $is_associative) );
+      var_dump(localtime($value));
+      var_dump(localtime($value, $is_associative));
 }
 
 ?>

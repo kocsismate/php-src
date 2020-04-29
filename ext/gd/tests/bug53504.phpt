@@ -62,13 +62,25 @@ foreach ($tests as $testnum => $test) {
     }
     echo "\n";
 
-    $bboxDrawn = imagefttext($g, $test['fontSize'], $test['angle'],
-        $test['x'], $test['y'], $black, $font, $test['text']);
+    $bboxDrawn = imagefttext(
+        $g,
+        $test['fontSize'],
+        $test['angle'],
+        $test['x'],
+        $test['y'],
+        $black,
+        $font,
+        $test['text']
+    );
 
     // check if both bboxes match when adding x/y offset:
     for ($i = 0; $i < count($bbox); $i += 2) {
-        if ($bbox[$i] + $test['x'] !== $bboxDrawn[$i]) echo "imageftbbox and imagefttext differ!\n";
-        if ($bbox[$i + 1] + $test['y'] !== $bboxDrawn[$i + 1]) echo "imageftbbox and imagefttext differ!\n";
+        if ($bbox[$i] + $test['x'] !== $bboxDrawn[$i]) {
+            echo "imageftbbox and imagefttext differ!\n";
+        }
+        if ($bbox[$i + 1] + $test['y'] !== $bboxDrawn[$i + 1]) {
+            echo "imageftbbox and imagefttext differ!\n";
+        }
     }
 
     // draw bounding box:
@@ -76,12 +88,18 @@ foreach ($tests as $testnum => $test) {
 
     // draw baseline:
     $width = sqrt(pow($bboxDrawn[2] - $bboxDrawn[0], 2) + pow($bboxDrawn[3] - $bboxDrawn[1], 2));
-    imageline($g, $test['x'], $test['y'],
+    imageline(
+        $g,
+        $test['x'],
+        $test['y'],
         $test['x'] + $width * cos(deg2rad($test['angle'])),
-        $test['y'] - $width * sin(deg2rad($test['angle'])), $blue);
+        $test['y'] - $width * sin(deg2rad($test['angle'])),
+        $blue
+    );
 }
 
 imagepng($g, "$cwd/bug53504.png");
+
 ?>
 --CLEAN--
 <?php @unlink(__DIR__ . '/bug53504.png'); ?>

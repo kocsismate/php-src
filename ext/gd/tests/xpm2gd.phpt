@@ -24,6 +24,7 @@ xpm --> gd1/gd2 conversion test
 
     @unlink($cwd . "/test_xpm.gd1");
     @unlink($cwd . "/test_xpm.gd2");
+
 ?>
 --EXPECT--
 XPM to GD1 conversion: ok

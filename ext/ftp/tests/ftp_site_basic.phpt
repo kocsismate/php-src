@@ -15,6 +15,7 @@ ftp_login($ftp, 'user', 'pass') or die("Couldn't login into the server");
 
 var_dump(ftp_site($ftp, 'CHMOD 0600 file'));
 var_dump(ftp_site($ftp, 'foo bar baz'));
+
 ?>
 --EXPECTF--
 bool(true)

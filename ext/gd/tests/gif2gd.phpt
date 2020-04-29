@@ -24,6 +24,7 @@ gif --> gd1/gd2 conversion test
 
     @unlink($cwd . "/test_gif.gd1");
     @unlink($cwd . "/test_gif.gd2");
+
 ?>
 --EXPECT--
 GIF to GD1 conversion: ok

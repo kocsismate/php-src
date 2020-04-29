@@ -10,11 +10,13 @@ if (!extension_loaded('intl'))
 <?php
 ini_set("intl.error_level", E_WARNING);
 
-$c = new IntlGregorianCalendar(NULL, 'pt_PT');
+$c = new IntlGregorianCalendar(null, 'pt_PT');
 
 var_dump($c->isSet(-1));
 
 var_dump(intlcal_is_set(1, 2));
+
+?>
 --EXPECTF--
 Warning: IntlCalendar::isSet(): intlcal_is_set: invalid field in %s on line %d
 bool(false)

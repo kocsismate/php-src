@@ -7,9 +7,10 @@ if (!class_exists('finfo'))
 --FILE--
 <?php
 
-$f = new finfo;
+$f = new finfo();
 var_dump($f->file(__DIR__ . "/bug67516.gif", FILEINFO_MIME_TYPE));
 var_dump($f->file(__DIR__ . "/bug67516.gif", FILEINFO_MIME));
+
 ?>
 --EXPECT--
 string(9) "image/gif"

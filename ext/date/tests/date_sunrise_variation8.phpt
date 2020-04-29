@@ -24,14 +24,14 @@ $time_date = array (
 );
 
 //Iterate over different date and time
-foreach( $time_date as $date => $time ){
+foreach ($time_date as $date => $time) {
     echo "\n--$date--\n";
-    var_dump( date_sunrise($time, SUNFUNCS_RET_STRING, 90, 0 ) );
-    var_dump( date_sunrise($time, SUNFUNCS_RET_DOUBLE, 90, 0 ) );
-    var_dump( date_sunrise($time, SUNFUNCS_RET_TIMESTAMP, 90, 0 ) );
-    var_dump( date_sunrise($time, SUNFUNCS_RET_STRING, -90, 0 ) );
-    var_dump( date_sunrise($time, SUNFUNCS_RET_DOUBLE, -90, 0 ) );
-    var_dump( date_sunrise($time, SUNFUNCS_RET_TIMESTAMP, -90, 0 ) );
+    var_dump(date_sunrise($time, SUNFUNCS_RET_STRING, 90, 0));
+    var_dump(date_sunrise($time, SUNFUNCS_RET_DOUBLE, 90, 0));
+    var_dump(date_sunrise($time, SUNFUNCS_RET_TIMESTAMP, 90, 0));
+    var_dump(date_sunrise($time, SUNFUNCS_RET_STRING, -90, 0));
+    var_dump(date_sunrise($time, SUNFUNCS_RET_DOUBLE, -90, 0));
+    var_dump(date_sunrise($time, SUNFUNCS_RET_TIMESTAMP, -90, 0));
 }
 
 ?>

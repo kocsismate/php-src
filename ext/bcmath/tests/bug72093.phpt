@@ -12,6 +12,7 @@ try {
     echo $e->getMessage() . \PHP_EOL;
 }
 var_dump(bcpowmod(1, 1.2, 1, 1));
+
 ?>
 --EXPECTF--
 bcpowmod(): Argument #4 ($scale) must be between 0 and 2147483647

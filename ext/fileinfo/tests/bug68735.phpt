@@ -5,7 +5,7 @@ Bug #68735 fileinfo out-of-bounds memory access
 --FILE--
 <?php
     $test_file = __DIR__ . DIRECTORY_SEPARATOR . "bug68735.jpg";
-    $f = new finfo;
+    $f = new finfo();
 
     var_dump($f->file($test_file));
 

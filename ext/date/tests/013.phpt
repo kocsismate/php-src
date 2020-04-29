@@ -13,6 +13,7 @@ var_dump(date_date_set($dto, 2006, 24, 60));
 var_dump($dto->format("Y.m.d H:i:s"));
 
 echo "Done\n";
+
 ?>
 --EXPECTF--
 object(DateTime)#%d (3) {

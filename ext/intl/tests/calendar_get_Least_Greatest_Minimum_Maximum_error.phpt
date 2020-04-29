@@ -10,7 +10,7 @@ if (!extension_loaded('intl'))
 <?php
 ini_set("intl.error_level", E_WARNING);
 
-$c = new IntlGregorianCalendar(NULL, 'pt_PT');
+$c = new IntlGregorianCalendar(null, 'pt_PT');
 
 var_dump($c->getLeastMaximum(-1));
 var_dump($c->getMaximum(-1));
@@ -22,8 +22,9 @@ var_dump(intlcal_get_maximum($c, -1));
 var_dump(intlcal_get_greatest_minimum($c, -1));
 var_dump(intlcal_get_minimum($c, -1));
 
-function eh($errno, $errstr) {
-echo "error: $errno, $errstr\n";
+function eh($errno, $errstr)
+{
+    echo "error: $errno, $errstr\n";
 }
 set_error_handler('eh');
 
@@ -47,6 +48,8 @@ try {
 } catch (Error $ex) {
     echo "error: " . $ex->getCode() . ", " . $ex->getMessage() . "\n\n";
 }
+
+?>
 --EXPECTF--
 Warning: IntlCalendar::getLeastMaximum(): intlcal_get_least_maximum: invalid field in %s on line %d
 bool(false)

@@ -26,14 +26,15 @@ $inputs = array(
 );
 
 // loop through each element of the array for min
-foreach($inputs as $key =>$value) {
+foreach ($inputs as $key => $value) {
       echo "\n--$key--\n";
-      var_dump( gmmktime($value, $min, $sec, $mon, $day, $year) );
-      var_dump( gmmktime($hour, $value, $sec, $mon, $day, $year) );
-      var_dump( gmmktime($hour, $min, $value, $mon, $day, $year) );
-      var_dump( gmmktime($hour, $min, $sec, $value, $day, $year) );
-      var_dump( gmmktime($hour, $min, $sec, $mon, $value, $value) );
+      var_dump(gmmktime($value, $min, $sec, $mon, $day, $year));
+      var_dump(gmmktime($hour, $value, $sec, $mon, $day, $year));
+      var_dump(gmmktime($hour, $min, $value, $mon, $day, $year));
+      var_dump(gmmktime($hour, $min, $sec, $value, $day, $year));
+      var_dump(gmmktime($hour, $min, $sec, $mon, $value, $value));
 }
+
 ?>
 --EXPECTREGEX--
 \*\*\* Testing gmmktime\(\) : usage variation \*\*\*

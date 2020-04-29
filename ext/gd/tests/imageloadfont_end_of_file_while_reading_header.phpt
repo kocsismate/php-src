@@ -24,6 +24,7 @@ $fp = fopen($filename, 'wb');
 fwrite($fp, $bin);
 fclose($fp);
 $font = imageloadfont($filename);
+
 ?>
 --CLEAN--
 <?php

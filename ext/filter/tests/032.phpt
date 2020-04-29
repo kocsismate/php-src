@@ -16,7 +16,7 @@ $args = array(
     'product_id'    => FILTER_SANITIZE_ENCODED,
     'component'     => array(//'filter' => FILTER_VALIDATE_INT,
                              'flags'    => FILTER_FORCE_ARRAY,
-                             'options'  => array("min_range"=>1, "max_range"=>10)
+                             'options'  => array("min_range" => 1, "max_range" => 10)
                         ),
     'versions'      => array(
                             'filter' => FILTER_SANITIZE_ENCODED,
@@ -33,6 +33,7 @@ $args = array(
 
 $myinputs = filter_var_array($data, $args);
 var_dump($myinputs);
+
 ?>
 --EXPECT--
 array(6) {

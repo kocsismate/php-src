@@ -13,6 +13,7 @@ if ($curl_version['version_number'] < 0x073d00) {
 ?>
 --FILE--
 <?php
+
 class MyHttpClient
 {
     private $mh;
@@ -72,6 +73,8 @@ class MyHttpClient
 
 $buzz = new MyHttpClient();
 $buzz->sendRequest();
+
+?>
 --EXPECT--
 Start handle request.
 

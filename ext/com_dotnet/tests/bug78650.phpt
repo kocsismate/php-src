@@ -14,6 +14,7 @@ $folder = $fso->GetFolder($fname);
 $folder->ParentFolder->Name = 'baz';
 
 print('OK');
+
 ?>
 --EXPECT--
 OK

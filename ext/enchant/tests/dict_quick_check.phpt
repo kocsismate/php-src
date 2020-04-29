@@ -24,6 +24,7 @@ enchant_dict_quick_check($d, 'soong', $suggs);
 
 echo "Elements: " . count($suggs) . "\n";
 echo "Done\n";
+
 ?>
 --EXPECTF--
 Elements: %d

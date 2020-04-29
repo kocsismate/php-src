@@ -16,23 +16,20 @@ Mark van der Velden
 // Figure out what handler to use
 include 'server.inc';
 $host = curl_cli_server_start();
-if(!empty($host)) {
-
+if (!empty($host)) {
     // Use the set Environment variable
     $url = "$host/get.inc?test=1";
-
 } else {
-
     // Create a temporary file for the test
     $tempname = tempnam(sys_get_temp_dir(), 'CURL_HANDLE');
-    $url = 'file://'. $tempname;
+    $url = 'file://' . $tempname;
 
     // add the test data to the file
     file_put_contents($tempname, "Hello World!\nHello World!");
 }
 
 
-$tempfile	= tempnam(sys_get_temp_dir(), 'CURL_FILE_HANDLE');
+$tempfile   = tempnam(sys_get_temp_dir(), 'CURL_FILE_HANDLE');
 
 $ch = curl_init($url);
 $fp = fopen($tempfile, "r"); // Opening 'fubar' with the incorrect readonly flag
@@ -41,6 +38,7 @@ curl_exec($ch);
 curl_close($ch);
 is_file($tempfile) and @unlink($tempfile);
 isset($tempname) and is_file($tempname) and @unlink($tempname);
+
 ?>
 --EXPECTF--
 Warning: curl_setopt(): The provided file handle is not writable in %s on line %d

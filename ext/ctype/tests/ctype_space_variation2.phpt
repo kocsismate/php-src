@@ -24,6 +24,7 @@ for ($c = 1; $c < 256; $c++) {
     }
 }
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_space() : usage variations ***

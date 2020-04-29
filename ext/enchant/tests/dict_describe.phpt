@@ -23,9 +23,8 @@ if (is_resource($broker)) {
 
         if (is_array($dictDescribe)) {
             echo("OK\n");
-
         } else {
-           echo("broker request dict failed\n");
+            echo("broker request dict failed\n");
         }
     } else {
         echo("broker request dict failed\n");
@@ -33,6 +32,7 @@ if (is_resource($broker)) {
 } else {
     echo("broker is not a resource; failed;\n");
 }
+
 ?>
 --EXPECT--
 OK

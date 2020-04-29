@@ -10,6 +10,7 @@ var_dump($rm->getNumberOfRequiredParameters());
 $rm = new ReflectionMethod(Normalizer::class, 'normalize');
 var_dump($rm->getNumberOfParameters());
 var_dump($rm->getNumberOfRequiredParameters());
+
 ?>
 --EXPECT--
 int(2)

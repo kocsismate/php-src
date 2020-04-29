@@ -29,7 +29,8 @@ TestFest 2009 - AFUP - Jean-Marc Fontaine <jmf@durcommefaire.net>
   $curl_content = curl_exec($ch);
   curl_close($ch);
 
-  var_dump( $curl_content );
+  var_dump($curl_content);
+
 ?>
 --EXPECT--
 *** Testing curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); ***

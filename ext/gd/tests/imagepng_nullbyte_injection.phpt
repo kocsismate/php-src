@@ -10,12 +10,13 @@ if (!isset($support['PNG Support']) || $support['PNG Support'] === false) {
 ?>
 --FILE--
 <?php
-$image = imagecreate(1,1);// 1px image
+$image = imagecreate(1, 1);// 1px image
 try {
     imagepng($image, "./foo\0bar");
 } catch (TypeError $e) {
     echo $e->getMessage(), "\n";
 }
+
 ?>
 --EXPECTF--
 imagepng(): Argument #2 ($to) must not contain null bytes

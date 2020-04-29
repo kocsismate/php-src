@@ -26,14 +26,14 @@ function ut_main()
         'sl_IT_rozaj@currency=EUR'
     );
     $res_str = '';
-    foreach($locales as $locale){
-        $variants_arr = ut_loc_locale_get_all_variants( $locale);
+    foreach ($locales as $locale) {
+        $variants_arr = ut_loc_locale_get_all_variants($locale);
         $res_str .= "$locale : variants ";
-        if( $variants_arr){
-            foreach($variants_arr as $variant){
+        if ($variants_arr) {
+            foreach ($variants_arr as $variant) {
                 $res_str .= "'$variant',";
             }
-        }else{
+        } else {
             $res_str .= "--none";
         }
         $res_str .= "\n";
@@ -41,10 +41,9 @@ function ut_main()
 
     $res_str .= "\n";
     return $res_str;
-
 }
 
-include_once( 'ut_common.inc' );
+include_once('ut_common.inc');
 ut_run();
 
 ?>

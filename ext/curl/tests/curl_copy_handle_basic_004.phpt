@@ -28,7 +28,8 @@ Rick Buitenman <rick@meritos.nl>
   $curl_content_copy = curl_exec($copy);
   curl_close($copy);
 
-  var_dump( $curl_content_copy );
+  var_dump($curl_content_copy);
+
 ?>
 --EXPECT--
 *** Test curl_copy_handle() after exec() ***

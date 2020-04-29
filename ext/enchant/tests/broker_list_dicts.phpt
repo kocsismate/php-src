@@ -39,6 +39,7 @@ if (is_resource($broker)) {
 } else {
     echo("init failed\n");
 }
+
 ?>
 --EXPECT--
 OK

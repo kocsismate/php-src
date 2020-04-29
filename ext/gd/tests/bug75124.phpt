@@ -12,7 +12,7 @@ if (!GD_BUNDLED && version_compare(GD_VERSION, '2.2.5', '<')) {
 $im = imagecreatefrompng(__DIR__ . '/bug75124.png');
 var_dump(imageistruecolor($im));
 imagefilter($im, IMG_FILTER_GRAYSCALE);
-for ($i = 0, $width = imagesx($im); $i < $width; $i ++) {
+for ($i = 0, $width = imagesx($im); $i < $width; $i++) {
     for ($j = 0, $height = imagesy($im); $j < $height; $j++) {
         $color = imagecolorat($im, $i, $j);
         $red = ($color >> 16) & 0xff;
@@ -24,6 +24,7 @@ for ($i = 0, $width = imagesx($im); $i < $width; $i ++) {
         }
     }
 }
+
 ?>
 --EXPECT--
 bool(true)

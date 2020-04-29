@@ -10,6 +10,7 @@ Bug #33578 (strtotime() doesn't parse "11 Oct" format")
     echo date('m/d/Y', strtotime('11Oct')), "\n";
     echo date('m/d/Y', strtotime('11Oct 2005')), "\n";
     echo date('m/d/Y', strtotime('11Oct2005')), "\n";
+
 ?>
 --EXPECTF--
 10/11/%d

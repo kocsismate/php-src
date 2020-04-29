@@ -30,6 +30,7 @@ $rbbi2 = new IntlRuleBasedBreakIterator($br, true);
 
 var_dump($rbbi->getRules(), $rbbi2->getRules());
 var_dump($rbbi->getRules() == $rbbi2->getRules());
+
 ?>
 --EXPECT--
 string(137) "$LN = [[:letter:] [:number:]];

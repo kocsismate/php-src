@@ -12,6 +12,7 @@ try {
 } catch (ValueError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
+
 ?>
 --EXPECT--
 Square root of negative number

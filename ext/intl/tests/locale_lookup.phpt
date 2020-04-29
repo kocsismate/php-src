@@ -45,25 +45,23 @@ function ut_main()
     $res_str = '';
     $isCanonical = false;
 
-    foreach($loc_ranges as $loc_range){
-            $res_str .="--------------\n";
-            $result= ut_loc_locale_lookup( $lang_tags , $loc_range,$isCanonical,"en_US");
-            $comma_arr =implode(",",$lang_tags);
+    foreach ($loc_ranges as $loc_range) {
+            $res_str .= "--------------\n";
+            $result = ut_loc_locale_lookup($lang_tags, $loc_range, $isCanonical, "en_US");
+            $comma_arr = implode(",", $lang_tags);
             $res_str .= "loc_range:$loc_range \nlang_tags: $comma_arr\n";
             $res_str .= "\nlookup result:$result\n";
 //canonicalized version
-            $result= ut_loc_locale_lookup( $lang_tags , $loc_range,!($isCanonical),"en_US");
+            $result = ut_loc_locale_lookup($lang_tags, $loc_range, !($isCanonical), "en_US");
             $can_loc_range = ut_loc_canonicalize($loc_range);
             $res_str .= "Canonical lookup result:$result\n";
-
     }
 
     $res_str .= "\n";
     return $res_str;
-
 }
 
-include_once( 'ut_common.inc' );
+include_once('ut_common.inc');
 ut_run();
 
 ?>

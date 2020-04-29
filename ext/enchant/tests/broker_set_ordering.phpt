@@ -16,7 +16,7 @@ $comma = ";";
 
 if (is_resource($broker)) {
     echo("OK\n");
-    if (enchant_broker_set_ordering($broker,$dicts[0]['lang_tag'],$comma)) {
+    if (enchant_broker_set_ordering($broker, $dicts[0]['lang_tag'], $comma)) {
         echo("OK\n");
     } else {
         echo("enchant failed ==>" . $enchantErr);
@@ -25,6 +25,7 @@ if (is_resource($broker)) {
     echo("init failed\n");
 }
 echo "OK\n";
+
 ?>
 --EXPECT--
 OK

@@ -42,8 +42,8 @@ $offsets = array(
     '26 years'
 );
 
-foreach ($offsets AS $offset) {
-    foreach (array('+', '-') AS $direction) {
+foreach ($offsets as $offset) {
+    foreach (array('+', '-') as $direction) {
         echo "$direction$offset: " . date(DATE_ISO8601, strtotime("$direction$offset", $base_time)) . "\n";
     }
 }

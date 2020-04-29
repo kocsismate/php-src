@@ -12,6 +12,7 @@ ob_start();
 imagewebp($im);
 ob_end_clean();
 echo "ready\n";
+
 ?>
 --EXPECT--
 ready

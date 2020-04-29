@@ -17,6 +17,7 @@ for ($year = 5000; $year <= 5001; $year++) {
     }
     echo "\n";
 }
+
 ?>
 --EXPECT--
 normal year 5000

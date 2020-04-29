@@ -9,6 +9,8 @@ if (!extension_loaded("gettext")) {
 <?php
 chdir(__DIR__);
 var_dump(bindtextdomain('example.org', 'foobar'));
+
+?>
 --EXPECT--
 bool(false)
 --CREDITS--

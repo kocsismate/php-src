@@ -36,9 +36,9 @@ imagecolorallocate($im, 255, 255, 255);
 $black = imagecolorallocate($im, 0, 0, 0);
 
 setStyleAndThickness($im, $black, 1);
-imageline($im,  50, 250, 550, 250, IMG_COLOR_STYLED);
+imageline($im, 50, 250, 550, 250, IMG_COLOR_STYLED);
 imageline($im, 550, 250, 550, 750, IMG_COLOR_STYLED);
-imageline($im, 550, 750,  50, 250, IMG_COLOR_STYLED);
+imageline($im, 550, 750, 50, 250, IMG_COLOR_STYLED);
 
 setStyleAndThickness($im, $black, 2);
 imageline($im, 100, 200, 600, 200, IMG_COLOR_STYLED);
@@ -57,6 +57,7 @@ imageline($im, 700, 600, 200, 100, IMG_COLOR_STYLED);
 
 $ex = imagecreatefrompng(__DIR__ . '/bug43475.png');
 var_dump(calc_image_dissimilarity($ex, $im) < 1e-5);
+
 ?>
 --EXPECT--
 bool(true)

@@ -15,15 +15,16 @@ $dicts = enchant_broker_list_dicts($broker);
 
 if (is_array($dicts)) {
         $dict = enchant_broker_request_dict($broker, $dicts[0]['lang_tag']);
-        if (is_resource($dict)) {
-            echo("OK\n");
-        } else {
-            echo("fail to request " . $dicts[0]['lang_tag']);
-        }
+    if (is_resource($dict)) {
+        echo("OK\n");
+    } else {
+        echo("fail to request " . $dicts[0]['lang_tag']);
+    }
 } else {
     echo("list dicts failed\n");
 }
 echo("OK\n");
+
 ?>
 --EXPECT--
 OK

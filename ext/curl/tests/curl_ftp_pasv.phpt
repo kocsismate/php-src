@@ -14,10 +14,10 @@ if (false === getenv('PHP_CURL_FTP_REMOTE_PASSWD'))  exit("skip PHP_CURL_FTP_REM
   $password = getenv('PHP_CURL_FTP_REMOTE_PASSWD');
 
   // FTP this script to a server
-  $fp  =  fopen ( __FILE__ ,  "r" );
+  $fp  =  fopen(__FILE__, "r");
   $url  =  "ftp://$username:$password@$host/test.phpt" ;
 
-  $ch  =  curl_init ();
+  $ch  =  curl_init();
 
   // enable below to get the output in verbose mode.
   // curl_setopt ( $ch , CURLOPT_VERBOSE, 1 );
@@ -34,22 +34,22 @@ if (false === getenv('PHP_CURL_FTP_REMOTE_PASSWD'))  exit("skip PHP_CURL_FTP_REM
     *   Trying 10.5.80.146... * connected
    */
 
-  curl_setopt ( $ch , CURLOPT_URL, $url );
-  curl_setopt ( $ch , CURLOPT_TRANSFERTEXT, 1 );
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_TRANSFERTEXT, 1);
 
   //force passive connection
-  curl_setopt ( $ch , CURLOPT_FTP_USE_EPSV, 0 );
-  curl_setopt ( $ch , CURLOPT_FTP_SKIP_PASV_IP, 1 );
+  curl_setopt($ch, CURLOPT_FTP_USE_EPSV, 0);
+  curl_setopt($ch, CURLOPT_FTP_SKIP_PASV_IP, 1);
 
   // mark the file for upload..
-  curl_setopt ( $ch , CURLOPT_INFILE, $fp );
-  curl_setopt ( $ch , CURLOPT_INFILESIZE,  filesize(__FILE__) );
-  curl_setopt ( $ch , CURLOPT_PUT, 1 );
-  curl_setopt ( $ch , CURLOPT_UPLOAD, 1 );
+  curl_setopt($ch, CURLOPT_INFILE, $fp);
+  curl_setopt($ch, CURLOPT_INFILESIZE, filesize(__FILE__));
+  curl_setopt($ch, CURLOPT_PUT, 1);
+  curl_setopt($ch, CURLOPT_UPLOAD, 1);
 
-  $result  =  curl_exec ( $ch );
-  var_dump ( $result );
-  curl_close ( $ch );
+  $result  =  curl_exec($ch);
+  var_dump($result);
+  curl_close($ch);
 
 ?>
 --EXPECT--

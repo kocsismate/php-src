@@ -8,6 +8,7 @@ try {
 } catch (TypeError $e) {
     echo $e->getMessage(), "\n";
 }
+
 ?>
 --EXPECT--
 strtotime(): Argument #2 ($now) must be of type int, object given

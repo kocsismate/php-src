@@ -25,21 +25,20 @@ function ut_main()
     $m = 4560;
     $t = 123;
 
-    foreach( $locales as $locale => $pattern )
-    {
+    foreach ($locales as $locale => $pattern) {
         $str_res .= "\nLocale is: $locale\n";
-        $fmt = ut_msgfmt_create( $locale, $pattern );
-        if(!$fmt) {
-            $str_res .= dump(intl_get_error_message())."\n";
+        $fmt = ut_msgfmt_create($locale, $pattern);
+        if (!$fmt) {
+            $str_res .= dump(intl_get_error_message()) . "\n";
             continue;
         }
-        $str_res .= dump( ut_msgfmt_format( $fmt, array($m, $t, $m/$t) ) ) . "\n";
-        $str_res .= dump( ut_msgfmt_format_message($locale, $pattern, array($m, $t, $m/$t))) . "\n";
+        $str_res .= dump(ut_msgfmt_format($fmt, array($m, $t, $m / $t))) . "\n";
+        $str_res .= dump(ut_msgfmt_format_message($locale, $pattern, array($m, $t, $m / $t))) . "\n";
     }
     return $str_res;
 }
 
-include_once( 'ut_common.inc' );
+include_once('ut_common.inc');
 
 // Run the test
 ut_run();

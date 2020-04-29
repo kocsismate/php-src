@@ -16,10 +16,11 @@ $navy     = imagecolorallocate($image, 0x00, 0x00, 0x80);
 $red      = imagecolorallocate($image, 0xFF, 0x00, 0x00);
 
 imagefilledarc($image, 250, 250, 500, 250, 0, 88, $white, IMG_ARC_PIE);
-imagefilledarc($image, 250, 250, 500, 250, 88, 91 , $navy, IMG_ARC_PIE);
-imagefilledarc($image, 250, 250, 500, 250, 91, 360 , $red, IMG_ARC_PIE);
+imagefilledarc($image, 250, 250, 500, 250, 88, 91, $navy, IMG_ARC_PIE);
+imagefilledarc($image, 250, 250, 500, 250, 91, 360, $red, IMG_ARC_PIE);
 
 test_image_equals_file(__DIR__ . '/bug73614.png', $image);
+
 ?>
 --EXPECT--
 The images are equal.

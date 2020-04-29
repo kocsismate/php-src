@@ -13,6 +13,7 @@ curl_setopt($curl, CURLOPT_FILE, $fd);
 curl_copy_handle($curl);
 
 echo 'DONE!';
+
 ?>
 --EXPECT--
 DONE!

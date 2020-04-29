@@ -10,6 +10,7 @@ $int = $start->diff($end);
 var_dump($start);
 var_dump($end);
 var_dump($int);
+
 ?>
 --EXPECTF--
 object(DateTime)#1 (3) {

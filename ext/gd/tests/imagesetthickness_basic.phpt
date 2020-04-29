@@ -25,6 +25,7 @@ imagerectangle($image, 14, 14, 185, 85, $black);
 
 include_once __DIR__ . '/func.inc';
 test_image_equals_file(__DIR__ . '/imagesetthickness_basic.png', $image);
+
 ?>
 --EXPECT--
 The images are equal.

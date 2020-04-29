@@ -28,12 +28,12 @@ $buffers = array(
 
 echo "*** Testing finfo_buffer() : basic functionality ***\n";
 
-foreach( $options as $option ) {
-    $finfo = finfo_open( $option, $magicFile );
-    foreach( $buffers as $string ) {
-        var_dump( finfo_buffer( $finfo, $string, $option ) );
+foreach ($options as $option) {
+    $finfo = finfo_open($option, $magicFile);
+    foreach ($buffers as $string) {
+        var_dump(finfo_buffer($finfo, $string, $option));
     }
-    finfo_close( $finfo );
+    finfo_close($finfo);
 }
 
 ?>

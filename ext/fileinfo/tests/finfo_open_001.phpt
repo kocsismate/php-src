@@ -11,7 +11,7 @@ try {
     echo $e->getMessage(), "\n";
 }
 
-var_dump(finfo_open(FILEINFO_MIME, NULL));
+var_dump(finfo_open(FILEINFO_MIME, null));
 var_dump(finfo_open(FILEINFO_MIME, ''));
 var_dump(finfo_open(FILEINFO_MIME, 123));
 var_dump(finfo_open(FILEINFO_MIME, 1.0));

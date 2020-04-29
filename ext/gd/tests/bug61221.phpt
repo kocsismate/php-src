@@ -18,6 +18,7 @@ imagegammacorrect($img, 1, 1);
 $color = imagecolorat($img, 0, 0);
 var_dump($color === $blacktransparent);
 imagedestroy($img);
+
 ?>
 --EXPECT--
 bool(true)

@@ -36,6 +36,7 @@ if (($diss = calc_image_dissimilarity($ex, $im)) < 1e-5) {
 imagedestroy($ex);
 
 imagedestroy($im);
+
 ?>
 --EXPECT--
 IDENTICAL

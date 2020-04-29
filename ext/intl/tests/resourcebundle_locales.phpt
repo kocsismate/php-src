@@ -7,7 +7,8 @@ Test ResourceBundle::getLocales
 
 include "resourcebundle.inc";
 
-function ut_main() {
+function ut_main()
+{
     $str_res = '';
 
     $str_res .= join("\n", ut_resourcebundle_locales(BUNDLE));
@@ -15,8 +16,9 @@ function ut_main() {
     return $str_res;
 }
 
-    include_once( 'ut_common.inc' );
+    include_once('ut_common.inc');
     ut_run();
+
 ?>
 --EXPECT--
 es

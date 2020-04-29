@@ -12,8 +12,9 @@ Hit the host and determine that the headers are sent to the callback specified f
 
 function curl_header_callback($curl_handle, $data)
 {
-    if (strtolower(substr($data,0, 4)) == 'http')
+    if (strtolower(substr($data, 0, 4)) == 'http') {
         echo $data;
+    }
 }
 
 include 'server.inc';

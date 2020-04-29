@@ -4,7 +4,8 @@
 <?php if (!extension_loaded("filter")) die("skip"); ?>
 --FILE--
 <?php
-var_dump(filter_var(new stdClass, FILTER_VALIDATE_EMAIL));
+var_dump(filter_var(new stdClass(), FILTER_VALIDATE_EMAIL));
+
 ?>
 --EXPECT--
 bool(false)

@@ -27,7 +27,8 @@ Rick Buitenman <rick@meritos.nl>
   $curl_content = curl_exec($copy);
   curl_close($copy);
 
-  var_dump( $curl_content );
+  var_dump($curl_content);
+
 ?>
 --EXPECT--
 *** Testing curl copy handle with simple POST ***

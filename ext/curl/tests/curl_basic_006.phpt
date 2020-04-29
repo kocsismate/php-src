@@ -26,13 +26,14 @@ TestFest 2009 - AFUP - Jean-Marc Fontaine <jmf@durcommefaire.net>
   curl_setopt($ch, CURLOPT_URL, $url); //set the url we want to use
   curl_setopt($ch, CURLOPT_WRITEFUNCTION, function ($ch, $data) {
     $GLOBALS['alldata'] .= $data;
-    return strlen ($data);
+    return strlen($data);
   });
 
   curl_exec($ch);
   curl_close($ch);
   ob_end_flush();
   echo "Data: $alldata";
+
 ?>
 ===DONE===
 --EXPECT--

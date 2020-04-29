@@ -7,6 +7,7 @@ if (!extension_loaded('gd')) die('skip gd extension not available');
 --FILE--
 <?php
 var_dump(imagecreatefromgd2(__DIR__ . DIRECTORY_SEPARATOR . 'bug73868.gd2'));
+
 ?>
 --EXPECTF--
 Warning: imagecreatefromgd2(): gd2: EOF while reading

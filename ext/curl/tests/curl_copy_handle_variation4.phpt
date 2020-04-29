@@ -35,6 +35,7 @@ curl_multi_remove_handle($mh, $ch1);
 curl_multi_remove_handle($mh, $ch2);
 curl_multi_remove_handle($mh, $ch3);
 curl_multi_close($mh);
+
 ?>
 ===DONE===
 --EXPECTF--

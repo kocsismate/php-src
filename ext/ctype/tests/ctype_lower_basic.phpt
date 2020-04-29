@@ -20,6 +20,7 @@ var_dump(ctype_lower($c1));
 var_dump(ctype_lower($c2));
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_lower() : basic functionality ***

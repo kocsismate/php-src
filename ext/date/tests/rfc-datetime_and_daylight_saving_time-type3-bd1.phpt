@@ -39,6 +39,7 @@ echo 'bd7 ' . $end->format($date_format) . ' - ' . $start->format($date_format)
     . ' = ' . $start->diff($end)->format($interval_format) . "\n";
 
 echo "\n";
+
 ?>
 --EXPECT--
 bd1 2010-11-07 05:30:00 EST America/New_York - 2010-11-06 04:30:00 EDT America/New_York = P1DT1H

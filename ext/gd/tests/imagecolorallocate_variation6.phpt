@@ -31,7 +31,7 @@ $values = array(
 );
 
 // loop through each element of the array for blue
-foreach($values as $key => $value) {
+foreach ($values as $key => $value) {
       echo "\n--$key--\n";
       //Need to be created every time to get expected return value
       $im_palette = imagecreate(200, 200);
@@ -46,6 +46,7 @@ foreach($values as $key => $value) {
           fn() => imagecolorallocate($im_true_color, 0, 0, $value)
       );
 };
+
 ?>
 --EXPECT--
 *** Testing imagecolorallocate() : usage variations ***

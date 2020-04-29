@@ -7,7 +7,7 @@ if ( ! extension_loaded('gd') || !function_exists('imageflip')) die( 'skip GD no
 --FILE--
 <?php
 
-$im = imagecreatetruecolor( 99, 99 );
+$im = imagecreatetruecolor(99, 99);
 
 imagesetpixel($im, 0, 0, 0xFF);
 imagesetpixel($im, 0, 98, 0x00FF00);
@@ -22,6 +22,7 @@ var_dump(dechex(imagecolorat($im, 0, 0)));
 var_dump(dechex(imagecolorat($im, 0, 98)));
 var_dump(dechex(imagecolorat($im, 98, 0)));
 var_dump(dechex(imagecolorat($im, 98, 98)));
+
 ?>
 --EXPECT--
 string(2) "ff"

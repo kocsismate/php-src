@@ -11,7 +11,11 @@ if (PHP_INT_SIZE == 4) {
 <?php
 $a = array(38245310, 324542846, 324542847, 9223372036854743639);
 
-foreach ($a as $x) var_dump(jdtojewish($x));
+foreach ($a as $x) {
+    var_dump(jdtojewish($x));
+}
+
+?>
 --EXPECT--
 string(11) "2/22/103759"
 string(12) "12/13/887605"

@@ -16,10 +16,10 @@ date_default_timezone_set("Asia/Calcutta");
 $timestamp = 10;
 
 // Calling getdate() with all possible arguments
-var_dump( getdate($timestamp) );
+var_dump(getdate($timestamp));
 
 // Calling getdate() with mandatory arguments
-var_dump( getdate() );
+var_dump(getdate());
 
 ?>
 --EXPECTF--

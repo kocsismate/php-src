@@ -13,6 +13,7 @@ foreach ([new com('WScript.Shell'), new variant([])] as $var) {
         var_dump($ex->getMessage());
     }
 }
+
 ?>
 --EXPECT--
 string(38) "appending to variants is not supported"

@@ -15,6 +15,7 @@ foreach ($timezones as $zone) {
     }
 }
 print "[strtotime(timezone) == false - End List]\n";
+
 ?>
 --EXPECT--
 [strtotime(timezone) == false - Begin List]

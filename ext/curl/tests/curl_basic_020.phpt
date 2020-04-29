@@ -15,6 +15,7 @@ Jean-Marc Fontaine <jmf@durcommefaire.net>
   curl_exec($ch);
   var_dump(curl_getinfo($ch, CURLINFO_HTTP_CODE));
   curl_close($ch);
+
 ?>
 --EXPECT--
 Hello World!

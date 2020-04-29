@@ -50,13 +50,14 @@ $values = array(
 );
 
 $iterator = 1;
-foreach($values as $value) {
+foreach ($values as $value) {
       echo "\n-- Iteration $iterator --\n";
-      var_dump( ctype_graph($value) );
+      var_dump(ctype_graph($value));
       $iterator++;
 };
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_graph() : usage variations ***

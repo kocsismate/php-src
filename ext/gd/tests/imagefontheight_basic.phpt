@@ -9,7 +9,8 @@ Rafael Dohms <rdohms [at] gmail [dot] com>
 ?>
 --FILE--
 <?php
-var_dump(imagefontheight(1),imagefontheight(2),imagefontheight(3),imagefontheight(4),imagefontheight(5));
+var_dump(imagefontheight(1), imagefontheight(2), imagefontheight(3), imagefontheight(4), imagefontheight(5));
+
 ?>
 --EXPECT--
 int(8)

@@ -73,16 +73,14 @@ function ut_main()
 
     $res_str = '';
 
-    foreach( $locales as $locale )
-    {
-        $keywords_arr = ut_loc_get_keywords( $locale);
+    foreach ($locales as $locale) {
+        $keywords_arr = ut_loc_get_keywords($locale);
         $res_str .= "$locale: ";
-        if( $keywords_arr){
-            foreach( $keywords_arr as $key => $value){
+        if ($keywords_arr) {
+            foreach ($keywords_arr as $key => $value) {
                     $res_str .= "Key is $key and Value is $value \n";
             }
-        }
-        else{
+        } else {
             $res_str .= "No keywords found.";
         }
         $res_str .= "\n";
@@ -90,10 +88,9 @@ function ut_main()
 
     $res_str .= "\n";
     return $res_str;
-
 }
 
-include_once( 'ut_common.inc' );
+include_once('ut_common.inc');
 ut_run();
 
 ?>

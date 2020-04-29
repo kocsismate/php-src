@@ -13,7 +13,7 @@ $lsb = IntlTimeZone::createTimeZone('Europe/Lisbon');
 
 ini_set('intl.default_locale', 'en_US');
 var_dump($lsb->getDisplayName(false, IntlTimeZone::DISPLAY_LONG));
-var_dump($lsb->getDisplayName(false, IntlTimeZone::DISPLAY_LONG, NULL));
+var_dump($lsb->getDisplayName(false, IntlTimeZone::DISPLAY_LONG, null));
 var_dump($lsb->getDisplayName(false, IntlTimeZone::DISPLAY_LONG, 'pt_PT'));
 
 ?>

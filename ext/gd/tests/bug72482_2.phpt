@@ -14,6 +14,7 @@ imageantialias($im, true);
 imageline($im, 0, 0, 10, 10, imagecolorallocate($im, 0, 0, 0));
 
 test_image_equals_file(__DIR__ . DIRECTORY_SEPARATOR . 'bug72482_2.png', $im);
+
 ?>
 --EXPECT--
 The images are equal.

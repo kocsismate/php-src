@@ -5,7 +5,7 @@ FileInfo - Calling the constructor twice
 --FILE--
 <?php
 
-$x = new finfo;
+$x = new finfo();
 $x->__construct();
 
 echo "done!\n";

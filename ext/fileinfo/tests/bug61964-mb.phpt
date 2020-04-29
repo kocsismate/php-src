@@ -24,7 +24,7 @@ var_dump($ret);
 $ret = @finfo_open(FILEINFO_NONE, $dir);
 var_dump($ret);
 
-$ret = @finfo_open(FILEINFO_NONE, $dir. "/non-exits-dir私はガラスを食べられます");
+$ret = @finfo_open(FILEINFO_NONE, $dir . "/non-exits-dir私はガラスを食べられます");
 var_dump($ret);
 
 // write some test files to test folder
@@ -42,6 +42,7 @@ unlink($dir . "/test2.txt");
 unlink($magic_file_copy);
 unlink($magic_file_copy2);
 rmdir($dir);
+
 ?>
 --EXPECTF--
 bool(false)%A

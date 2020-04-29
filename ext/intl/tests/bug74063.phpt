@@ -12,6 +12,7 @@ try {
 } catch (Exception $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
+
 ?>
 --EXPECT--
 Serialization of 'NumberFormatter' is not allowed

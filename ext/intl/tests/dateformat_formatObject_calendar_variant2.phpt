@@ -20,8 +20,8 @@ echo IntlDateFormatter::formatObject($cal, 'E y-MM-d HH,mm,ss.SSS v', "en-US"), 
 $cal = IntlCalendar::fromDateTime('2012-01-01 05:00:00+03:00');
 echo datefmt_format_object($cal, IntlDateFormatter::FULL), "\n";
 
-$cal = IntlCalendar::createInstance(null,'en-US@calendar=islamic-civil');
-$cal->setTime(strtotime('2012-01-01 00:00:00')*1000.);
+$cal = IntlCalendar::createInstance(null, 'en-US@calendar=islamic-civil');
+$cal->setTime(strtotime('2012-01-01 00:00:00') * 1000.);
 echo IntlDateFormatter::formatObject($cal), "\n";
 echo IntlDateFormatter::formatObject($cal, IntlDateFormatter::FULL, "en-US"), "\n";
 

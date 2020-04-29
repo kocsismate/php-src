@@ -8,6 +8,7 @@ if (!extension_loaded('gd')) die('skip gd extension not available');
 <?php
 $im = imagecreatefromxbm(__DIR__ . DIRECTORY_SEPARATOR . 'bug73968.xbm');
 var_dump($im);
+
 ?>
 --EXPECT--
 object(GdImage)#1 (0) {

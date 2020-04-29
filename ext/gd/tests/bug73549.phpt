@@ -10,6 +10,7 @@ $stream = fopen(__DIR__ . DIRECTORY_SEPARATOR . 'bug73549.png', 'w');
 $im = imagecreatetruecolor(8, 8);
 var_dump(imagepng($im, $stream));
 var_dump($stream);
+
 ?>
 --EXPECTF--
 bool(true)

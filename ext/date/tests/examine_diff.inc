@@ -32,7 +32,8 @@ define('PHPT_DATETIME_SHOW_SUB', 4);
  *
  * @return void
  */
-function examine_diff($end_date, $start_date, $expect_spec, $expect_days, $absolute = false) {
+function examine_diff($end_date, $start_date, $expect_spec, $expect_days, $absolute = false)
+{
     if (is_string($start_date)) {
         $start = new DateTime($start_date);
     } else {

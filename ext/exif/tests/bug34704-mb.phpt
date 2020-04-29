@@ -7,8 +7,9 @@ output_handler=
 zlib.output_compression=0
 --FILE--
 <?php
-$infile = __DIR__.'/bug34704私はガラスを食べられます.jpg';
+$infile = __DIR__ . '/bug34704私はガラスを食べられます.jpg';
 var_dump(exif_read_data($infile));
+
 ?>
 --EXPECTF--
 array(7) {

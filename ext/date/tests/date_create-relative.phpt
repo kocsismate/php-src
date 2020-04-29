@@ -42,8 +42,8 @@ $offsets = array(
     '10000000000 years',
 );
 
-foreach ($offsets AS $offset) {
-    foreach (array('+', '-') AS $direction) {
+foreach ($offsets as $offset) {
+    foreach (array('+', '-') as $direction) {
         $dt = date_create("$base_time $direction$offset");
         echo "$direction$offset: " . date_format($dt, DATE_ISO8601) . "\n";
     }

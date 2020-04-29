@@ -34,6 +34,7 @@ var_dump(dgettext($overflown, $msgid));
 var_dump(dgettext($domain, $overflown));
 
 var_dump(textdomain($overflown));
+
 ?>
 --EXPECTF--
 Warning: bindtextdomain(): Domain passed too long in %s on line %d

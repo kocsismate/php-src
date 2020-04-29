@@ -13,6 +13,7 @@ try {
 } catch (ValueError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
+
 ?>
 --EXPECT--
 jday must be within the Unix epoch

@@ -22,6 +22,7 @@ imagefilledarc($image, 50, 50, 30, 30, -25, 25, $white, IMG_ARC_PIE);
 
 include_once __DIR__ . '/func.inc';
 test_image_equals_file(__DIR__ . '/imagefilledarc_variation2.png', $image);
+
 ?>
 --EXPECT--
 The images are equal.

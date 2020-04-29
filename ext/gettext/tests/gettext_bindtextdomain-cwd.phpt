@@ -14,7 +14,7 @@ $base_dir = __DIR__;
 chdir($base_dir);
 putenv('LC_ALL=en_US.UTF-8');
 setlocale(LC_ALL, 'en_US.UTF-8');
-bindtextdomain('messages',null);
+bindtextdomain('messages', null);
 var_dump(gettext('Basic test'));
 bindtextdomain('messages', './locale');
 var_dump(gettext('Basic test'));

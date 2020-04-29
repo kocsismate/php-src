@@ -8,6 +8,7 @@ if (!extension_loaded('curl')) die('skip curl extension not available');
 <?php
 curl_version(CURLVERSION_NOW);
 curl_version(0);
+
 ?>
 --EXPECTF--
 Deprecated: curl_version(): The $version parameter is deprecated in %s on line %d

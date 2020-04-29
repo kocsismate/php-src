@@ -29,6 +29,7 @@ try {
 } catch (Exception $e) {
     print $e;
 }
+
 ?>
 --EXPECT--
 object(variant)#1 (0) {

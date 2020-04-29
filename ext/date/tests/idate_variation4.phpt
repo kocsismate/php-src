@@ -17,7 +17,7 @@ date_default_timezone_set("Asia/Calcutta");
 $inputs = array(
 
       'Day of the month' => 'd',
-      'Leap Year' =>'L',
+      'Leap Year' => 'L',
       'Month number' => 'm',
       'Days in the month' => 't',
       'Day of the week' => 'w',
@@ -28,10 +28,11 @@ $inputs = array(
 );
 
 // loop through each element of the array for timestamp
-foreach($inputs as $key =>$value) {
+foreach ($inputs as $key => $value) {
       echo "\n--$key--\n";
-      var_dump( idate($value) );
+      var_dump(idate($value));
 };
+
 ?>
 --EXPECTF--
 *** Testing idate() : usage variation ***

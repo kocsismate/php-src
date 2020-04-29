@@ -10,6 +10,7 @@ libgd #86 (Possible infinite loop in imagecreatefrompng)
 
 $im = imagecreatefrompng(__DIR__ . '/libgd00086.png');
 var_dump($im);
+
 ?>
 --EXPECTF--
 gd-png:  fatal libpng error: Read Error: truncated data

@@ -16,10 +16,10 @@ $format = '%b %d %Y %H:%M:%S';
 $timestamp = mktime(8, 8, 8, 8, 8, 2008);
 
 // Calling strftime() with all possible arguments
-var_dump( strftime($format, $timestamp) );
+var_dump(strftime($format, $timestamp));
 
 // Calling strftime() with mandatory arguments
-var_dump( strftime($format) );
+var_dump(strftime($format));
 
 ?>
 --EXPECTF--

@@ -11,6 +11,7 @@ $smallDate = new DateTime('now', new DateTimeZone('America/Sao_Paulo'));
 var_dump($longDate->format('e'));
 var_dump($mediumDate->format('e'));
 var_dump($smallDate->format('e'));
+
 ?>
 --EXPECT--
 string(32) "America/Argentina/ComodRivadavia"

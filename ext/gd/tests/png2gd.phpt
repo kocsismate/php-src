@@ -34,6 +34,7 @@ png <--> gd1/gd2 conversion test
     @unlink($cwd . "/test_png.gd2");
     @unlink($cwd . "/test_gd1.png");
     @unlink($cwd . "/test_gd2.png");
+
 ?>
 --EXPECT--
 PNG to GD1 conversion: ok

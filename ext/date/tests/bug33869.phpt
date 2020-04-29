@@ -16,6 +16,7 @@ Bug #33869 (strtotime() doesn't parse "+1days" format)
     echo "\n";
     echo date(DATE_ISO8601, strtotime('+1 year', $tm));
     echo "\n";
+
 ?>
 --EXPECT--
 2005-01-06T01:01:01+0000

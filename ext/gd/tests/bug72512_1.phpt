@@ -12,7 +12,7 @@ Bug #72512 gdImageTrueColorToPaletteBody allows arbitrary write/read access, var
 
 $img = imagecreatetruecolor(100, 100);
 imagecolortransparent($img, -1000000);
-imagetruecolortopalette($img, TRUE, 3);
+imagetruecolortopalette($img, true, 3);
 imagecolortransparent($img, 9);
 
 ?>

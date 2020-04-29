@@ -24,11 +24,11 @@ $intervals = array(
 );
 
 $d = new DateTime($startDate);
-var_dump( $d->format($format) );
+var_dump($d->format($format));
 
-foreach($intervals as $interval) {
-    date_add($d, new DateInterval($interval) );
-    var_dump( $d->format($format) );
+foreach ($intervals as $interval) {
+    date_add($d, new DateInterval($interval));
+    var_dump($d->format($format));
 }
 
 ?>

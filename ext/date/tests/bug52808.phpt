@@ -11,18 +11,20 @@ $intervals = array(
     "2007-05-11T15:30:00Z",
     "2007-05-11T15:30:00Z/:00Z",
 );
-foreach($intervals as $iv) {
-    try
-    {
+foreach ($intervals as $iv) {
+    try {
         $di = new DateInterval($iv);
         var_dump($di);
-    }
-    catch ( Exception $e )
-    {
+    } catch (Exception $e) {
         echo $e->getMessage(), "\n";
     }
 }
-echo "==DONE==\n";
+echo "
+
+?>
+
+?>
+==DONE==\n";
 ?>
 --EXPECTF--
 object(DateInterval)#%d (16) {

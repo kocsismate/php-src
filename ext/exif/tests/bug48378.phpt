@@ -5,9 +5,10 @@ Bug #48378 (Infinite recursion due to corrupt JPEG)
 --FILE--
 <?php
 exif_read_data(
-__DIR__ . "/bug48378.jpg",
-"FILE,COMPUTED,ANY_TAG"
+    __DIR__ . "/bug48378.jpg",
+    "FILE,COMPUTED,ANY_TAG"
 );
+
 ?>
 --EXPECTF--
 Warning: exif_read_data(%s): Invalid IFD start in %s48378.php on line %d

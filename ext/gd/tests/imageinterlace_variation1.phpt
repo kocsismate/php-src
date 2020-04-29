@@ -14,6 +14,7 @@ $image = imagecreatetruecolor(100, 100);
 
 var_dump(imageinterlace($image, 1));
 var_dump(imageinterlace($image));
+
 ?>
 --EXPECT--
 int(1)

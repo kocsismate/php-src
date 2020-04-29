@@ -20,6 +20,10 @@ if(substr(PHP_OS, 0, 3) != 'WIN' )
 
 ?>
 DONE
+
+?>
+
+?>
 --EXPECTF--
 cURL support => enabled
 cURL Information => %s

@@ -43,7 +43,7 @@ function draw_cell($im, $x, $y)
     $x2 = $x1 + 19;
     $y2 = $y1 + 119;
     $color = cell_color($im, $x, $y);
-    imagefilledrectangle($im, $x1,$y1, $x2,$y2, $color);
+    imagefilledrectangle($im, $x1, $y1, $x2, $y2, $color);
 }
 
 function cell_color($im, $x, $y)
@@ -60,6 +60,7 @@ function cell_color($im, $x, $y)
             return imagecolorallocate($im, 0, 0, $channel);
     }
 }
+
 ?>
 --EXPECT--
 palette gamma (1, 2): The images are equal.

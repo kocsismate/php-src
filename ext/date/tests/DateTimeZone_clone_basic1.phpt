@@ -19,7 +19,7 @@ var_dump($clone);
 
 if ($clone != $orig) {
     echo "TEST FAILED : objects not equal\n";
-}else if ($clone === $orig) {
+} elseif ($clone === $orig) {
     echo "TEST FAILED : objects identical\n";
 } else {
     echo "TEST PASSED : Objects equal but not indetical\n";

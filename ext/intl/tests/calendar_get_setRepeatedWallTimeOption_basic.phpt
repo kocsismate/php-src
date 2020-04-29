@@ -19,7 +19,7 @@ $intlcal->set(IntlCalendar::FIELD_HOUR_OF_DAY, 2);
 $intlcal->set(IntlCalendar::FIELD_MINUTE, 30);
 var_dump(
     strtotime('2012-10-28 02:30:00 +0100'),
-    (int)($intlcal->getTime() /1000)
+    (int)($intlcal->getTime() / 1000)
 );
 
 var_dump(intlcal_set_repeated_wall_time_option($intlcal, IntlCalendar::WALLTIME_FIRST));
@@ -28,7 +28,7 @@ $intlcal->set(IntlCalendar::FIELD_HOUR_OF_DAY, 2);
 $intlcal->set(IntlCalendar::FIELD_MINUTE, 30);
 var_dump(
     strtotime('2012-10-28 02:30:00 +0200'),
-    (int)($intlcal->getTime() /1000)
+    (int)($intlcal->getTime() / 1000)
 );
 
 ?>

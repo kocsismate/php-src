@@ -11,6 +11,7 @@ foreach ($v as $el) {
     var_dump($el);
 }
 echo "done\n";
+
 ?>
 --EXPECT--
 done

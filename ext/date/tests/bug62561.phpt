@@ -8,8 +8,9 @@ $int = new DateInterval('P1D');
 $dayFromTs = new DateTime('@1341115200', new DateTimeZone('America/New_York'));
 $dayFromTs->add($int);
 
-echo 'ts: '.$ts->format('Y-m-d H:i:s')."\n";
-echo 'day from ts: '.$dayFromTs->format('Y-m-d H:i:s')."\n";
+echo 'ts: ' . $ts->format('Y-m-d H:i:s') . "\n";
+echo 'day from ts: ' . $dayFromTs->format('Y-m-d H:i:s') . "\n";
+
 ?>
 --EXPECT--
 ts: 2012-07-01 04:00:00

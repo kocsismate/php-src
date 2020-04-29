@@ -18,7 +18,7 @@ $it->setText($text);
 $it_clone = clone $it;
 var_dump($it == $it_clone);
 
-$it->setText($text2 );
+$it->setText($text2);
 var_dump($it == $it_clone);
 
 $it_clone->setText($text2);

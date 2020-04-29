@@ -16,6 +16,7 @@ try {
 } catch (TypeError $e) {
     echo $e->getMessage(), "\n";
 }
+
 ?>
 --EXPECT--
 Wrong parameter count for imagefilter()

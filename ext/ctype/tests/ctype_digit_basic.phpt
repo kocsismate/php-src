@@ -20,6 +20,7 @@ var_dump(ctype_digit($c1));
 var_dump(ctype_digit($c2));
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_digit() : basic functionality ***

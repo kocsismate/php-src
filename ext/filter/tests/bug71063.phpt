@@ -10,6 +10,7 @@ variables_order=E
 <?php
 var_dump($_ENV['PATH']);
 var_dump(filter_input(INPUT_ENV, 'PATH'));
+
 ?>
 --EXPECT--
 string(1) "/"

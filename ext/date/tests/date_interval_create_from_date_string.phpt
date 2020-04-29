@@ -24,6 +24,7 @@ $string = '1 year + 1 day';
 $i = date_interval_create_from_date_string($string);
 var_dump($i->y);
 var_dump($i->d);
+
 ?>
 --EXPECT--
 int(1)

@@ -13,6 +13,7 @@ $bi = IntlBreakIterator::createSentenceInstance('pt');
 
 var_dump($bi->getLocale(0));
 var_dump($bi->getLocale(1));
+
 ?>
 --EXPECT--
 string(4) "root"

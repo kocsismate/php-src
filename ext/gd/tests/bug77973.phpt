@@ -12,6 +12,7 @@ $filepath = __DIR__ . '/bug77973.xbm';
 file_put_contents($filepath, $contents);
 $im = imagecreatefromxbm($filepath);
 var_dump($im);
+
 ?>
 --EXPECTF--
 Warning: imagecreatefromxbm(): Invalid XBM in %s on line %d

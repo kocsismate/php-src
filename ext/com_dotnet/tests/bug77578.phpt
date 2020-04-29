@@ -14,6 +14,7 @@ $iniopt = $ini ? "-c $ini" : '';
 $command = "$php $iniopt -d com.autoregister_typelib=1 -r \"new COM('WbemScripting.SWbemLocator');\"";
 exec($command, $output, $status);
 var_dump($output, $status);
+
 ?>
 --EXPECT--
 array(0) {

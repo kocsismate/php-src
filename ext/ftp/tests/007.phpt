@@ -178,6 +178,7 @@ try {
 }
 
 fclose($ftp);
+
 ?>
 --EXPECT--
 ftp_login(): supplied resource is not a valid FTP Buffer resource

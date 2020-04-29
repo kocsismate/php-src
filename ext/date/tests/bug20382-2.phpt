@@ -37,11 +37,12 @@ foreach ($tests as $test) {
     array_shift($test);
     $timestamp = call_user_func_array('mktime', $test);
 
-    print "ts     = ". date("l Y-m-d H:i:s T", $timestamp). "\n";
+    print "ts     = " . date("l Y-m-d H:i:s T", $timestamp) . "\n";
     $strtotime_tstamp = strtotime("first monday", $timestamp);
-    print "result = ".date("l Y-m-d H:i:s T", $strtotime_tstamp)."\n";
+    print "result = " . date("l Y-m-d H:i:s T", $strtotime_tstamp) . "\n";
     print "wanted = Monday            00:00:00\n\n";
 }
+
 ?>
 --EXPECTF--
 Europe/Andorra

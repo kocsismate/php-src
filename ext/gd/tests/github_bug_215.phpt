@@ -9,33 +9,32 @@ if (!GD_BUNDLED && version_compare(GD_VERSION, '2.2.2', '<')) {
 ?>
 --FILE--
 <?php
-$image = imagecreate( 10, 10 );
-$bgd = imagecolorallocate( $image, 0, 0, 0 );
-$border = imagecolorallocate( $image, 255, 0, 0 );
-$fillcolor = imagecolorallocate( $image, 255, 0, 0 );
+$image = imagecreate(10, 10);
+$bgd = imagecolorallocate($image, 0, 0, 0);
+$border = imagecolorallocate($image, 255, 0, 0);
+$fillcolor = imagecolorallocate($image, 255, 0, 0);
 
 /* Use unallocated color index */
-imagefilltoborder( $image, 0,0, $border+10, $fillcolor);
+imagefilltoborder($image, 0, 0, $border + 10, $fillcolor);
 echo "#1 passes\n";
 
 /* Use negative color index */
-imagefilltoborder( $image, 0,0, -$border,  $fillcolor);
+imagefilltoborder($image, 0, 0, -$border, $fillcolor);
 echo "#2 passes\n";
 
 
 /* Use unallocated color index */
-imagefilltoborder( $image, 0,0, $border, $fillcolor+10);
+imagefilltoborder($image, 0, 0, $border, $fillcolor + 10);
 echo "#3 passes\n";
 
 /* Use negative color index */
-imagefilltoborder( $image, 0,0, $border, -$fillcolor);
+imagefilltoborder($image, 0, 0, $border, -$fillcolor);
 echo "#4 passes\n";
 
 
 /* Use negative color index */
-imagefilltoborder( $image, 0,0, $border+10, $fillcolor+10);
+imagefilltoborder($image, 0, 0, $border + 10, $fillcolor + 10);
 echo "#5 passes";
-
 
 ?>
 --EXPECT--

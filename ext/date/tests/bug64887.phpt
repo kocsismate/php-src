@@ -22,11 +22,10 @@ $tests = [
     '+8 msec -2 µsec',
 ];
 
-$datetime = new DateTimeImmutable( "2016-10-07 13:25:50" );
+$datetime = new DateTimeImmutable("2016-10-07 13:25:50");
 
-foreach ( $tests as $test )
-{
-    echo $datetime->modify( $test )->format( 'Y-m-d H:i:s.u' ), "\n";
+foreach ($tests as $test) {
+    echo $datetime->modify($test)->format('Y-m-d H:i:s.u'), "\n";
 }
 
 ?>

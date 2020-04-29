@@ -10,6 +10,7 @@ if (!is_resource(enchant_broker_init())) {die("skip, resource dont load\n");}
 $broker = enchant_broker_init();
 var_dump(enchant_broker_get_dict_path($broker, ENCHANT_MYSPELL));
 var_dump(enchant_broker_get_dict_path($broker, ENCHANT_ISPELL));
+
 ?>
 --EXPECTF--
 Warning: enchant_broker_get_dict_path(): dict_path not set in %s on line %d

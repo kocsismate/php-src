@@ -27,17 +27,15 @@ if (is_resource($broker)) {
             echo("OK\n");
 
             if (
-                  (enchant_broker_get_dict_path($broker,$dictTypeValue1) == $backEndDictType1) &&
-                  (enchant_broker_get_dict_path($broker,$dictTypeValue2) == $backEndDictType2)
-              ) {
+                  (enchant_broker_get_dict_path($broker, $dictTypeValue1) == $backEndDictType1) &&
+                  (enchant_broker_get_dict_path($broker, $dictTypeValue2) == $backEndDictType2)
+            ) {
                    echo("OK\n");
-
             } else {
                    echo("broker get dict path has failed \n");
             }
-
         } else {
-           echo("broker set dict path {$backEndDictType2} has failed \n");
+            echo("broker set dict path {$backEndDictType2} has failed \n");
         }
     } else {
         echo("broker set dict path {$backEndDictType1} has failed \n");
@@ -45,6 +43,7 @@ if (is_resource($broker)) {
 } else {
     echo("broker is not a resource; failed; \n");
 }
+
 ?>
 --EXPECT--
 OK

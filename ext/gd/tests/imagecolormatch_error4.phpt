@@ -14,6 +14,7 @@ $background_color = imagecolorallocate($ima, 0, 0, 0);
 $imb = imagecreate(100, 20);
 $background_color = imagecolorallocate($imb, 0, 0, 100);
 var_dump(imagecolormatch($ima, $imb));
+
 ?>
 --EXPECTF--
 Warning: imagecolormatch(): Image1 and Image2 must be the same size in %s on line %d

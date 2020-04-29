@@ -19,6 +19,7 @@ gd_info()
     var_dump(gd_info());
 
     echo "\nDone\n";
+
 ?>
 --EXPECTF--
 basic test of gd_info() function

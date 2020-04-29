@@ -15,7 +15,7 @@ $dicts = enchant_broker_list_dicts($broker);
 
 if (is_array($dicts)) {
     if (count($dicts)) {
-    $dict = enchant_broker_request_dict($broker, $dicts[0]['lang_tag']);
+        $dict = enchant_broker_request_dict($broker, $dicts[0]['lang_tag']);
 
         if (is_resource($dict)) {
             echo "OK\n";
@@ -27,6 +27,7 @@ if (is_array($dicts)) {
     echo("list dicts failed\n");
 }
 echo("OK\n");
+
 ?>
 --EXPECT--
 OK

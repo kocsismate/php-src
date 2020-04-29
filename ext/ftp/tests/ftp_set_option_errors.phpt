@@ -18,6 +18,7 @@ var_dump(ftp_set_option($ftp, FTP_TIMEOUT_SEC, '0'));
 var_dump(ftp_set_option($ftp, FTP_USEPASVADDRESS, ['1']));
 var_dump(ftp_set_option($ftp, FTP_AUTOSEEK, 'true'));
 var_dump(ftp_set_option($ftp, FOO_BAR, 1));
+
 ?>
 --EXPECTF--
 Warning: ftp_set_option(): Timeout has to be greater than 0 in %s on line %d

@@ -27,6 +27,7 @@ foreach ($algos as $algo) {
 }
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 string(3) "md2"

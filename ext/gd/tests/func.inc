@@ -96,7 +96,7 @@ function test_image_equals_file($filename, $actual)
     }
     $pixels_changed = 0;
     for ($y = 0; $y < $exp_y; $y++) {
-        for ($x = 0; $x < $exp_x; $x ++) {
+        for ($x = 0; $x < $exp_x; $x++) {
             $exp_c = imagecolorat($expected, $x, $y);
             $act_c = imagecolorat($actual, $x, $y);
             if ($exp_c != $act_c) {
@@ -126,7 +126,7 @@ function test_to_truecolor($image)
         $width = imagesx($image);
         $height = imagesy($image);
         $result = imagecreatetruecolor($width, $height);
-        imagecopy($result, $image, 0,0, 0,0, $width, $height);
+        imagecopy($result, $image, 0, 0, 0, 0, $width, $height);
         return $result;
     }
 }
@@ -153,14 +153,13 @@ function save_actual_image($image)
  * output
  */
 
-function trycatch_dump(...$tests) {
+function trycatch_dump(...$tests)
+{
     foreach ($tests as $test) {
         try {
             var_dump($test());
-        }
-        catch (\Error $e) {
+        } catch (\Error $e) {
             echo '!! [' . get_class($e) . '] ' . $e->getMessage() . "\n";
         }
     }
 }
-

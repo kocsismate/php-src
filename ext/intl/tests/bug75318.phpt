@@ -8,6 +8,7 @@ if (!extension_loaded('intl')) die('skip intl extension is not available');
 <?php
 $rm = new ReflectionMethod('UConverter', 'getAliases');
 var_dump($rm->getNumberOfRequiredParameters());
+
 ?>
 --EXPECT--
 int(1)

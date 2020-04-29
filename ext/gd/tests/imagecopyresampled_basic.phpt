@@ -36,7 +36,7 @@ imagepng($image_lge, $dest_lge);
 // Get new dimensions
 $percent = 0.5; // new image 50% of original
 list($width, $height) = getimagesize($dest_lge);
-echo "Size of original: width=". $width . " height=" . $height . "\n";
+echo "Size of original: width=" . $width . " height=" . $height . "\n";
 
 $new_width = $width * $percent;
 $new_height = $height * $percent;
@@ -48,13 +48,14 @@ imagecopyresampled($image_sml, $image_lge, 0, 0, 0, 0, $new_width, $new_height, 
 imagepng($image_sml, $dest_sml);
 
 list($width, $height) = getimagesize($dest_sml);
-echo "Size of copy: width=". $width . " height=" . $height . "\n";
+echo "Size of copy: width=" . $width . " height=" . $height . "\n";
 
 imagedestroy($image_lge);
 imagedestroy($image_sml);
 
 
 echo "Done\n";
+
 ?>
 --CLEAN--
 <?php

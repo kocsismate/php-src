@@ -43,24 +43,24 @@ function ut_main()
 
     $res_str = '';
     $isCanonical = false;
-    foreach($loc_ranges as $loc_range){
-        foreach($lang_tags as $lang_tag){
-            $res_str .="--------------\n";
-            $result= ut_loc_locale_filter_matches( $lang_tag , $loc_range , $isCanonical);
+    foreach ($loc_ranges as $loc_range) {
+        foreach ($lang_tags as $lang_tag) {
+            $res_str .= "--------------\n";
+            $result = ut_loc_locale_filter_matches($lang_tag, $loc_range, $isCanonical);
             $res_str .= "loc_range:$loc_range matches lang_tag $lang_tag ? ";
-            if( $result){
+            if ($result) {
                 $res_str .= "YES\n";
-            }else{
+            } else {
                 $res_str .= "NO\n";
             }
 //canonicalized version
-            $result= ut_loc_locale_filter_matches( $lang_tag , $loc_range , !($isCanonical));
+            $result = ut_loc_locale_filter_matches($lang_tag, $loc_range, !($isCanonical));
             $can_loc_range = ut_loc_canonicalize($loc_range);
             $can_lang_tag = ut_loc_canonicalize($lang_tag);
             $res_str .= "loc_range:$can_loc_range canonically matches lang_tag $can_lang_tag ? ";
-            if( $result){
+            if ($result) {
                 $res_str .= "YES\n";
-            }else{
+            } else {
                 $res_str .= "NO\n";
             }
         }
@@ -68,10 +68,9 @@ function ut_main()
 
     $res_str .= "\n";
     return $res_str;
-
 }
 
-include_once( 'ut_common.inc' );
+include_once('ut_common.inc');
 ut_run();
 
 ?>

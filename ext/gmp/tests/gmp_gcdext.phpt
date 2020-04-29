@@ -23,16 +23,17 @@ $a = array(
     );
 
 foreach ($a as $val) {
-    $r = gmp_gcdext($val[0],$val[1]);
-    $check = gmp_add(gmp_mul($val[0],$r['s']), gmp_mul($val[1],$r['t']));
+    $r = gmp_gcdext($val[0], $val[1]);
+    $check = gmp_add(gmp_mul($val[0], $r['s']), gmp_mul($val[1], $r['t']));
     var_dump(gmp_strval($r['g']));
     var_dump(gmp_strval($check));
 }
 
-var_dump(gmp_gcdext($val[0],array()));
-var_dump(gmp_gcdext(array(),array()));
+var_dump(gmp_gcdext($val[0], array()));
+var_dump(gmp_gcdext(array(), array()));
 
 echo "Done\n";
+
 ?>
 --EXPECTF--
 string(1) "3"

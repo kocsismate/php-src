@@ -17,7 +17,7 @@ Date constants
         DATE_W3C
     );
 
-    foreach($constants as $const) {
+    foreach ($constants as $const) {
         var_dump(date($const, strtotime("1 Jul 06 14:27:30 +0200")));
         var_dump(date($const, strtotime("2006-05-30T14:32:13+02:00")));
     }
@@ -37,6 +37,7 @@ Date constants
         DATE_RSS     == DateTime::RSS,
         DATE_W3C     == DateTime::W3C
     );
+
 ?>
 --EXPECT--
 string(25) "2006-07-01T14:27:30+02:00"

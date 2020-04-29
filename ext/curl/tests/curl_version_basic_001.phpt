@@ -18,6 +18,7 @@ Test curl_version() basic functionality
     var_dump($info_curl["ssl_version"]);
     var_dump($info_curl["libz_version"]);
     var_dump(array_key_exists("protocols", $info_curl));
+
 ?>
 --EXPECTF--
 int(%i)

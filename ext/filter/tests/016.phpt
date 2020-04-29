@@ -4,7 +4,7 @@ filter_var() and FILTER_VALIDATE_EMAIL
 <?php if (!extension_loaded("filter")) die("skip"); ?>
 --FILE--
 <?php
-$values = Array(
+$values = array(
 'a@b.c',
 'abuse@example.com',
 'test!.!@#$%^&*@example.com',
@@ -26,6 +26,7 @@ foreach ($values as $value) {
 }
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 string(5) "a@b.c"

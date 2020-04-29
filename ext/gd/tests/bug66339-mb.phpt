@@ -10,10 +10,11 @@ $im = imagecreate(8, 8);
 imagecolorallocate($im, 0, 0, 0); // background
 $white = imagecolorallocate($im, 255, 255, 255);
 imagefilledrectangle($im, 2, 2, 6, 6, $white);
-imagexbm($im, NULL);
+imagexbm($im, null);
 echo "------------\n";
 imagexbm($im, './bug66339私はガラスを食べられます.xbm');
 echo file_get_contents('./bug66339私はガラスを食べられます.xbm');
+
 ?>
 --CLEAN--
 <?php

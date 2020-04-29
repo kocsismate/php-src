@@ -31,6 +31,7 @@ while (1) {
 }
 
 echo "Done\n";
+
 ?>
 --EXPECTF--
 Warning: gmp_random_bits(): The number of bits must be positive in %s on line %d

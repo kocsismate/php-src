@@ -11,6 +11,7 @@ print_R(IntlTimeZone::getRegion('Europe/Amsterdam'));
 echo "\n";
 print_R(intltz_get_region('Europe/Amsterdam'));
 echo "\n";
+
 ?>
 --EXPECT--
 NL

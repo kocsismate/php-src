@@ -19,6 +19,7 @@ if(!function_exists('gd_info')) {
 echo "*** Testing gd_info() : variation ***\n";
 
 var_dump(gd_info());
+
 ?>
 --EXPECTF--
 *** Testing gd_info() : variation ***

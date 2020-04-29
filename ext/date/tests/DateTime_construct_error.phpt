@@ -17,7 +17,7 @@ $time = "GMT";
 $timezone  = timezone_open("GMT");
 $extra_arg = 99;
 try {
-    var_dump( new DateTime($time, $timezone, $extra_arg) );
+    var_dump(new DateTime($time, $timezone, $extra_arg));
 } catch (TypeError $e) {
     echo $e->getMessage(), "\n";
 }

@@ -24,13 +24,14 @@ include 'skipif.inc';
   ob_start(); // start output buffering
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_POST, 1);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, array('Hello'=>'World','Foo'=>'Bar',100=>'John Doe'));
+  curl_setopt($ch, CURLOPT_POSTFIELDS, array('Hello' => 'World','Foo' => 'Bar',100 => 'John Doe'));
   curl_setopt($ch, CURLOPT_URL, $url); //set the url we want to use
 
   $curl_content = curl_exec($ch);
   curl_close($ch);
 
-  var_dump( $curl_content );
+  var_dump($curl_content);
+
 ?>
 --EXPECT--
 *** Testing curl sending through GET an POST ***

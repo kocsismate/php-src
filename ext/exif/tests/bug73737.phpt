@@ -6,6 +6,7 @@ Bug #73737 (Crash when parsing a tag format)
 <?php
     $exif = exif_thumbnail(__DIR__ . '/bug73737.tiff');
     var_dump($exif);
+
 ?>
 --EXPECTF--
 Warning: exif_thumbnail(bug73737.tiff): Process tag(x0100=ImageWidth): Cannot be empty in %s on line %d

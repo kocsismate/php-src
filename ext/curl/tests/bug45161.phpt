@@ -24,7 +24,7 @@ for ($i = 0; $i < 100; $i++) {
 
 // Start actual test
 $start = memory_get_usage() + 1024;
-for($i = 0; $i < 1024; $i++) {
+for ($i = 0; $i < 1024; $i++) {
     curl_setopt($ch, CURLOPT_URL, "{$host}/get.inc");
     curl_setopt($ch, CURLOPT_FILE, $fp);
     curl_exec($ch);
@@ -37,6 +37,7 @@ if ($start < memory_get_usage()) {
 echo "\n";
 fclose($fp);
 unset($fp);
+
 ?>
 --EXPECT--
 PASS

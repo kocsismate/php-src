@@ -13,6 +13,7 @@ $data = array(
         );
 $out = filter_var($data, FILTER_VALIDATE_FLOAT, FILTER_REQUIRE_ARRAY);
 var_dump($out);
+
 ?>
 --EXPECT--
 array(5) {

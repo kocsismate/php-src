@@ -7,9 +7,9 @@ CURL file uploading
 
 function testcurl($ch, $name, $mime = '', $postname = '')
 {
-    if(!empty($postname)) {
+    if (!empty($postname)) {
         $file = new CurlFile($name, $mime, $postname);
-    } else if(!empty($mime)) {
+    } elseif (!empty($mime)) {
         $file = new CurlFile($name, $mime);
     } else {
         $file = new CurlFile($name);
@@ -58,6 +58,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
 var_dump(curl_exec($ch));
 
 curl_close($ch);
+
 ?>
 --EXPECTF--
 string(%d) "curl_testdata1.txt|application/octet-stream|6"

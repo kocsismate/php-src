@@ -16,6 +16,7 @@ dba_replace('foo', 'value2', $db);
 var_dump(dba_fetch('foo', $db));
 
 dba_close($db);
+
 ?>
 --EXPECT--
 string(6) "value2"

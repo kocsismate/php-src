@@ -29,6 +29,7 @@ imagewebp($im1, $filename);
 $im2 = imagecreatefromwebp($filename);
 imagewebp($im2, $filename);
 var_dump(calc_image_dissimilarity($im1, $im2) < 10e5);
+
 ?>
 --CLEAN--
 <?php

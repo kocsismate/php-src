@@ -20,6 +20,7 @@ for ($i = 0; $i < $width; $i += 16) {
         }
     }
 }
+
 ?>
 --EXPECT--
 object(GdImage)#1 (0) {

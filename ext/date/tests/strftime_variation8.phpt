@@ -17,8 +17,8 @@ $timestamp = mktime(8, 8, 8, 8, 8, 2008);
 $format = "%%";
 
 echo "\n-- Testing strftime() function with a literal % character to format --\n";
-var_dump( strftime($format) );
-var_dump( strftime($format, $timestamp) );
+var_dump(strftime($format));
+var_dump(strftime($format, $timestamp));
 
 ?>
 --EXPECT--

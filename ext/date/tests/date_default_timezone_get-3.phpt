@@ -8,6 +8,7 @@ date.timezone=Europe/Rome
 
     date_default_timezone_set("America/Chicago");
     echo date_default_timezone_get(), "\n";
+
 ?>
 --EXPECT--
 Europe/Rome

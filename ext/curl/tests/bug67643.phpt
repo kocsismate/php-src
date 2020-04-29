@@ -7,16 +7,16 @@ if (!extension_loaded('curl')) print 'skip';
 --FILE--
 <?php
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'file://'. __DIR__ . DIRECTORY_SEPARATOR .'curl_testdata1.txt');
+    curl_setopt($ch, CURLOPT_URL, 'file://' . __DIR__ . DIRECTORY_SEPARATOR . 'curl_testdata1.txt');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, false);
 
     $mh = curl_multi_init();
     curl_multi_add_handle($mh, $ch);
 
     $running = 0;
-    do {
-        curl_multi_exec($mh, $running);
-    } while($running > 0);
+do {
+    curl_multi_exec($mh, $running);
+} while ($running > 0);
 
     $results = curl_multi_getcontent($ch);
 
@@ -24,6 +24,7 @@ if (!extension_loaded('curl')) print 'skip';
     curl_multi_close($mh);
 
     var_dump($results);
+
 ?>
 --EXPECT--
 CURL1

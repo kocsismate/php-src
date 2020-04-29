@@ -14,6 +14,7 @@ echo $reflection;
 ob_get_clean();
 
 echo 'done';
+
 ?>
 --EXPECT--
 done

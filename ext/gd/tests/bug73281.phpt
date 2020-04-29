@@ -11,7 +11,7 @@ $coordinates = [[0, 0], [0, 199], [199, 199], [199, 0]];
 
 $src = imagecreatetruecolor(100, 100);
 $white = imagecolorallocate($src, 255, 255, 255);
-imagefilledrectangle($src, 0,0, 99,99, $white);
+imagefilledrectangle($src, 0, 0, 99, 99, $white);
 $dst = imagescale($src, 200, 200, IMG_BILINEAR_FIXED);
 echo "truecolor source\n";
 foreach ($coordinates as $coordinate) {
@@ -21,13 +21,14 @@ foreach ($coordinates as $coordinate) {
 
 $src = imagecreate(100, 100);
 $white = imagecolorallocate($src, 255, 255, 255);
-imagefilledrectangle($src, 0,0, 99,99, $white);
+imagefilledrectangle($src, 0, 0, 99, 99, $white);
 $dst = imagescale($src, 200, 200, IMG_BILINEAR_FIXED);
 echo "\npalette source\n";
 foreach ($coordinates as $coordinate) {
     list($x, $y) = $coordinate;
     printf("%3d, %3d: %x\n", $x, $y, imagecolorat($dst, $x, $y));
 }
+
 ?>
 --EXPECT--
 truecolor source

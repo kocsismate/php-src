@@ -10,6 +10,7 @@ var_dump($date->format('r'));
 $date->setDate(-2147483648, 1, 1);
 var_dump($date->format('r'));
 var_dump($date->format('c'));
+
 ?>
 --EXPECT--
 string(32) "Fri, 01 Jan -1500 00:00:00 +0000"

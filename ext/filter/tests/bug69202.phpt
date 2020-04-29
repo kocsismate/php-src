@@ -8,6 +8,7 @@ var_dump(filter_var("``a`b`c``", FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_BACKT
 var_dump(filter_var("``a`b`c``", FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_BACKTICK));
 var_dump(filter_var("``a`b`c``", FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH | FILTER_FLAG_STRIP_BACKTICK));
 var_dump(filter_var("``a`b`c``", FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH));
+
 ?>
 --EXPECT--
 string(3) "abc"

@@ -6,6 +6,7 @@ if (!extension_loaded("com_dotnet")) print "skip COM/.Net support not present"; 
 --FILE--
 <?php
 var_dump((bool) new COM('WScript.Shell'));
+
 ?>
 --EXPECT--
 bool(true)

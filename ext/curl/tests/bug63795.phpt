@@ -17,6 +17,7 @@ var_dump(curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1));
 var_dump(curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2));
 
 curl_close($ch);
+
 ?>
 --EXPECTF--
 bool(true)

@@ -12,7 +12,7 @@ $data = ['foo' => 6];
 
 #filter args
 $args = [
-    'foo'=> [
+    'foo' => [
         'filter' => FILTER_VALIDATE_INT,
         'flags' => FILTER_FORCE_ARRAY
     ]
@@ -29,6 +29,7 @@ $options['max_range'] = 5;
 
 #show the filter result
 var_dump(filter_var_array($data, $args));
+
 ?>
 --EXPECT--
 array(1) {

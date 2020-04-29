@@ -27,6 +27,8 @@ var_dump($fi->file($f));
 
 ?>
 +++DONE+++
+
+?>
 --CLEAN--
 <?php
 	$f_base = "67647私はガラスを食べられます.mov";

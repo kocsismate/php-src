@@ -18,6 +18,7 @@ var_dump($d->getTimestamp());
 
 $i = new DateInterval('PT100000000000S');
 var_dump($i->format('%s'));
+
 ?>
 --EXPECT--
 string(32) "5138-11-16 09:46:40 100000000000"

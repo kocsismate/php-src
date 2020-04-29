@@ -17,7 +17,8 @@ ini_set("intl.error_level", E_WARNING);
 $tz = IntlTimeZone::createTimeZone('Europe/Lisbon');
 var_dump($tz->getOffset(INF, true, $a, $a));
 
-intltz_get_offset(null, time()*1000, false, $a, $a);
+intltz_get_offset(null, time() * 1000, false, $a, $a);
+
 ?>
 --EXPECTF--
 Warning: IntlTimeZone::getOffset(): intltz_get_offset: error obtaining offset in %s on line %d

@@ -9,10 +9,11 @@ try {
 }
 
 try {
-    new DatePeriod(new DateTime('yesterday'), new DateInterval('P1D'),-1);
+    new DatePeriod(new DateTime('yesterday'), new DateInterval('P1D'), -1);
 } catch (Exception $exception) {
     echo $exception->getMessage(), "\n";
 }
+
 ?>
 --EXPECTF--
 DatePeriod::__construct(): The recurrence count '0' is invalid. Needs to be > 0

@@ -22,6 +22,7 @@ var_dump(filter_has_var(INPUT_POST, " "));
 var_dump(filter_has_var(INPUT_POST, ""));
 
 echo "Done\n";
+
 ?>
 --EXPECTF--
 bool(true)

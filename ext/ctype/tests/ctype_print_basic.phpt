@@ -20,6 +20,7 @@ var_dump(ctype_print($c1));
 var_dump(ctype_print($c2));
 
 setlocale(LC_CTYPE, $orig);
+
 ?>
 --EXPECT--
 *** Testing ctype_print() : basic functionality ***

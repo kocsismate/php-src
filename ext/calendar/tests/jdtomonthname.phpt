@@ -5,7 +5,7 @@ jdtomonthname() test
 --FILE--
 <?php
 
-$jd_days = Array(
+$jd_days = array(
     2453396,
     2440588,
     -1,
@@ -14,12 +14,12 @@ $jd_days = Array(
 
 foreach ($jd_days as $jd_day) {
     echo "=== ", $jd_day, "\n";
-    var_dump(jdmonthname($jd_day,0));
-    var_dump(jdmonthname($jd_day,1));
-    var_dump(jdmonthname($jd_day,2));
-    var_dump(jdmonthname($jd_day,3));
-    var_dump(jdmonthname($jd_day,4));
-    var_dump(jdmonthname($jd_day,5));
+    var_dump(jdmonthname($jd_day, 0));
+    var_dump(jdmonthname($jd_day, 1));
+    var_dump(jdmonthname($jd_day, 2));
+    var_dump(jdmonthname($jd_day, 3));
+    var_dump(jdmonthname($jd_day, 4));
+    var_dump(jdmonthname($jd_day, 5));
     echo "\n";
 }
 

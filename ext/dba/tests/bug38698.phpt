@@ -8,17 +8,18 @@ Bug #38698 (Bug #38698 for some keys cdbmake creates corrupted db and cdb can't 
 --FILE--
 <?php
 
-function isLittleEndian() {
-    return 0x00FF === current(unpack('v', pack('S',0x00FF)));
+function isLittleEndian()
+{
+    return 0x00FF === current(unpack('v', pack('S', 0x00FF)));
 }
 
-$db_file = __DIR__ .'/129php.cdb';
+$db_file = __DIR__ . '/129php.cdb';
 
-if (($db_make=dba_open($db_file, "n", 'cdb_make'))!==FALSE) {
-    if (isLittleEndian() === FALSE) {
-        dba_insert(pack('V',129), "Booo!", $db_make);
-    } else{
-        dba_insert(pack('i',129), "Booo!", $db_make);
+if (($db_make = dba_open($db_file, "n", 'cdb_make')) !== false) {
+    if (isLittleEndian() === false) {
+        dba_insert(pack('V', 129), "Booo!", $db_make);
+    } else {
+        dba_insert(pack('i', 129), "Booo!", $db_make);
     }
     dba_close($db_make);
     // write md5 checksum of generated database file
@@ -27,6 +28,7 @@ if (($db_make=dba_open($db_file, "n", 'cdb_make'))!==FALSE) {
 } else {
     echo "Error creating database\n";
 }
+
 ?>
 --EXPECT--
 string(32) "1f34b74bde3744265acfc21e0f30af95"

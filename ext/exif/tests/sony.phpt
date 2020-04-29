@@ -16,6 +16,7 @@ if (!$data) {
 foreach (['SonyModelID', 'Panorama', 'AntiBlur'] as $sony_tag) {
     printf('%s was %sfound' . PHP_EOL, $sony_tag, (!isset($data[$sony_tag]) ? 'NOT ' : ''));
 }
+
 ?>
 --EXPECT--
 SonyModelID was found

@@ -11,7 +11,7 @@ extension_loaded("curl") or die("skip need ext/curl");
 echo "TEST\n";
 
 $c = curl_init("http://google.com");
-$f = fopen(__FILE__,"r");
+$f = fopen(__FILE__, "r");
 var_dump(curl_setopt_array($c, [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_UPLOAD => true,
@@ -28,6 +28,7 @@ var_dump(curl_setopt_array($c, [
 ]));
 curl_exec($c);
 var_dump(curl_getinfo($c, CURLINFO_RESPONSE_CODE));
+
 ?>
 --EXPECTF--
 TEST

@@ -5,7 +5,7 @@ filter_var() and FILTER_VALIDATE_URL
 --FILE--
 <?php
 
-$values = Array(
+$values = array(
 'http://example.com/index.html',
 'http://www.example.com/index.php',
 'http://www.example/img/test.png',
@@ -65,6 +65,7 @@ var_dump(filter_var("http://www.example.com/index.html", FILTER_VALIDATE_URL, FI
 var_dump(filter_var("http://www.example.com/index.php?a=b&c=d", FILTER_VALIDATE_URL, FILTER_FLAG_QUERY_REQUIRED));
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 string(29) "http://example.com/index.html"

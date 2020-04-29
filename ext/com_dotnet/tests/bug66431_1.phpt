@@ -14,12 +14,12 @@ try {
 --FILE--
 <?php
 
-$text= "Xin chào cộng đồng PHP";
+$text = "Xin chào cộng đồng PHP";
 $fpath = str_replace("/", "\\", __DIR__ . "/bug66431.docx");
 
 com_load_typelib('Word.Application');
 
-$Wrd = new COM("word.application", NULL, CP_UTF8);
+$Wrd = new COM("word.application", null, CP_UTF8);
 $Wrd->Documents->Add();
 $Wrd->Selection->TypeText($text);
 $Wrd->ActiveDocument->SaveAs($fpath);
@@ -27,8 +27,8 @@ $Wrd->ActiveDocument->Close(false);
 $Wrd->Application->Quit();
 unset($Wrd);
 
-$Wrd = new COM("word.application", NULL, CP_UTF8);
-$Wrd->Documents->Open($fpath, NULL, false);
+$Wrd = new COM("word.application", null, CP_UTF8);
+$Wrd->Documents->Open($fpath, null, false);
 $check_text = $Wrd->ActiveDocument->Range($Wrd->ActiveDocument->Sentences(1)->Start, $Wrd->ActiveDocument->Sentences(1)->End)->Text;
 $Wrd->ActiveDocument->Close(false);
 $Wrd->Application->Quit();

@@ -7,7 +7,7 @@ if (!extension_loaded('curl')) die('skip curl extension not available');
 --FILE--
 <?php
 $mem_old = 0;
-for($i = 0; $i < 50; ++$i) {
+for ($i = 0; $i < 50; ++$i) {
     $c1 = curl_init();
     $c2 = curl_copy_handle($c1);
     curl_close($c2);
@@ -19,6 +19,7 @@ for($i = 0; $i < 50; ++$i) {
     $mem_old = $mem_new;
 }
 echo $i < 50 ? "okay" : "leak", PHP_EOL;
+
 ?>
 --EXPECT--
 okay

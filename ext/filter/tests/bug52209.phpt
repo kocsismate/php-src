@@ -14,6 +14,7 @@ variables_order=GPCSE
 --FILE--
 <?php
     var_dump(filter_input(INPUT_ENV, 'PWD'));
+
 ?>
 --EXPECTF--
 string(%d) "%s"

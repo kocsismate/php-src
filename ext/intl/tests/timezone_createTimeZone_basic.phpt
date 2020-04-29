@@ -11,6 +11,7 @@ $tz = IntlTimeZone::createTimeZone('GMT+01:00');
 print_r($tz);
 $tz = intltz_create_time_zone('GMT+01:00');
 print_r($tz);
+
 ?>
 --EXPECT--
 IntlTimeZone Object

@@ -10,7 +10,7 @@ precision=14
 $floats = array(
 '1.234   ',
 '   1.234',
-'1.234'	,
+'1.234' ,
 '1.2e3',
 '7E3',
 '7E3     ',
@@ -24,16 +24,16 @@ foreach ($floats as $float) {
 }
 
 $floats = array(
-'1.234   '	=> ',',
-'1,234'		=> ',',
-'   1.234'	=> '.',
-'1.234'		=> '..',
-'1.2e3'		=> ','
+'1.234   '  => ',',
+'1,234'     => ',',
+'   1.234'  => '.',
+'1.234'     => '..',
+'1.2e3'     => ','
 );
 
 echo "\ncustom decimal:\n";
 foreach ($floats as $float => $dec) {
-    $out = filter_var($float, FILTER_VALIDATE_FLOAT, array("options"=>array('decimal' => $dec)));
+    $out = filter_var($float, FILTER_VALIDATE_FLOAT, array("options" => array('decimal' => $dec)));
     var_dump($out);
 }
 

@@ -20,10 +20,10 @@ if (is_resource($broker)) {
 
     if ($requestDict) {
         echo("OK\n");
-        $AddtoPersonalDict = enchant_dict_add_to_personal($requestDict,$newWord);
+        $AddtoPersonalDict = enchant_dict_add_to_personal($requestDict, $newWord);
 
-        if (NULL === $AddtoPersonalDict) {
-            var_dump(enchant_dict_is_in_session($requestDict,$newWord));
+        if (null === $AddtoPersonalDict) {
+            var_dump(enchant_dict_is_in_session($requestDict, $newWord));
         } else {
             echo("dict add to personal failed\n");
         }
@@ -34,6 +34,7 @@ if (is_resource($broker)) {
     echo("broker is not a resource; failed;\n");
 }
 echo("OK\n");
+
 ?>
 --EXPECT--
 OK

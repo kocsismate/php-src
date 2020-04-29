@@ -5,7 +5,8 @@ Bug #71263: fread() does not report bzip2.decompress errors
 --FILE--
 <?php
 
-function test($case) {
+function test($case)
+{
     $plain = "The quick brown fox jumps over the lazy dog.";
     $fn = "bug71263.bz2";
     $compressed = (string) bzcompress($plain);
@@ -16,7 +17,7 @@ function test($case) {
         // --> php_bz2_decompress_filter() detects fatal error
         // --> fread() displays empty string then garbage, no errors detected:
         $compressed[strlen($compressed) - 15] = 'X';
-    } else if ($case == 2) {
+    } elseif ($case == 2) {
         // Truncate the compressed data
         // --> php_bz2_decompress_filter() does not detect errors,
         // --> fread() displays the empty string:
@@ -25,7 +26,7 @@ function test($case) {
         // Corrupted final CRC
         // --> php_bz2_decompress_filter() detects fatal error
         // --> fread() displays an empty string, then the correct plain text, no error detected:
-        $compressed[strlen($compressed)-2] = 'X';
+        $compressed[strlen($compressed) - 2] = 'X';
     }
 
     file_put_contents($fn, $compressed);
@@ -34,7 +35,8 @@ function test($case) {
     stream_filter_append($r, 'bzip2.decompress', STREAM_FILTER_READ);
     while (!feof($r)) {
         $s = fread($r, 100);
-        echo "read: "; var_dump($s);
+        echo "read: ";
+        var_dump($s);
     }
     fclose($r);
     unlink($fn);
@@ -43,6 +45,7 @@ function test($case) {
 test(1);
 test(2);
 test(3);
+
 ?>
 --EXPECTF--
 Compressed len = 81

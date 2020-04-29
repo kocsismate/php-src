@@ -11,7 +11,7 @@ $d[] = '19970523091528';
 $d[] = '20001231185859';
 $d[] = '20800410101010'; // overflow..
 
-foreach($d as $date) {
+foreach ($d as $date) {
     $time = strtotime($date);
 
     if (is_integer($time)) {
@@ -20,6 +20,7 @@ foreach($d as $date) {
         var_dump($time);
     }
 }
+
 ?>
 --EXPECT--
 string(31) "Fri, 23 May 1997 09:15:28 +0000"

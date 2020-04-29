@@ -20,6 +20,7 @@ date.timezone=
     echo date(DATE_ISO8601, $date2), "\n";
     echo date(DATE_ISO8601, $date3), "\n";
     echo date(DATE_ISO8601, $date4), "\n";
+
 ?>
 --EXPECT--
 America/Indiana/Knox

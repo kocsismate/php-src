@@ -16,6 +16,7 @@ $datetime->setTimeZone(new DateTimeZone('-03:00'));
 $datetime->getTimestamp();
 $datetime->setTimeZone(new DateTimeZone('-03:00'));
 var_dump($datetime->getTimestamp());
+
 ?>
 --EXPECT--
 int(1478721600)

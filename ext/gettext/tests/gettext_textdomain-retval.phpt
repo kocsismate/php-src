@@ -14,10 +14,11 @@ Check if textdomain() returns the new domain
 
 chdir(__DIR__);
 setlocale(LC_ALL, 'en_US.UTF-8');
-bindtextdomain ("messages", "./locale");
+bindtextdomain("messages", "./locale");
 echo textdomain('test'), "\n";
 echo textdomain(null), "\n";
 echo textdomain('foo'), "\n";
+
 ?>
 --EXPECT--
 test

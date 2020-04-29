@@ -28,10 +28,10 @@ $time_formats = array(
       'Milliseconds' => 'u',
 );
 
-foreach($time_formats as $key =>$value) {
+foreach ($time_formats as $key => $value) {
       echo "\n--$key--\n";
-      var_dump( gmdate($value) );
-      var_dump( gmdate($value, $timestamp) );
+      var_dump(gmdate($value));
+      var_dump(gmdate($value, $timestamp));
 }
 
 ?>

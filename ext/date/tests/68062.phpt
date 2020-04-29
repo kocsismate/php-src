@@ -12,6 +12,8 @@ try {
 } catch (TypeError $e) {
     echo $e->getMessage(), "\n";
 }
+
+?>
 --EXPECT--
 3600
 DateTimeZone::getOffset(): Argument #1 ($datetime) must be of type DateTimeInterface, int given

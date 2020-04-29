@@ -7,7 +7,7 @@ if (!extension_loaded("com_dotnet")){ echo "skip COM/.Net support not present"; 
 --FILE--
 <?php
 
-$text= "Xin chào cộng đồng PHP";
+$text = "Xin chào cộng đồng PHP";
 $fpath = str_replace("/", "\\", __DIR__ . "/bug66431.txt");
 
 $fso = new COM("Scripting.FileSystemObject");

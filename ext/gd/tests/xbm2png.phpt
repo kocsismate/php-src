@@ -21,6 +21,7 @@ xbm --> png conversion test
     echo "\n";
 
     @unlink($cwd . "/test_xbm.png");
+
 ?>
 --EXPECT--
 XBM to PNG conversion: ok

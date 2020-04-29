@@ -28,10 +28,10 @@ $buffers = array(
 
 echo "*** Testing finfo_buffer() : variation functionality with oo interface ***\n";
 
-foreach( $options as $option ) {
-    $finfo = new finfo( $option, $magicFile );
-    foreach( $buffers as $string ) {
-        var_dump( $finfo->buffer( $string, $option ) );
+foreach ($options as $option) {
+    $finfo = new finfo($option, $magicFile);
+    foreach ($buffers as $string) {
+        var_dump($finfo->buffer($string, $option));
     }
 }
 

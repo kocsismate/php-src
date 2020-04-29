@@ -5,7 +5,7 @@ imagecreatefrompng() and empty/missing file
 --FILE--
 <?php
 
-$file = __DIR__."/001.test";
+$file = __DIR__ . "/001.test";
 @unlink($file);
 
 var_dump(imagecreatefrompng($file));
@@ -15,6 +15,7 @@ var_dump(imagecreatefrompng($file));
 @unlink($file);
 
 echo "Done\n";
+
 ?>
 --EXPECTF--
 Warning: imagecreatefrompng(%s001.test): Failed to open stream: No such file or directory in %s on line %d

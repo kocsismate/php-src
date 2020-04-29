@@ -24,9 +24,10 @@ foreach ($tests as $test) {
     }
 }
 
-if($pass) {
+if ($pass) {
     echo "PASS";
 }
+
 ?>
 --EXPECT--
 PASS

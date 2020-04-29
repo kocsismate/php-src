@@ -19,8 +19,7 @@ echo "Non-crypto algo name case-sensitivity:\n";
 
 try {
     var_dump(hash_hkdf('jOaAt', $ikm));
-}
-catch (\Error $e) {
+} catch (\Error $e) {
     echo '[Error] ' . $e->getMessage() . "\n";
 }
 

@@ -8,7 +8,7 @@ finfo_file(): Testing file names
 $fp = finfo_open();
 var_dump(finfo_file($fp, "\0"));
 var_dump(finfo_file($fp, ''));
-var_dump(finfo_file($fp, NULL));
+var_dump(finfo_file($fp, null));
 var_dump(finfo_file($fp, '.'));
 var_dump(finfo_file($fp, '&'));
 

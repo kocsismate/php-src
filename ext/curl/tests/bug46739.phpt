@@ -15,6 +15,7 @@ curl_exec($ch);
 $info = curl_getinfo($ch);
 
 echo (array_key_exists('content_type', $info)) ? "set" : "not set";
+
 ?>
 --EXPECT--
 set

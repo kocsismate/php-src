@@ -10,6 +10,8 @@ print_r(exif_read_data(__DIR__ . '/bug72094_3.jpg'));
 print_r(exif_read_data(__DIR__ . '/bug72094_4.jpg'));
 ?>
 DONE
+
+?>
 --EXPECTF--
 Warning: exif_read_data(bug72094_1.jpg): Process tag(x3030=UndefinedTag): Illegal format code 0x3030, suppose BYTE in %s%ebug72094.php on line %d
 

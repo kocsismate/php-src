@@ -29,11 +29,12 @@ $inputs = array (
 );
 
 // loop through each element of the array for timestamp
-foreach($inputs as $timezone) {
+foreach ($inputs as $timezone) {
       echo "\n--$timezone--\n";
       date_default_timezone_set($timezone);
-      var_dump( getdate(0) );
+      var_dump(getdate(0));
 };
+
 ?>
 --EXPECT--
 *** Testing getdate() : usage variation ***

@@ -21,6 +21,7 @@ $length = fread($stream, 4);
 fclose($stream);
 $length = unpack('V', $length)[1] + 8;
 var_dump($length === filesize($filename));
+
 ?>
 --CLEAN--
 <?php

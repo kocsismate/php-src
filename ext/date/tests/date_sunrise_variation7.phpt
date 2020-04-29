@@ -24,12 +24,12 @@ $inputs = array (
         "Pacific/Wallis" => array ("Latitude" => -13.3, "Longitude" => -176.16, "GMT" => 12),
 );
 
-foreach($inputs as $timezone => $value) {
+foreach ($inputs as $timezone => $value) {
      date_default_timezone_set($timezone);
      $time = mktime(8, 8, 8, 8, 11, 2008);
-     var_dump( date_sunrise($time, SUNFUNCS_RET_STRING, $value["Latitude"], $value["Longitude"], 90, $value["GMT"] ));
+     var_dump(date_sunrise($time, SUNFUNCS_RET_STRING, $value["Latitude"], $value["Longitude"], 90, $value["GMT"]));
      $time = mktime(8, 8, 8, 8, 12, 2008);
-     var_dump( date_sunrise($time, SUNFUNCS_RET_STRING, $value["Latitude"], $value["Longitude"], 90, $value["GMT"]) );
+     var_dump(date_sunrise($time, SUNFUNCS_RET_STRING, $value["Latitude"], $value["Longitude"], 90, $value["GMT"]));
 }
 
 ?>

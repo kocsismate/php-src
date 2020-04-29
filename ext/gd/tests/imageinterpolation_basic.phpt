@@ -34,6 +34,7 @@ foreach ($methods as $method) {
     imagesetinterpolation($im, $method);
     var_dump(imagegetinterpolation($im) === $method);
 }
+
 ?>
 --EXPECT--
 bool(true)

@@ -17,6 +17,7 @@ try {
 }
 
 curl_setopt($ch, -10, 0);
+
 ?>
 --EXPECTF--
 *** curl_setopt() call with incorrect parameters

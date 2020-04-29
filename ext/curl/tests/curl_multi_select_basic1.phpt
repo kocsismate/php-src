@@ -17,9 +17,10 @@ Ivo Jansch <ivo@ibuildings.com>
 
 //create the multiple cURL handle
 $mh = curl_multi_init();
-echo curl_multi_select($mh)."\n";
+echo curl_multi_select($mh) . "\n";
 
 curl_multi_close($mh);
+
 ?>
 --EXPECTF--
 %r(0|-1)%r

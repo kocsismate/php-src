@@ -22,16 +22,15 @@ $tests = array(
     ),
 );
 
-foreach ( $tests as $start => $data )
-{
-    foreach ( $data as $test )
-    {
-        echo date_create( $start )
-            ->modify( $test )
-            ->format( DateTime::RFC2822 ), "\n";
+foreach ($tests as $start => $data) {
+    foreach ($data as $test) {
+        echo date_create($start)
+            ->modify($test)
+            ->format(DateTime::RFC2822), "\n";
     }
 }
 echo "\n";
+
 ?>
 --EXPECT--
 Fri, 15 Oct 2010 23:00:00 +0000

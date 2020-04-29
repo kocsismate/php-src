@@ -22,6 +22,7 @@ var_dump($mh);
 
 curl_multi_close($mh);
 var_dump($mh);
+
 ?>
 --EXPECTF--
 *** Testing curl_multi_init(void); ***

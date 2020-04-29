@@ -84,71 +84,69 @@ function ut_main()
     );
 
     //Test format with input as a timestamp : integer
-    foreach( $time_arr as $timestamp_entry){
+    foreach ($time_arr as $timestamp_entry) {
         $res_str .= "\n------------\n";
         $res_str .= "\nInput timestamp is : $timestamp_entry";
         $res_str .= "\n------------\n";
-        foreach( $locale_arr as $locale_entry ){
-            foreach( $datetype_arr as $datetype_entry )
-    {
-        $res_str .= "\nIntlDateFormatter locale= $locale_entry ,datetype = $datetype_entry ,timetype =$datetype_entry ";
-        $fmt = ut_datefmt_create( $locale_entry , $datetype_entry ,$datetype_entry, $timezone, IntlDateFormatter::GREGORIAN);
-        $formatted = ut_datefmt_format( $fmt , $timestamp_entry);
-        $res_str .= "\nFormatted timestamp is : $formatted";
-    }
-    }
+        foreach ($locale_arr as $locale_entry) {
+            foreach ($datetype_arr as $datetype_entry) {
+                $res_str .= "\nIntlDateFormatter locale= $locale_entry ,datetype = $datetype_entry ,timetype =$datetype_entry ";
+                $fmt = ut_datefmt_create($locale_entry, $datetype_entry, $datetype_entry, $timezone, IntlDateFormatter::GREGORIAN);
+                $formatted = ut_datefmt_format($fmt, $timestamp_entry);
+                $res_str .= "\nFormatted timestamp is : $formatted";
+            }
+        }
     }
 
     //Test format with input as a localtime :array
-    foreach( $localtime_arr as $localtime_entry){
+    foreach ($localtime_arr as $localtime_entry) {
         $res_str .= "\n------------\n";
         $res_str .= "\nInput localtime is : ";
-        foreach( $localtime_entry as $key => $value){
+        foreach ($localtime_entry as $key => $value) {
                     $res_str .= "$key : '$value' , ";
         }
 
         $res_str .= "\n------------\n";
-        foreach( $locale_arr as $locale_entry ){
-            foreach( $datetype_arr as $datetype_entry )
-    {
-        $res_str .= "\nIntlDateFormatter locale= $locale_entry ,datetype = $datetype_entry ,timetype =$datetype_entry ";
-        $fmt = ut_datefmt_create( $locale_entry , $datetype_entry ,$datetype_entry, $timezone, IntlDateFormatter::GREGORIAN );
-        $formatted1 = ut_datefmt_format( $fmt , $localtime_entry);
-        if( intl_get_error_code() == U_ZERO_ERROR){
-            $res_str .= "\nFormatted localtime_array is : $formatted1";
-        }else{
-            $res_str .= "\nError while formatting as: '".intl_get_error_message()."'";
+        foreach ($locale_arr as $locale_entry) {
+            foreach ($datetype_arr as $datetype_entry) {
+                $res_str .= "\nIntlDateFormatter locale= $locale_entry ,datetype = $datetype_entry ,timetype =$datetype_entry ";
+                $fmt = ut_datefmt_create($locale_entry, $datetype_entry, $datetype_entry, $timezone, IntlDateFormatter::GREGORIAN);
+                $formatted1 = ut_datefmt_format($fmt, $localtime_entry);
+                if (intl_get_error_code() == U_ZERO_ERROR) {
+                    $res_str .= "\nFormatted localtime_array is : $formatted1";
+                } else {
+                    $res_str .= "\nError while formatting as: '" . intl_get_error_message() . "'";
+                }
+            }
         }
     }
-    }
-    }
 
-    foreach($dates as $date_entry) {
-        foreach( $locale_arr as $locale_entry ){
-            foreach( $datetype_arr as $datetype_entry ) {
+    foreach ($dates as $date_entry) {
+        foreach ($locale_arr as $locale_entry) {
+            foreach ($datetype_arr as $datetype_entry) {
                 $res_str .= "\n------------";
-                $res_str .= "\nDate is: ".var_export($date_entry, true);
+                $res_str .= "\nDate is: " . var_export($date_entry, true);
                 $res_str .= "\n------------";
 
-                $fmt = ut_datefmt_create( $locale_entry , $datetype_entry ,$datetype_entry, $timezone, IntlDateFormatter::GREGORIAN );
-                $formatted1 = ut_datefmt_format( $fmt , $date_entry);
-                if( intl_get_error_code() == U_ZERO_ERROR){
+                $fmt = ut_datefmt_create($locale_entry, $datetype_entry, $datetype_entry, $timezone, IntlDateFormatter::GREGORIAN);
+                $formatted1 = ut_datefmt_format($fmt, $date_entry);
+                if (intl_get_error_code() == U_ZERO_ERROR) {
                     $res_str .= "\nFormatted DateTime is : $formatted1";
-                }else{
-                    $res_str .= "\nError while formatting as: '".intl_get_error_message()."'";
+                } else {
+                    $res_str .= "\nError while formatting as: '" . intl_get_error_message() . "'";
                 }
             }
         }
     }
 
     return $res_str;
-
 }
 
-include_once( 'ut_common.inc' );
+include_once('ut_common.inc');
 
 // Run the test
 ut_run();
+
 ?>
 --EXPECT--
 ------------

@@ -13,6 +13,7 @@ try {
     // use hard-coded message to avoid localization issues
     echo "A com_exception has been thrown\n";
 }
+
 ?>
 --EXPECT--
 A com_exception has been thrown

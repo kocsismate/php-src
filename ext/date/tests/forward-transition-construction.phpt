@@ -18,6 +18,7 @@ echo $date->format('Y-m-d H:i:s T/e - U') . "\n";
 
 $date = new DateTime('2010-03-14 03:30:00');
 echo $date->format('Y-m-d H:i:s T/e - U') . "\n";
+
 ?>
 --EXPECT--
 2010-03-14 01:30:00 EST/America/New_York - 1268548200

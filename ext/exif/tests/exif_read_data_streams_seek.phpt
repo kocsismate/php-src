@@ -16,6 +16,7 @@ exif_read_data($fp);
 var_dump(ftell($fp) === 100);
 
 fclose($fp);
+
 ?>
 --EXPECT--
 bool(true)

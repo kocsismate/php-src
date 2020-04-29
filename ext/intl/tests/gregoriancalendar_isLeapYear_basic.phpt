@@ -18,6 +18,7 @@ var_dump($intlcal->isLeapYear(1900));
 
 var_dump(intlgregcal_is_leap_year($intlcal, 2012));
 var_dump(intlgregcal_is_leap_year($intlcal, 1900));
+
 ?>
 --EXPECT--
 bool(true)

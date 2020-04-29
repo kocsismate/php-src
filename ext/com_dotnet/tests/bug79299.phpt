@@ -12,6 +12,7 @@ com_print_typeinfo($dict);
 $typeinfo = ob_get_clean();
 preg_match_all('/\/\* DISPID=9 \*\//', $typeinfo, $matches);
 var_dump($matches[0]);
+
 ?>
 --EXPECT--
 array(1) {

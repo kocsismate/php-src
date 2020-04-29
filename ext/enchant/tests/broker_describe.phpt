@@ -29,29 +29,27 @@ enchant_broker_free($broker);
 $broker = enchant_broker_init();
 $counter = 0;
 
-if($broker) {
+if ($broker) {
     echo("OK\n");
     $provider = enchant_broker_describe($broker);
 
     if (is_array($provider)) {
         echo("OK\n");
 
-    if ((isset($provider[$counter]['name']) && isset($provider[$counter]['desc']) && isset($provider[$counter]['file']))) {
-       echo("OK\n");
-
-    } else {
-       echo("failed, broker describe\n");
-
-    }
+        if ((isset($provider[$counter]['name']) && isset($provider[$counter]['desc']) && isset($provider[$counter]['file']))) {
+            echo("OK\n");
+        } else {
+            echo("failed, broker describe\n");
+        }
     } else {
         echo "failed, brocker describe array \n";
     }
 
     enchant_broker_free($broker);
-
 } else {
     echo("failed, broker_init failure\n");
 }
+
 ?>
 --EXPECT--
 OK

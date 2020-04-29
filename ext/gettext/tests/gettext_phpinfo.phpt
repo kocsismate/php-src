@@ -9,6 +9,7 @@ Test phpinfo() displays gettext support
 --FILE--
 <?php
 phpinfo();
+
 ?>
 --EXPECTF--
 %a

@@ -13,6 +13,7 @@ var_dump(
 );
 $options = ['flags' => FILTER_FLAG_ALLOW_THOUSAND, 'options' => ['thousand' => '']];
 var_dump(filter_var('12345', FILTER_VALIDATE_FLOAT, $options));
+
 ?>
 --EXPECTF--
 float(1000)

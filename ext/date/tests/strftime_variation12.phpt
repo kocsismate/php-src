@@ -23,8 +23,8 @@ $timestamp = mktime(8, 8, 8, 8, 8, 2008);
 
 echo "\n-- Testing strftime() function with  Abbreviated month name format %h --\n";
 $format = "%h";
-var_dump( strftime($format) );
-var_dump( strftime($format, $timestamp) );
+var_dump(strftime($format));
+var_dump(strftime($format, $timestamp));
 
 ?>
 --EXPECTF--

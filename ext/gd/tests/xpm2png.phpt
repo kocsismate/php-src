@@ -22,6 +22,7 @@ xpm --> png conversion test
     echo "\n";
 
     @unlink($cwd . "/test_xpm.png");
+
 ?>
 --EXPECT--
 XPM to PNG conversion: ok

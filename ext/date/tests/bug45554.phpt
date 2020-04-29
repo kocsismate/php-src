@@ -13,6 +13,7 @@ echo $d->format($format), "\n";
 
 $d = date_create_from_format($format, "03-15-2005 12:22:29.0010 PST");
 echo $d->format($format), "\n";
+
 ?>
 --EXPECT--
 03-15-2005 12:22:29.000000 PST

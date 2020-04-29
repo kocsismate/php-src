@@ -13,6 +13,7 @@ try {
 } catch (DivisionByZeroError $ex) {
     echo $ex->getMessage(), PHP_EOL;
 }
+
 ?>
 --EXPECT--
 Division by zero

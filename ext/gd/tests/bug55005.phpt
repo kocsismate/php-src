@@ -15,6 +15,7 @@ trycatch_dump(
     fn () => imagefilledpolygon($g, array(100,10, 100,100, 180,100), 2, $fgnd),
     fn () => imagepolygon($g, array(200,10, 200,100, 280,100), 2, $fgnd)
 );
+
 ?>
 --EXPECTF--
 !! [ValueError] imagefilledpolygon(): Argument #3 ($num_points_or_col) must be greater than or equal to 3

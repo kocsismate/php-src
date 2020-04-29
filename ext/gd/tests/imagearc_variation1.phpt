@@ -19,6 +19,7 @@ imagearc($image, 50, 50, 30, 30, 0, -90, $white);
 
 include_once __DIR__ . '/func.inc';
 test_image_equals_file(__DIR__ . '/imagearc_variation1.png', $image);
+
 ?>
 --EXPECT--
 The images are equal.

@@ -9,6 +9,7 @@ if (!extension_loaded('intl'))
 ini_set("intl.error_level", E_WARNING);
 
 intltz_use_daylight_time(null);
+
 ?>
 --EXPECTF--
 Fatal error: Uncaught TypeError: intltz_use_daylight_time(): Argument #1 ($tz) must be of type IntlTimeZone, null given in %s:%d

@@ -37,6 +37,7 @@ jpeg <--> png conversion test
     @unlink($cwd . "/test_jpng.png");
     @unlink($cwd . "/test_png.png");
     @unlink($cwd . "/test_pjpeg.jpeg");
+
 ?>
 --EXPECT--
 PNG to JPEG conversion: ok

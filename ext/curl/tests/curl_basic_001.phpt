@@ -28,11 +28,12 @@ TestFest 2009 - AFUP - Jean-Marc Fontaine <jmf@durcommefaire.net>
   $curl_content = ob_get_contents();
   ob_end_clean();
 
-  if($ok) {
-    var_dump( $curl_content );
-  } else {
+if ($ok) {
+    var_dump($curl_content);
+} else {
     echo "curl_exec returned false";
-  }
+}
+
 ?>
 --EXPECT--
 *** Testing curl_exec() : basic functionality ***

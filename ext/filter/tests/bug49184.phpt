@@ -12,6 +12,7 @@ HTTP_X_FORWARDED_FOR=example.com
   var_dump($_SERVER["HTTP_X_FORWARDED_FOR"]);
   var_dump(getenv("HTTP_X_FORWARDED_FOR"));
   var_dump("done");
+
 ?>
 --EXPECT--
 string(11) "example.com"

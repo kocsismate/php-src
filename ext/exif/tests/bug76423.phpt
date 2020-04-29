@@ -7,6 +7,7 @@ if (!extension_loaded('exif')) die('skip exif extension not available');
 --FILE--
 <?php
 exif_read_data(__DIR__ . '/bug76423.jpg', 0, true, true);
+
 ?>
 --EXPECTF--
 Warning: exif_read_data(%s.jpg): Thumbnail goes IFD boundary or end of file reached in %s on line %d

@@ -9,6 +9,7 @@ if (!class_exists('finfo'))
     $buffer = file_get_contents(__DIR__ . '/68731.gif');
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
     echo finfo_buffer($finfo, $buffer);
+
 ?>
 --EXPECT--
 image/gif

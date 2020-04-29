@@ -14,7 +14,7 @@ echo "*** Testing date_parse() : error conditions ***\n";
 
 echo "\n-- Testing date_parse() function with unexpected characters in \$date argument --\n";
 $invalid_date = "2OO9-02--27 10:00?00.5";
-var_dump( date_parse($invalid_date) );
+var_dump(date_parse($invalid_date));
 
 ?>
 --EXPECTF--

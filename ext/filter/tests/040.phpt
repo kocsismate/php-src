@@ -9,7 +9,7 @@ ap[]=1&bp=test&cp=
 --FILE--
 <?php
 
-var_dump(filter_has_var(INPUT_GET,""));
+var_dump(filter_has_var(INPUT_GET, ""));
 var_dump(filter_has_var(INPUT_POST, "ap"));
 var_dump(filter_has_var(INPUT_POST, "cp"));
 var_dump(filter_has_var(INPUT_GET, "a"));
@@ -20,6 +20,7 @@ var_dump(filter_has_var(-1, "cc"));
 var_dump(filter_has_var(0, "cc"));
 
 echo "Done\n";
+
 ?>
 --EXPECTF--
 bool(false)

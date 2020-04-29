@@ -7,6 +7,7 @@ bcmath.scale=0
 --FILE--
 <?php
 echo bcsqrt("0");
+
 ?>
 --EXPECT--
 0

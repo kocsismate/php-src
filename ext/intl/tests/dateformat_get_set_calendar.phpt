@@ -12,13 +12,16 @@ ini_set("date.timezone", 'Atlantic/Azores');
 
 $ts = strtotime('2012-01-01 00:00:00 UTC');
 
-function d(IntlDateFormatter $df) {
-global $ts;
-echo $df->format($ts), "\n";
-var_dump($df->getCalendar(),
-$df->getCalendarObject()->getType(),
-$df->getCalendarObject()->getTimeZone()->getId());
-echo "\n";
+function d(IntlDateFormatter $df)
+{
+    global $ts;
+    echo $df->format($ts), "\n";
+    var_dump(
+        $df->getCalendar(),
+        $df->getCalendarObject()->getType(),
+        $df->getCalendarObject()->getTimeZone()->getId()
+    );
+    echo "\n";
 }
 
 $df = new IntlDateFormatter('fr@calendar=islamic', 0, 0, 'Europe/Minsk');

@@ -16,6 +16,7 @@ echo $_REQUEST['b'];
 echo $_REQUEST['c'];
 echo $_REQUEST['d'];
 echo $_REQUEST['e'];
+
 ?>
 --EXPECT--
 1345

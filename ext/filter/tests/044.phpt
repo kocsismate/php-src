@@ -17,6 +17,7 @@ $vals = array(
 foreach ($vals as $var) {
     var_dump(filter_var($var, FILTER_VALIDATE_FLOAT));
 }
+
 ?>
 --EXPECT--
 bool(false)

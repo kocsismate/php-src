@@ -5,7 +5,10 @@ filter_var() - using callback
 --FILE--
 <?php
 
-function filter_test($str) { return FALSE; }
+function filter_test($str)
+{
+    return false;
+}
 filter_var('durty/boy', FILTER_CALLBACK, array(
    'options'   => 'filter_test',
 ));

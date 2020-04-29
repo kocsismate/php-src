@@ -25,7 +25,8 @@ Test curl_copy_handle() with simple POST
   $curl_content = curl_exec($copy);
   curl_close($copy);
 
-  var_dump( $curl_content );
+  var_dump($curl_content);
+
 ?>
 --EXPECT--
 *** Testing curl copy handle with simple POST using array as arguments ***

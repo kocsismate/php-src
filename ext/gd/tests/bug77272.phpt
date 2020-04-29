@@ -10,8 +10,9 @@ if (getenv("SKIP_SLOW_TESTS")) die("skip slow test");
 ?>
 --FILE--
 <?php
-$img = imagecreate(2**28, 1);
+$img = imagecreate(2 ** 28, 1);
 var_dump(imagescale($img, 1, 1, IMG_TRIANGLE));
+
 ?>
 --EXPECTF--
 Warning: imagescale():%S Product of memory allocation multiplication would exceed INT_MAX, failing operation gracefully

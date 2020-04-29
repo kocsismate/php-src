@@ -21,13 +21,14 @@ $booleans = array(
 '' => false
 );
 
-foreach($booleans as $val=>$exp) {
-    $res =filter_var($val, FILTER_VALIDATE_BOOLEAN);
-        if ($res !== $exp) {
+foreach ($booleans as $val => $exp) {
+    $res = filter_var($val, FILTER_VALIDATE_BOOLEAN);
+    if ($res !== $exp) {
         echo "$val failed,'$exp' expect, '$res' received.\n";
     }
 }
 echo "Ok.";
+
 ?>
 --EXPECT--
 Ok.

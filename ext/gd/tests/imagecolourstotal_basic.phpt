@@ -22,21 +22,21 @@ Felix De Vliegher <felix.devliegher@gmail.com>
 echo "*** Testing imagecolorstotal() : basic functionality ***\n";
 
 // Palette image
-$img = imagecreate( 50, 50 );
-var_dump( imagecolorstotal( $img ) );
-$bg = imagecolorallocate( $img, 255, 255, 255 );
-var_dump( imagecolorstotal( $img ));
-$bg = imagecolorallocate( $img, 255, 0, 0 );
-$bg = imagecolorallocate( $img, 0, 0, 255 );
-var_dump( imagecolorstotal( $img ));
-imagedestroy( $img );
+$img = imagecreate(50, 50);
+var_dump(imagecolorstotal($img));
+$bg = imagecolorallocate($img, 255, 255, 255);
+var_dump(imagecolorstotal($img));
+$bg = imagecolorallocate($img, 255, 0, 0);
+$bg = imagecolorallocate($img, 0, 0, 255);
+var_dump(imagecolorstotal($img));
+imagedestroy($img);
 
 // Truecolor image
-$img = imagecreatetruecolor( 50, 50 );
-var_dump( imagecolorstotal( $img ) );
-$bg = imagecolorallocate( $img, 255, 255, 255 );
-var_dump( imagecolorstotal( $img ) );
-imagedestroy( $img );
+$img = imagecreatetruecolor(50, 50);
+var_dump(imagecolorstotal($img));
+$bg = imagecolorallocate($img, 255, 255, 255);
+var_dump(imagecolorstotal($img));
+imagedestroy($img);
 
 ?>
 --EXPECT--

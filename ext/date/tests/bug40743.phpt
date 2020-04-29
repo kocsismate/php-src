@@ -16,7 +16,7 @@ $dt = new DateTime('@1200506699');
 echo $dt->format(DATE_RFC822 . " e T O U"), "\n";
 
 $dt = new DateTime('@1200506699');
-$dt->setTimezone( new DateTimeZone( 'America/New_York' ) );
+$dt->setTimezone(new DateTimeZone('America/New_York'));
 echo $dt->format(DATE_RFC822 . " e T O U"), "\n";
 
 $dt = new DateTime('@1200506699', new DateTimeZone('Europe/Berlin'));
@@ -27,6 +27,7 @@ echo $dt->format(DATE_RFC822 . " e T O U"), "\n";
 
 $dt = new DateTime('16 Jan 08 13:04:59 America/Chicago', new DateTimeZone('Europe/Berlin'));
 echo $dt->format(DATE_RFC822 . " e T O U"), "\n";
+
 ?>
 --EXPECT--
 Wed, 16 Jan 08 18:04:59 +0000

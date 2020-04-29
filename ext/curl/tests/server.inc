@@ -1,11 +1,12 @@
 <?php
 
-define ("PHP_CURL_SERVER_HOSTNAME", "localhost");
-define ("PHP_CURL_SERVER_PORT", 8964);
-define ("PHP_CURL_SERVER_ADDRESS", PHP_CURL_SERVER_HOSTNAME.":".PHP_CURL_SERVER_PORT);
+define("PHP_CURL_SERVER_HOSTNAME", "localhost");
+define("PHP_CURL_SERVER_PORT", 8964);
+define("PHP_CURL_SERVER_ADDRESS", PHP_CURL_SERVER_HOSTNAME . ":" . PHP_CURL_SERVER_PORT);
 
-function curl_cli_server_start() {
-    if(getenv('PHP_CURL_HTTP_REMOTE_SERVER')) {
+function curl_cli_server_start()
+{
+    if (getenv('PHP_CURL_HTTP_REMOTE_SERVER')) {
         return getenv('PHP_CURL_HTTP_REMOTE_SERVER');
     }
 
@@ -23,7 +24,7 @@ function curl_cli_server_start() {
     // note: even when server prints 'Listening on localhost:8964...Press Ctrl-C to quit.'
     //       it might not be listening yet...need to wait until fsockopen() call returns
     $error = "Unable to connect to server\n";
-    for ($i=0; $i < 60; $i++) {
+    for ($i = 0; $i < 60; $i++) {
         usleep(50000); // 50ms per try
         $status = proc_get_status($handle);
         $fp = @fsockopen(PHP_CURL_SERVER_HOSTNAME, PHP_CURL_SERVER_PORT);
@@ -50,7 +51,7 @@ function curl_cli_server_start() {
     }
 
     register_shutdown_function(
-        function($handle) use($router) {
+        function ($handle) use ($router) {
             proc_terminate($handle);
             /* Wait for server to shutdown */
             for ($i = 0; $i < 60; $i++) {

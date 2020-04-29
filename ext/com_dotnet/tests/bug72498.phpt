@@ -9,6 +9,7 @@ if (!extension_loaded("com_dotnet")) print "skip COM/.Net support not present";
 
 $v1 = PHP_INT_MAX;
 var_dump(variant_date_from_timestamp($v1));
+
 ?>
 --EXPECTF--
 Warning: variant_date_from_timestamp(): Invalid timestamp %d in %sbug72498.php on line %d

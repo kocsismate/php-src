@@ -12,7 +12,7 @@ Bug #41442 (imagegd2() under output control)
 --FILE--
 <?php
 
-$str = file_get_contents(__DIR__.'/src.gd2');
+$str = file_get_contents(__DIR__ . '/src.gd2');
 $res = imagecreatefromstring($str);
 
 /* string */
@@ -22,7 +22,7 @@ $str2 = ob_get_clean();
 var_dump(imagecreatefromstring($str2));
 
 /* file */
-$file = __DIR__."/bug41442.gd2";
+$file = __DIR__ . "/bug41442.gd2";
 imagegd2($res, $file);
 $str2 = file_get_contents($file);
 var_dump(imagecreatefromstring($str2));
@@ -30,6 +30,7 @@ var_dump(imagecreatefromstring($str2));
 @unlink($file);
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 object(GdImage)#2 (0) {

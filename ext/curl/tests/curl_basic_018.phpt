@@ -43,10 +43,10 @@ TestFest 2009 - AFUP - Thomas Rabaix <thomas.rabaix@gmail.com>
   curl_multi_add_handle($mh, $chs[1]);
   curl_multi_add_handle($mh, $chs[2]);
 
-  $running=null;
+  $running = null;
   //execute the handles
   do {
-    curl_multi_exec($mh, $running);
+      curl_multi_exec($mh, $running);
   } while ($running > 0);
 
   $curl_content = '';
@@ -60,7 +60,7 @@ TestFest 2009 - AFUP - Thomas Rabaix <thomas.rabaix@gmail.com>
   curl_multi_remove_handle($mh, $chs[2]);
   curl_multi_close($mh);
 
-  var_dump( $curl_content );
+  var_dump($curl_content);
 
 ?>
 --EXPECT--

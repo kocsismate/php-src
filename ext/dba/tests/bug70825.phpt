@@ -48,6 +48,7 @@ var_dump(dba_fetch('[foo]bar', 1, $db));
 var_dump(dba_fetch('[foo]bar', 2, $db));
 dba_close($db);
 unlink($filename);
+
 ?>
 --EXPECT--
 string(2) "23"

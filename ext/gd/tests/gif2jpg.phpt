@@ -22,6 +22,7 @@ gif --> jpeg conversion test
     echo "\n";
 
     @unlink($cwd . "/test_gif.jpeg");
+
 ?>
 --EXPECT--
 GIF to JPEG conversion: ok

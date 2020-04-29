@@ -8,6 +8,7 @@ default_charset=UTF-8
 --FILE--
 <?php
 include __DIR__ . '/033_run.inc';
+
 ?>
 --EXPECTF--
 int                      1                                               123                                                         

@@ -5,19 +5,22 @@ numfmt creation failures
 --FILE--
 <?php
 
-function err($fmt) {
-    if(!$fmt) {
-        echo var_export(intl_get_error_message(), true)."\n";
+function err($fmt)
+{
+    if (!$fmt) {
+        echo var_export(intl_get_error_message(), true) . "\n";
     }
 }
 
-function print_exception($e) {
+function print_exception($e)
+{
     echo "\n" . get_class($e) . ": " . $e->getMessage()
        . " in " . $e->getFile() . " on line " . $e->getLine() . "\n";
 }
 
-function crt($t, $l, $s) {
-    switch(true) {
+function crt($t, $l, $s)
+{
+    switch (true) {
         case $t == "O":
             try {
                 return new NumberFormatter($l, $s);
@@ -75,7 +78,7 @@ try {
 }
 err($fmt);
 
-foreach($args as $arg) {
+foreach ($args as $arg) {
     $fmt = crt("O", $arg[0], $arg[1]);
     err($fmt);
     $fmt = crt("C", $arg[0], $arg[1]);

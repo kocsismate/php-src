@@ -9,9 +9,10 @@ if (!extension_loaded('gd')) die('skip ext/gd required');
 $im = imagecreate(10, 10);
 echo '=== original ===', PHP_EOL;
 var_dump(imagegetclip($im));
-imagesetclip($im, 1,2, 3,4);
+imagesetclip($im, 1, 2, 3, 4);
 echo '=== after imagesetclip() ===', PHP_EOL;
 var_dump(imagegetclip($im));
+
 ?>
 --EXPECT--
 === original ===

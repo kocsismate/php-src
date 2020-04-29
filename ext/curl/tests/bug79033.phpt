@@ -16,6 +16,7 @@ curl_setopt_array($ch, [
 ]);
 var_dump(curl_exec($ch));
 var_dump(curl_getinfo($ch)["request_header"]);
+
 ?>
 --EXPECTF--
 string(%d) "array(0) {

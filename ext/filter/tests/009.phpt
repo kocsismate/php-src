@@ -13,6 +13,7 @@ var_dump(filter_id("none"));
 var_dump(filter_id(-1));
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 int(513)

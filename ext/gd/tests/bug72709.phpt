@@ -10,13 +10,13 @@ $im = imagecreatetruecolor(1, 1);
 
 try {
     var_dump(imagesetstyle($im, array()));
-}
-catch (\Error $ex) {
+} catch (\Error $ex) {
     echo $ex->getMessage() . "\n";
 }
 
 imagesetpixel($im, 0, 0, IMG_COLOR_STYLED);
 imagedestroy($im);
+
 ?>
 ====DONE====
 --EXPECT--

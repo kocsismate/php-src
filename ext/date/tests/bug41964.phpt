@@ -34,7 +34,6 @@ $res = date_parse('a nothing');
 var_dump($res['zone'], $res['tz_abbr']);
 echo "\n";
 
-
 ?>
 --EXPECT--
 NULL

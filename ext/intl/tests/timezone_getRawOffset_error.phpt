@@ -9,6 +9,7 @@ if (!extension_loaded('intl'))
 ini_set("intl.error_level", E_WARNING);
 
 intltz_get_raw_offset(null);
+
 ?>
 --EXPECTF--
 Fatal error: Uncaught TypeError: intltz_get_raw_offset(): Argument #1 ($tz) must be of type IntlTimeZone, null given in %s:%d

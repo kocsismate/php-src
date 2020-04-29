@@ -10,7 +10,8 @@ $millitimestamp = 1428133423941.0; // 14:43:43 April 04 2015
 $date = IntlCalendar::createInstance('Asia/Ho_Chi_Minh');
 $date->setTime($millitimestamp);
 echo IntlDateFormatter::formatObject($date, array(IntlDateFormatter::SHORT, IntlDateFormatter::NONE), 'vi_VN'), "\n";
-echo IntlDateFormatter::formatObject ($date, array(IntlDateFormatter::SHORT, IntlDateFormatter::NONE), 'ko_KR'), "\n";
+echo IntlDateFormatter::formatObject($date, array(IntlDateFormatter::SHORT, IntlDateFormatter::NONE), 'ko_KR'), "\n";
+
 ?>
 --EXPECT--
 04/04/2015

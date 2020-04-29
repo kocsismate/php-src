@@ -8,7 +8,7 @@ imagecreatefromwbmp with invalid wbmp
 --FILE--
 <?php
 $filename = __DIR__ . '/_tmp.wbmp';
-$fp = fopen($filename,"wb");
+$fp = fopen($filename, "wb");
 if (!$fp) {
     exit("Failed to create <$filename>");
 }
@@ -33,13 +33,14 @@ $c = 0x04;
 fputs($fp, chr($c), 1);
 
 /*write some data to cause overflow*/
-for ($i=0; $i<10000; $i++) {
+for ($i = 0; $i < 10000; $i++) {
     fwrite($fp, chr($c), 1);
 }
 
 fclose($fp);
 $im = imagecreatefromwbmp($filename);
 unlink($filename);
+
 ?>
 --EXPECTF--
 gd warning: Product of memory allocation multiplication would exceed INT_MAX, failing operation gracefully

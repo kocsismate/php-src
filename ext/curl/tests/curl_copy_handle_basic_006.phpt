@@ -23,8 +23,8 @@ Rick Buitenman <rick@meritos.nl>
 
   $copy = curl_copy_handle($ch);
 
-  var_dump( curl_exec($ch) );
-  var_dump( curl_exec($copy) );
+  var_dump(curl_exec($ch));
+  var_dump(curl_exec($copy));
 
   curl_close($ch); // can not close original handle before curl_exec($copy) since it causes char * inputs to be invalid (see also: http://curl.haxx.se/libcurl/c/curl_easy_duphandle.html)
   curl_close($copy);

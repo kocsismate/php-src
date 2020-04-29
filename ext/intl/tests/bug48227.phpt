@@ -6,7 +6,7 @@ Bug #48227 (NumberFormatter::format leaks memory)
 <?php
 
 $x = new NumberFormatter('en_US', NumberFormatter::DECIMAL);
-foreach (['', 1, NULL, $x] as $value) {
+foreach (['', 1, null, $x] as $value) {
     try {
         var_dump($x->format($value));
     } catch (TypeError $ex) {

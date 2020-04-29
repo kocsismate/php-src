@@ -6,6 +6,7 @@ PMOPB-45-2007:PHP ext/filter Email Validation Vulnerability
 <?php
     $var = "test@example.com\n";
     var_dump(filter_var($var, FILTER_VALIDATE_EMAIL));
+
 ?>
 --EXPECT--
 bool(false)

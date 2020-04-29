@@ -21,6 +21,7 @@ echo "Test case #2: removal of non-existent file from FTP, should return false:"
 var_dump(ftp_delete($ftp, 'false-file.boo'));
 
 ftp_close($ftp);
+
 ?>
 --EXPECTF--
 Test case #1: removal of existing file from FTP, should return true:

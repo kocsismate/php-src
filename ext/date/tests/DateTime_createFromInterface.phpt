@@ -6,27 +6,28 @@ date.timezone=Europe/London
 <?php
 $current = "2014-03-02 16:24:08";
 
-$i = DateTime::createFromInterface( date_create( $current ) );
-var_dump( $i );
+$i = DateTime::createFromInterface(date_create($current));
+var_dump($i);
 
-$i = DateTime::createFromInterface( date_create_immutable( $current ) );
-var_dump( $i );
+$i = DateTime::createFromInterface(date_create_immutable($current));
+var_dump($i);
 
 $current = "2019-12-16 15:06:46 CET";
 
-$i = DateTime::createFromInterface( date_create( $current ) );
-var_dump( $i );
+$i = DateTime::createFromInterface(date_create($current));
+var_dump($i);
 
-$i = DateTime::createFromInterface( date_create_immutable( $current ) );
-var_dump( $i );
+$i = DateTime::createFromInterface(date_create_immutable($current));
+var_dump($i);
 
 $current = "2019-12-16 15:08:20 +0100";
 
-$i = DateTime::createFromInterface( date_create( $current ) );
-var_dump( $i );
+$i = DateTime::createFromInterface(date_create($current));
+var_dump($i);
 
-$i = DateTime::createFromInterface( date_create_immutable( $current ) );
-var_dump( $i );
+$i = DateTime::createFromInterface(date_create_immutable($current));
+var_dump($i);
+
 ?>
 --EXPECTF--
 object(DateTime)#%d (3) {

@@ -25,6 +25,7 @@ curl_close($ch1);
 
 var_dump(curl_exec($ch2));
 curl_close($ch2);
+
 ?>
 --EXPECTF--
 bool(true)

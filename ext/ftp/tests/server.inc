@@ -2,17 +2,17 @@
 
 $socket = null;
 $errno = 0;
-$context = stream_context_create(array('ssl' => array('local_cert' => dirname(__FILE__).'/cert.pem')));
+$context = stream_context_create(array('ssl' => array('local_cert' => dirname(__FILE__) . '/cert.pem')));
 
-for ($i=0; $i<10 && !$socket; ++$i) {
+for ($i = 0; $i < 10 && !$socket; ++$i) {
     $port = rand(50000, 65535);
 
-    $socket = @stream_socket_server("tcp://127.0.0.1:$port", $errno, $errstr, STREAM_SERVER_BIND|STREAM_SERVER_LISTEN, $context);
+    $socket = @stream_socket_server("tcp://127.0.0.1:$port", $errno, $errstr, STREAM_SERVER_BIND | STREAM_SERVER_LISTEN, $context);
 }
 //set anther random port that is not the same as $port
-do{
+do {
     $pasv_port = rand(50000, 65535);
-}while($pasv_port == $port);
+} while ($pasv_port == $port);
 
 if (!$socket) {
     echo "$errstr ($errno)\n";
@@ -21,30 +21,31 @@ if (!$socket) {
 
 $pid = pcntl_fork();
 
-function pasv_listen($action){
+function pasv_listen($action)
+{
     global $pasv_port, $tmp_file;
     $tmp_file = 'nm2.php';
     $pid = pcntl_fork();
-    if($pid === 0){
+    if ($pid === 0) {
         $soc  = stream_socket_server("tcp://127.0.0.1:$pasv_port");
         $fs = stream_socket_accept($soc, 3);
         switch ($action) {
             case 'fget':
             case 'get':
             //listen for 3 seconds 3 seconds
-            fputs($fs, "I am passive.\r\n");
-            break;
+                fputs($fs, "I am passive.\r\n");
+                break;
             case 'put':
-            file_put_contents($tmp_file,  stream_get_contents($fs));
-            break;
+                file_put_contents($tmp_file, stream_get_contents($fs));
+                break;
             case 'list':
-            fputs($fs, "drwxr-x---   3 owner  group      4096 Jul 12 12:16 .\r\n");
-            fputs($fs, "drwxr-x---   3 owner  group      4096 Jul 12 12:16 ..\r\n");
-            fputs($fs, "drwxr-x---   3 owner  group      4096 Jul 12 12:16 public_ftp\r\n");
-            break;
+                fputs($fs, "drwxr-x---   3 owner  group      4096 Jul 12 12:16 .\r\n");
+                fputs($fs, "drwxr-x---   3 owner  group      4096 Jul 12 12:16 ..\r\n");
+                fputs($fs, "drwxr-x---   3 owner  group      4096 Jul 12 12:16 public_ftp\r\n");
+                break;
             case 'list_null':
-            fputs($fs, "\r\n");
-            break;
+                fputs($fs, "\r\n");
+                break;
         }
         fclose($fs);
         exit;
@@ -83,18 +84,23 @@ if ($pid) {
         } while ($old != $cwd);
 
         $cwd = strtr($cwd, array('//' => '/'));
-        if (!$cwd) $cwd = '/';
+        if (!$cwd) {
+            $cwd = '/';
+        }
     }
 
     $s = stream_socket_accept($socket);
 
-    if (!$s) die("Error accepting a new connection\n");
+    if (!$s) {
+        die("Error accepting a new connection\n");
+    }
 
     fputs($s, "220----- PHP FTP server 0.3 -----\r\n220 Service ready\r\n");
     $buf = fread($s, 2048);
 
 
-    function user_auth($buf) {
+    function user_auth($buf)
+    {
         global $user, $s, $ssl, $bug37799;
 
         if (!empty($ssl)) {
@@ -134,9 +140,9 @@ if ($pid) {
         }
 
         if ($buf == "AUTH TLS\r\n") {
-           fputs($s, "500 not supported.\r\n");
-           return ;
-        } else if (!preg_match('/^USER (\w+)\r\n$/', $buf, $m)) {
+            fputs($s, "500 not supported.\r\n");
+            return ;
+        } elseif (!preg_match('/^USER (\w+)\r\n$/', $buf, $m)) {
             fputs($s, "500 Syntax error, command unrecognized.\r\n");
             dump_and_exit($buf);
         }
@@ -149,7 +155,6 @@ if ($pid) {
 
         if (anonymous()) {
             fputs($s, "230 Anonymous user logged in\r\n");
-
         } else {
             fputs($s, "331 User name ok, need password\r\n");
 
@@ -174,114 +179,96 @@ if ($pid) {
     $cwd = '/';
     $num_bogus_cmds = 0;
 
-    while($buf = fread($s, 4098)) {
+    while ($buf = fread($s, 4098)) {
         if (!empty($bogus)) {
-            fputs($s, "502 Command not implemented (".$num_bogus_cmds++.").\r\n");
-
-        } else if ($buf === "HELP\r\n") {
+            fputs($s, "502 Command not implemented (" . $num_bogus_cmds++ . ").\r\n");
+        } elseif ($buf === "HELP\r\n") {
             fputs($s, "214-There is help available for the following commands:\r\n");
             fputs($s, " USER\r\n");
             fputs($s, " HELP\r\n");
             fputs($s, "214 end of list\r\n");
-
         } elseif ($buf === "HELP HELP\r\n") {
             fputs($s, "214 Syntax: HELP [<SP> <string>] <CRLF>\r\n");
-
         } elseif ($buf === "PWD\r\n") {
             fputs($s, "257 \"$cwd\" is current directory.\r\n");
-
         } elseif ($buf === "CDUP\r\n") {
             change_dir('..');
             fputs($s, "250 CDUP command successful.\r\n");
-
         } elseif ($buf === "SYST\r\n") {
             if (isset($bug27809)) {
                 fputs($s, "215   OS/400 is the remote operating system. The TCP/IP version is \"V5R2M0\"\r\n");
             } else {
                 fputs($s, "215 UNIX Type: L8.\r\n");
             }
-
         } elseif ($buf === "TYPE A\r\n") {
             $ascii = true;
             fputs($s, "200 OK\r\n");
-
         } elseif ($buf === "AUTH SSL\r\n") {
             $ascii = true;
             fputs($s, "500 not supported\r\n");
-
         } elseif ($buf === "TYPE I\r\n") {
             $ascii = false;
             fputs($s, "200 OK\r\n");
-
         } elseif ($buf === "QUIT\r\n") {
             break;
-
         } elseif (preg_match("~^PORT (\d+),(\d+),(\d+),(\d+),(\d+),(\d+)\r\n$~", $buf, $m)) {
             $host = "$m[1].$m[2].$m[3].$m[4]";
             $port = ((int)$m[5] << 8) + (int)$m[6];
             fputs($s, "200 OK.\r\n");
-
         } elseif (preg_match("~^STOR ([\w/.-]+)\r\n$~", $buf, $m)) {
             fputs($s, "150 File status okay; about to open data connection\r\n");
 
-            if(empty($pasv))
-            {
+            if (empty($pasv)) {
                 if (!$fs = stream_socket_client("tcp://$host:$port")) {
                     fputs($s, "425 Can't open data connection\r\n");
                     continue;
                 }
 
                 $data = stream_get_contents($fs);
-                $orig = file_get_contents(dirname(__FILE__).'/'.$m[1]);
+                $orig = file_get_contents(dirname(__FILE__) . '/' . $m[1]);
 
 
                 if (isset($ascii) && !$ascii && $orig === $data) {
                     fputs($s, "226 Closing data Connection.\r\n");
-
                 } elseif ((!empty($ascii) || isset($bug39583)) && $data === strtr($orig, array("\r\n" => "\n", "\r" => "\n", "\n" => "\r\n"))) {
                     fputs($s, "226 Closing data Connection.\r\n");
-
                 } else {
                     var_dump($data);
                     var_dump($orig);
                     fputs($s, "552 Requested file action aborted.\r\n");
                 }
                 fclose($fs);
-            }else{
+            } else {
                 $data = file_get_contents('nm2.php');
-                $orig = file_get_contents(dirname(__FILE__).'/'.$m[1]);
-                if ( $orig === $data) {
+                $orig = file_get_contents(dirname(__FILE__) . '/' . $m[1]);
+                if ($orig === $data) {
                     fputs($s, "226 Closing data Connection.\r\n");
-
                 } else {
                     var_dump($data);
                     var_dump($orig);
                     fputs($s, "552 Requested file action aborted.\r\n");
                 }
             }
-
         } elseif (preg_match("~^APPE ([\w/.-]+)\r\n$~", $buf, $m)) {
             fputs($s, "150 File status okay; about to open data connection\r\n");
 
-            if(empty($pasv))
-            {
+            if (empty($pasv)) {
                 if (!$fs = stream_socket_client("tcp://$host:$port")) {
                     fputs($s, "425 Can't open data connection\r\n");
                     continue;
                 }
 
                 $data = stream_get_contents($fs);
-                file_put_contents(__DIR__.'/'.$m[1], $data, FILE_APPEND);
+                file_put_contents(__DIR__ . '/' . $m[1], $data, FILE_APPEND);
                 fputs($s, "226 Closing data Connection.\r\n");
                 fclose($fs);
-            }else{
+            } else {
                 $data = stream_get_contents($fs);
-                file_put_contents(__DIR__.'/'.$m[1], $data, FILE_APPEND);
+                file_put_contents(__DIR__ . '/' . $m[1], $data, FILE_APPEND);
                 fputs($s, "226 Closing data Connection.\r\n");
                 fclose($fs);
             }
-
-        }elseif (preg_match("~^CWD ([A-Za-z./]+)\r\n$~", $buf, $m)) {
+        } elseif (preg_match("~^CWD ([A-Za-z./]+)\r\n$~", $buf, $m)) {
             if (isset($bug77680)) {
                 fputs($s, "550 Directory change to $m[1] failed: file does not exist\r\n");
                 var_dump($buf);
@@ -289,9 +276,7 @@ if ($pid) {
                 change_dir($m[1]);
                 fputs($s, "250 CWD command successful.\r\n");
             }
-
         } elseif (preg_match("~^NLST(?: ([A-Za-z./]+))?\r\n$~", $buf, $m)) {
-
             if (isset($m[1]) && (($m[1] === 'bogusdir') || ($m[1] === '/bogusdir'))) {
                 fputs($s, "250 $m[1]: No such file or directory\r\n");
                 continue;
@@ -311,7 +296,7 @@ if ($pid) {
                 }
             } else {
                 fputs($s, "125 Data connection already open; transfer starting.\r\n");
-                $fs=$pasvs;
+                $fs = $pasvs;
             }
 
 
@@ -325,7 +310,6 @@ if ($pid) {
 
             fputs($s, "226 Closing data Connection.\r\n");
             fclose($fs);
-
         } elseif (preg_match("~^MKD ([A-Za-z./]+)\r\n$~", $buf, $m)) {
             if (isset($bug7216)) {
                 fputs($s, "257 OK.\r\n");
@@ -335,39 +319,35 @@ if ($pid) {
                 }
                 fputs($s, "257 \"/path/to/ftproot$cwd$m[1]\" created.\r\n");
             }
-
         } elseif (preg_match('/^USER /', $buf)) {
             user_auth($buf);
-
         } elseif (preg_match('/^MDTM ([\w\h]+)/', $buf, $matches)) {
-            switch ($matches [1]){
+            switch ($matches [1]) {
                 case "A":
-                fputs($s, "213 19980615100045.014\r\n");
-                break;
+                    fputs($s, "213 19980615100045.014\r\n");
+                    break;
                 case "B":
-                fputs($s, "213 19980615100045.014\r\n");
-                break;
+                    fputs($s, "213 19980615100045.014\r\n");
+                    break;
                 case "C":
-                fputs($s, "213 19980705132316\r\n");
-                break;
+                    fputs($s, "213 19980705132316\r\n");
+                    break;
                 case "19990929043300 File6":
-                fputs($s, "213 19991005213102\r\n");
-                break;
-                default :
-                fputs($s, "550 No file named \"{$matches [1]}\"\r\n");
-                break;
+                    fputs($s, "213 19991005213102\r\n");
+                    break;
+                default:
+                    fputs($s, "550 No file named \"{$matches [1]}\"\r\n");
+                    break;
             }
-        }elseif (preg_match('/^RETR ([\/]*[\w\h]+)/', $buf, $matches)) {
-            if(!empty($pasv)){
+        } elseif (preg_match('/^RETR ([\/]*[\w\h]+)/', $buf, $matches)) {
+            if (!empty($pasv)) {
                 ;
-            }
-            else if (!$fs = stream_socket_client("tcp://$host:$port")) {
+            } elseif (!$fs = stream_socket_client("tcp://$host:$port")) {
                 fputs($s, "425 Can't open data connection\r\n");
                 continue;
             }
 
-            switch($matches[1]){
-
+            switch ($matches[1]) {
                 case "pasv":
                     fputs($s, "150 File status okay; about to open data connection.\r\n");
                     //the data connection is handled in another forked process
@@ -381,25 +361,25 @@ if ($pid) {
                     break;
                 case "binary data":
                     fputs($s, "150 File status okay; about to open data connection.\r\n");
-                    $transfer_type = $ascii? 'ASCII' : 'BINARY' ;
-                    fputs($fs, $transfer_type."Foo\0Bar\r\n");
+                    $transfer_type = $ascii ? 'ASCII' : 'BINARY' ;
+                    fputs($fs, $transfer_type . "Foo\0Bar\r\n");
                     fputs($s, "226 Closing data Connection.\r\n");
                     break;
                 case "fget":
                     fputs($s, "150 File status okay; about to open data connection.\r\n");
-                    $transfer_type = $ascii? 'ASCII' : 'BINARY' ;
-                    fputs($fs, $transfer_type."FooBar\r\n");
+                    $transfer_type = $ascii ? 'ASCII' : 'BINARY' ;
+                    fputs($fs, $transfer_type . "FooBar\r\n");
                     fputs($s, "226 Closing data Connection.\r\n");
                     break;
                 case "fgetresume":
                     fputs($s, "150 File status okay; about to open data connection.\r\n");
-                    $transfer_type = $ascii? 'ASCII' : 'BINARY' ;
+                    $transfer_type = $ascii ? 'ASCII' : 'BINARY' ;
                     fputs($fs, "Bar\r\n");
                     fputs($s, "226 Closing data Connection.\r\n");
                     break;
                 case "fget_large":
                     fputs($s, "150 File status okay; about to open data connection.\r\n");
-                    $transfer_type = $ascii? 'ASCII' : 'BINARY' ;
+                    $transfer_type = $ascii ? 'ASCII' : 'BINARY' ;
                     if ($GLOBALS['rest_pos'] == '5368709119') {
                         fputs($fs, "X");
                     } else {
@@ -409,7 +389,7 @@ if ($pid) {
                     break;
                 case "mediumfile":
                     fputs($s, "150 File status okay; about to open data connection.\r\n");
-                    for($i = 0; $i < 150; $i++){
+                    for ($i = 0; $i < 150; $i++) {
                         fputs($fs, "This is line $i of the test data.\n");
                     }
                     fputs($s, "226 Closing data Connection.\r\n");
@@ -422,19 +402,18 @@ if ($pid) {
                     fputs($s, "550 {$matches[1]}: No such file or directory \r\n");
                     break;
             }
-            if(isset($fs))
+            if (isset($fs)) {
                 fclose($fs);
-
-
-        }elseif (preg_match('/^PASV/', $buf, $matches)) {
-            $pasv=true;
+            }
+        } elseif (preg_match('/^PASV/', $buf, $matches)) {
+            $pasv = true;
             $host = "127.0.0.1";
-            $i=0;
+            $i = 0;
 
             if (empty($bug73457)) {
                 do {
                     if (!empty($ssl)) {
-                        $soc = @stream_socket_server("tcp://127.0.0.1:$pasv_port", $errno, $errstr, STREAM_SERVER_BIND|STREAM_SERVER_LISTEN, $context);
+                        $soc = @stream_socket_server("tcp://127.0.0.1:$pasv_port", $errno, $errstr, STREAM_SERVER_BIND | STREAM_SERVER_LISTEN, $context);
                     } else {
                         $soc = @stream_socket_server("tcp://127.0.0.1:$pasv_port");
                     }
@@ -443,79 +422,71 @@ if ($pid) {
                         $pasv_port = rand(50000, 65535);
                     }
                     $i++;
-                } while ($i<10 && !$soc);
+                } while ($i < 10 && !$soc);
 
                 if (!$soc) {
                     echo "$errstr ($errno)\n";
                     die("could not bind passive port\n");
                 }
             } else {
-                $pasv_port=1234;
+                $pasv_port = 1234;
             }
 
             $p2 = $pasv_port % ((int) 1 << 8);
-            $p1 = ($pasv_port-$p2)/((int) 1 << 8);
+            $p1 = ($pasv_port - $p2) / ((int) 1 << 8);
             fputs($s, "227 Entering Passive Mode. (127,0,0,1,{$p1},{$p2})\r\n");
 
             if (empty($bug73457)) {
-                $pasvs = stream_socket_accept($soc,10);
+                $pasvs = stream_socket_accept($soc, 10);
             }
-
         } elseif (preg_match('/^EPSV/', $buf, $matches)) {
             fputs($s, "550 Extended passsive mode not supported.\r\n");
         } elseif (preg_match('/^SITE EXEC/', $buf, $matches)) {
             fputs($s, "200 OK\r\n");
-
         } elseif (preg_match('/^RMD/', $buf, $matches)) {
             fputs($s, "250 OK\r\n");
-
         } elseif (preg_match('/^SITE CHMOD/', $buf, $matches)) {
             fputs($s, "200 OK\r\n");
-
         } elseif (preg_match('/^DELE ([\w\h]+)/', $buf, $matches)) {
-            if (isset($matches[1]) && in_array($matches[1], ['file1', "file\nb0rk"])){
+            if (isset($matches[1]) && in_array($matches[1], ['file1', "file\nb0rk"])) {
                 fputs($s, "250 Delete successful\r\n");
             } else {
                 fputs($s, "550 No such file or directory\r\n");
             }
         } elseif (preg_match('/^ALLO (\d+)/', $buf, $matches)) {
             fputs($s, "200 " . $matches[1] . " bytes allocated\r\n");
-
-        }elseif (preg_match('/^LIST www\//', $buf, $matches)) {
+        } elseif (preg_match('/^LIST www\//', $buf, $matches)) {
             fputs($s, "226 Transfer complete\r\n");
-
-        }elseif (preg_match('/^LIST no_exists\//', $buf, $matches)) {
+        } elseif (preg_match('/^LIST no_exists\//', $buf, $matches)) {
             fputs($s, "425 Error establishing connection\r\n");
-
-        }elseif (preg_match('/^REST (\d+)/', $buf, $matches)) {
+        } elseif (preg_match('/^REST (\d+)/', $buf, $matches)) {
             $GLOBALS['rest_pos'] = $matches[1];
             fputs($s, "350 OK\r\n");
-        }elseif (preg_match('/^SIZE largefile/', $buf)) {
+        } elseif (preg_match('/^SIZE largefile/', $buf)) {
             fputs($s, "213 5368709120\r\n");
-        }elseif (preg_match('/^RNFR existing_file/', $buf, $matches)) {
+        } elseif (preg_match('/^RNFR existing_file/', $buf, $matches)) {
             fputs($s, "350 File or directory exists, ready for destination name\r\n");
-        }elseif (preg_match('/^RNFR nonexisting_file/', $buf, $matches)) {
+        } elseif (preg_match('/^RNFR nonexisting_file/', $buf, $matches)) {
             fputs($s, "550 No such file or directory\r\n");
-        }elseif (preg_match('/^RNTO nonexisting_file/', $buf, $matches)) {
+        } elseif (preg_match('/^RNTO nonexisting_file/', $buf, $matches)) {
             fputs($s, "250 Rename successful\r\n");
-        }elseif (preg_match('/^MLSD no_exists\//', $buf, $matches)) {
+        } elseif (preg_match('/^MLSD no_exists\//', $buf, $matches)) {
             fputs($s, "425 Error establishing connection\r\n");
-        }elseif (preg_match("~^MLSD(?: ([A-Za-z./]+))?\r\n$~", $buf, $m)) {
-
-            if(isset($m[1]) && (($m[1] === 'bogusdir') || ($m[1] === '/bogusdir'))) {
+        } elseif (preg_match("~^MLSD(?: ([A-Za-z./]+))?\r\n$~", $buf, $m)) {
+            if (isset($m[1]) && (($m[1] === 'bogusdir') || ($m[1] === '/bogusdir'))) {
                 fputs($s, "250 $m[1]: No such file or directory\r\n");
                 continue;
             }
 
             // there are some servers that don't open the ftp-data socket if there's nothing to send
-            if(isset($bug39458) && isset($m[1]) && $m[1] === 'emptydir') {
+            if (isset($bug39458) && isset($m[1]) && $m[1] === 'emptydir') {
                 fputs($s, "226 Transfer complete.\r\n");
                 continue;
             }
 
-            if(empty($pasv)) {
+            if (empty($pasv)) {
                 fputs($s, "150 File status okay; about to open data connection\r\n");
-                if(!$fs = stream_socket_client("tcp://$host:$port")) {
+                if (!$fs = stream_socket_client("tcp://$host:$port")) {
                     fputs($s, "425 Can't open data connection\r\n");
                     continue;
                 }
@@ -524,11 +495,11 @@ if ($pid) {
                 $fs = $pasvs;
             }
 
-            if((!empty($ssl)) && (!stream_socket_enable_crypto($pasvs, TRUE, STREAM_CRYPTO_METHOD_SSLv23_SERVER))) {
+            if ((!empty($ssl)) && (!stream_socket_enable_crypto($pasvs, true, STREAM_CRYPTO_METHOD_SSLv23_SERVER))) {
                 die("SSLv23 handshake failed.\n");
             }
 
-            if(empty($m[1]) || $m[1] !== 'emptydir') {
+            if (empty($m[1]) || $m[1] !== 'emptydir') {
                 fputs($fs, "modify=20170127230002;perm=flcdmpe;type=cdir;unique=811U4340002;UNIX.group=33;UNIX.mode=0755;UNIX.owner=33; .\r\n");
                 fputs($fs, "modify=20170127230002;perm=flcdmpe;type=pdir;unique=811U4340002;UNIX.group=33;UNIX.mode=0755;UNIX.owner=33; ..\r\n");
                 fputs($fs, "modify=20170126121225;perm=adfrw;size=4729;type=file;unique=811U4340CB9;UNIX.group=33;UNIX.mode=0644;UNIX.owner=33; foobar\r\n");
@@ -540,11 +511,11 @@ if ($pid) {
 
             fputs($s, "226 Closing data Connection.\r\n");
             fclose($fs);
-        }elseif (preg_match('/^SIZE \/bug73457/', $buf)) {
+        } elseif (preg_match('/^SIZE \/bug73457/', $buf)) {
             fputs($s, "213 10\r\n");
-        }elseif (preg_match("/^SITE/", $buf)) {
+        } elseif (preg_match("/^SITE/", $buf)) {
             fputs($s, "500 Syntax error, command unrecognized.\r\n");
-        }else {
+        } else {
             dump_and_exit($buf);
         }
     }
@@ -553,4 +524,3 @@ if ($pid) {
 }
 
 fclose($socket);
-?>

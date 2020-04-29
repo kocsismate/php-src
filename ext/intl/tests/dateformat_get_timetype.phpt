@@ -22,23 +22,22 @@ function ut_main()
 
     $res_str = '';
 
-    foreach( $timetype_arr as $timetype_entry )
-    {
+    foreach ($timetype_arr as $timetype_entry) {
         $res_str .= "\nCreating IntlDateFormatter with time_type = $timetype_entry";
-        $fmt = ut_datefmt_create( "de-DE",  IntlDateFormatter::SHORT, $timetype_entry ,'America/Los_Angeles', IntlDateFormatter::GREGORIAN  );
-        $time_type = ut_datefmt_get_timetype( $fmt);
+        $fmt = ut_datefmt_create("de-DE", IntlDateFormatter::SHORT, $timetype_entry, 'America/Los_Angeles', IntlDateFormatter::GREGORIAN);
+        $time_type = ut_datefmt_get_timetype($fmt);
         $res_str .= "\nAfter call to get_timetype :  timetype= $time_type";
         $res_str .= "\n";
     }
 
     return $res_str;
-
 }
 
-include_once( 'ut_common.inc' );
+include_once('ut_common.inc');
 
 // Run the test
 ut_run();
+
 ?>
 --EXPECT--
 Creating IntlDateFormatter with time_type = 0

@@ -24,6 +24,7 @@ var_dump(filter_var("234.56fsfd", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLO
 var_dump(filter_var("", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION));
 
 echo "Done\n";
+
 ?>
 --EXPECT--
 string(6) "123456"

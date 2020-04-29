@@ -64,6 +64,7 @@ echo "Test case 7 (SHA-1 with zero-length info, salt not provided): ",
         42,
         ''
     )), "\n";
+
 ?>
 --EXPECT--
 *** Testing hash_hkdf(): RFC 5869 test vectors ***

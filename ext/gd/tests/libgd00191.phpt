@@ -18,6 +18,7 @@ if ($arr['red'] == 255 && $arr['green'] == 255 && $arr['blue'] == 255) {
 } else {
     echo "failed";
 }
+
 ?>
 --EXPECT--
 Ok

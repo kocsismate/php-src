@@ -24,6 +24,7 @@ var_dump($result, $info);
 $domain = str_repeat('ф.', 32) . 'a';
 $result = idn_to_ascii($domain, 0, INTL_IDNA_VARIANT_UTS46, $info);
 var_dump($result, $info);
+
 ?>
 --EXPECT--
 bool(false)

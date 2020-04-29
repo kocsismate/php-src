@@ -7,34 +7,29 @@ echo "*** Testing hash_init(): error conditions ***\n";
 echo "\n-- Testing hash_init() function with unknown algorithms --\n";
 try {
     var_dump(hash_init('dummy'));
-}
-catch (\Error $e) {
+} catch (\Error $e) {
     echo $e->getMessage() . "\n";
 }
 
 echo "\n-- Testing hash_init() function with HASH_HMAC and non-cryptographic algorithms --\n";
 try {
     var_dump(hash_init('crc32', HASH_HMAC));
-}
-catch (\Error $e) {
+} catch (\Error $e) {
     echo $e->getMessage() . "\n";
 }
 
 echo "\n-- Testing hash_init() function with HASH_HMAC and no key --\n";
 try {
     var_dump(hash_init('md5', HASH_HMAC));
-}
-catch (\Error $e) {
+} catch (\Error $e) {
     echo  $e->getMessage() . "\n";
 }
 
 try {
     var_dump(hash_init('md5', HASH_HMAC, null));
-}
-catch (\Error $e) {
+} catch (\Error $e) {
     echo $e->getMessage() . "\n";
 }
-
 
 ?>
 --EXPECT--

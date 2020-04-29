@@ -15,6 +15,7 @@ Bug #61948 (CURLOPT_COOKIEFILE '' raises open_basedir restriction)
   var_dump(curl_setopt($ch, CURLOPT_COOKIEFILE, "$base_dir/foo"));
   var_dump(curl_setopt($ch, CURLOPT_COOKIEFILE, "c:/xxx/bar"));
   curl_close($ch);
+
 ?>
 --CLEAN--
 <?php

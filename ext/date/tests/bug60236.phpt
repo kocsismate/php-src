@@ -9,6 +9,7 @@ $ts = $t->format('U');
 var_dump($ts);
 $t->setTimestamp($ts);
 var_dump($t);
+
 ?>
 --EXPECT--
 string(10) "1278455908"

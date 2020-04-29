@@ -29,8 +29,8 @@ $bg = imagecolorallocate($image, 0, 0, 0);
 $col_line = imagecolorallocate($image, 255, 0, 0);
 
 // draw a couple of vertical dashed lines
-imagedashedline($image, 100, 20, 100, 230, $col_line );
-imagedashedline($image, 150, 20, 150, 230, $col_line );
+imagedashedline($image, 100, 20, 100, 230, $col_line);
+imagedashedline($image, 150, 20, 150, 230, $col_line);
 
 // output the picture to a file
 imagepng($image, $dest);
@@ -46,6 +46,7 @@ var_dump($color1, $color2);
 
 imagedestroy($image);
 echo "Done\n";
+
 ?>
 --CLEAN--
 <?php

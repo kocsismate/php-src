@@ -12,9 +12,10 @@ if (!extension_loaded("curl")) {
 $poc = 'a:1:{i:0;O:8:"CURLFile":1:{s:4:"name";R:1;}}';
 try {
     var_dump(unserialize($poc));
-} catch(Exception $e) {
+} catch (Exception $e) {
     echo $e->getMessage();
 }
+
 ?>
 --EXPECTF--
 Warning: Erroneous data format for unserializing 'CURLFile' in %s on line %d

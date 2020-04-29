@@ -10,6 +10,7 @@ var_dump(bcscale(1));
 var_dump(bcscale(4));
 var_dump(bcscale());
 var_dump(bcscale());
+
 ?>
 --EXPECT--
 int(0)

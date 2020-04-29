@@ -12,6 +12,7 @@ try {
 } catch (\ValueError $e) {
     echo \PHP_EOL . $e->getMessage() . \PHP_EOL;
 }
+
 ?>
 --EXPECT--
 5

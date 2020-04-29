@@ -13,9 +13,9 @@ Test finfo_close() function : error conditions
 echo "*** Testing finfo_close() : error conditions ***\n";
 
 echo "\n-- Testing finfo_close() function with wrong resource type --\n";
-$fp = fopen( __FILE__, 'r' );
+$fp = fopen(__FILE__, 'r');
 try {
-    var_dump( finfo_close( $fp ) );
+    var_dump(finfo_close($fp));
 } catch (TypeError $e) {
     echo $e->getMessage(), "\n";
 }

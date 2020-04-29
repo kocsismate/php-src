@@ -7,7 +7,7 @@ if (!class_exists('finfo'))
 --FILE--
 <?php
 
-$f = new finfo;
+$f = new finfo();
 var_dump($f->file(__DIR__ . "/resources/test.jpg", FILEINFO_EXTENSION));
 
 ?>

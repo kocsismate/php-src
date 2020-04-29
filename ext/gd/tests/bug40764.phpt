@@ -6,7 +6,7 @@ Bug #40764 (line thickness not respected for horizontal and vertical lines)
 ?>
 --FILE--
 <?php
-$image=imagecreatetruecolor(400, 400);
+$image = imagecreatetruecolor(400, 400);
 $white = imagecolorallocate($image, 255, 255, 255);
 $black = imagecolorallocate($image, 0, 0, 0);
 $red = imagecolorallocate($image, 255, 0, 0);

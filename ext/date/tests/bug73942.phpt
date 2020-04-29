@@ -7,6 +7,7 @@ $date = new \DateTime($date1);
 $date->modify('Friday this week');
 $dateFormat = $date->format('Y-m-d');
 echo $dateFormat, "\n";
+
 ?>
 --EXPECT--
 2017-01-06

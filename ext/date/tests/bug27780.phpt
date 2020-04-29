@@ -40,6 +40,7 @@ foreach ($timezones as $timezone) {
 
     echo "\n";
 }
+
 ?>
 --EXPECTF--
 America/Chicago

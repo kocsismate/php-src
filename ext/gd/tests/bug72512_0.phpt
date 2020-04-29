@@ -13,8 +13,9 @@ Bug #72512 gdImageTrueColorToPaletteBody allows arbitrary write/read access, var
 $img = imagecreatetruecolor(13, 1007);
 
 imagecolortransparent($img, -10066304);
-imagetruecolortopalette($img, TRUE, 3);
+imagetruecolortopalette($img, true, 3);
 imagescale($img, 1, 65535);
+
 ?>
 ==DONE==
 --EXPECT--

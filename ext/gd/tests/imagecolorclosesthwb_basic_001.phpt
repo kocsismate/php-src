@@ -18,8 +18,8 @@ Test imagecolorclosesthwb() basic functionality
     $text_color = imagecolorallocate($image, 255, 255, 255);
 
     // Function to create image which contains string.
-    imagestring($image, 5, 180, 100,  "PHP is awesome", $text_color);
-    imagestring($image, 3, 120, 120,  "A test for PHP imagecolorclosesthwb function", $text_color);
+    imagestring($image, 5, 180, 100, "PHP is awesome", $text_color);
+    imagestring($image, 3, 120, 120, "A test for PHP imagecolorclosesthwb function", $text_color);
 
     var_dump(imagecolorclosesthwb($image, 0, 115, 152)); // 0
     var_dump(imagecolorclosesthwb($image, 0, 24, 200)); // 0
@@ -27,6 +27,7 @@ Test imagecolorclosesthwb() basic functionality
     var_dump(imagecolorclosesthwb($image, 50, 0, 90)); // 0
 
     imagedestroy($image);
+
 ?>
 --EXPECT--
 int(0)

@@ -25,6 +25,7 @@ Bug #24155 (gdImageRotate270 rotation problem).
     echo "$col\n";
 
     @unlink($dest);
+
 ?>
 --EXPECT--
 16776960

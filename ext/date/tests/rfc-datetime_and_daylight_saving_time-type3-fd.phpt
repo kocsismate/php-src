@@ -47,6 +47,7 @@ $end   = new DateTime('2010-03-14 03:30:00');
 $start = new DateTime('2010-03-13 02:30:00');
 echo 'fd7 ' . $end->format($date_format) . ' - ' . $start->format($date_format)
     . ' = ' . $start->diff($end)->format($interval_format) . "\n";
+
 ?>
 --EXPECT--
 fd1 2010-03-14 03:00:00 EDT America/New_York - 2010-03-14 01:59:59 EST America/New_York = PT0H0M1S

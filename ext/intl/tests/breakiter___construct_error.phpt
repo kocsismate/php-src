@@ -6,7 +6,8 @@ IntlRuleBasedBreakIterator::__construct(): arg errors
 <?php
 ini_set("intl.error_level", E_WARNING);
 
-function print_exception($e) {
+function print_exception($e)
+{
     echo "\nException: " . $e->getMessage() . " in " . $e->getFile() . " on line " . $e->getLine() . "\n";
 }
 
@@ -22,7 +23,7 @@ try {
     print_exception($e);
 }
 try {
-    var_dump(new IntlRuleBasedBreakIterator(1,2,3));
+    var_dump(new IntlRuleBasedBreakIterator(1, 2, 3));
 } catch (TypeError $e) {
     print_exception($e);
 }
@@ -36,6 +37,8 @@ try {
 } catch (IntlException $e) {
     print_exception($e);
 }
+
+?>
 --EXPECTF--
 Exception: IntlRuleBasedBreakIterator::__construct(): rbbi_create_instance: unable to create RuleBasedBreakIterator from rules (parse error on line 1, offset 31) in %s on line %d
 

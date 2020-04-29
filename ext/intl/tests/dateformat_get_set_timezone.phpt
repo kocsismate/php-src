@@ -12,19 +12,21 @@ ini_set("date.timezone", 'Atlantic/Azores');
 
 $ts = strtotime('2012-01-01 00:00:00 UTC');
 
-function d(IntlDateFormatter $df) {
-global $ts;
-echo $df->format($ts), "\n";
-var_dump(
-$df->getTimeZoneID(),
-$df->getTimeZone()->getID());
-echo "\n";
+function d(IntlDateFormatter $df)
+{
+    global $ts;
+    echo $df->format($ts), "\n";
+    var_dump(
+        $df->getTimeZoneID(),
+        $df->getTimeZone()->getID()
+    );
+    echo "\n";
 }
 
 $df = new IntlDateFormatter('pt_PT', 0, 0, 'Europe/Minsk');
 d($df);
 
-$df->setTimeZone(NULL);
+$df->setTimeZone(null);
 d($df);
 
 $df->setTimeZone('Europe/Madrid');

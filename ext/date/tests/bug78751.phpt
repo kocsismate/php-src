@@ -10,6 +10,7 @@ var_dump(
     $oDays->start instanceof DateTimeImmutable,
     $oDays->end instanceof DateTimeImmutable
 );
+
 ?>
 --EXPECT--
 bool(true)

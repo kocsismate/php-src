@@ -18,6 +18,8 @@ $funcs = [
 foreach ($funcs as $func) {
     echo (new ReflectionFunction($func));
 }
+
+?>
 --EXPECT--
 Function [ <internal:intl> function locale_get_display_language ] {
 

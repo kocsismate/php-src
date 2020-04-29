@@ -22,7 +22,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, 1);
 $curl_content = curl_exec($ch);
 curl_close($ch);
 
-var_dump( $curl_content );
+var_dump($curl_content);
 
 $ch = curl_init();
 
@@ -34,7 +34,8 @@ $curl_content = curl_exec($ch);
 ob_end_clean();
 curl_close($ch);
 
-var_dump( $curl_content );
+var_dump($curl_content);
+
 ?>
 --EXPECTF--
 *** curl_setopt() call with CURLOPT_HTTPHEADER

@@ -8,6 +8,7 @@ if (!extension_loaded('bcmath')) die('skip bcmath extension is not available');
 <?php
 var_dump(bcpowmod('4.1', '4', '3', 3));
 var_dump(bcpowmod('4', '4', '3.1', 3));
+
 ?>
 --EXPECTF--
 Warning: bcpowmod(): Non-zero scale in base in %s on line %d

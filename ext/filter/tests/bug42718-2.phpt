@@ -12,6 +12,7 @@ a=1%00
 <?php
 echo ini_get('filter.default') . "\n";
 echo ini_get('filter.default_flags') . "\n";
+
 ?>
 --EXPECT--
 unsafe_raw

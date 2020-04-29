@@ -8,7 +8,7 @@ if (!extension_loaded('com_dotnet')) die('skip com_dotnet extension not availabl
 <?php
 $com = new COM("WScript.Shell");
 $dotnet = new DOTNET("mscorlib", "System.Collections.Stack");
-$variant = new VARIANT;
+$variant = new VARIANT();
 foreach ([$com, $dotnet, $variant] as $object) {
     try {
         serialize($object);
@@ -30,6 +30,7 @@ $strings = ['O:3:"com":0:{}', 'O:6:"dotnet":0:{}', 'O:7:"variant":0:{}'];
 foreach ($strings as $string) {
     var_dump(unserialize($string));
 }
+
 ?>
 --EXPECTF--
 Exception: Serialization of 'com' is not allowed

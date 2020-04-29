@@ -8,17 +8,22 @@ if (!class_exists('Spoofchecker'))
 		die('skip intl extension does not have spoof checker');
 --FILE--
 <?php
-class A extends IntlDateFormatter {
+
+class A extends IntlDateFormatter
+{
         static $ARGS = array("en_US" ,IntlDateFormatter::FULL, IntlDateFormatter::FULL,
             'America/Los_Angeles', IntlDateFormatter::GREGORIAN);
 }
-class B extends NumberFormatter {
+class B extends NumberFormatter
+{
         static $ARGS = array('de_DE', NumberFormatter::DECIMAL);
 }
-class C extends MessageFormatter {
+class C extends MessageFormatter
+{
         static $ARGS = array("en_US", "foo");
 }
-class D extends Spoofchecker {
+class D extends Spoofchecker
+{
         static $ARGS = array();
 }
 
@@ -28,6 +33,8 @@ foreach (range('A', 'D') as $subclass) {
                 $clone = clone $obj;
                     var_dump(get_class($clone));
 }
+
+?>
 --EXPECT--
 string(1) "A"
 string(1) "B"

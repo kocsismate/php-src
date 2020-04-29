@@ -15,11 +15,11 @@ $intlcal = intlgregcal_create_instance();
 var_dump($intlcal->getTimeZone()->getId());
 var_dump($intlcal->getLocale(1));
 
-$intlcal = new IntlGregorianCalendar('Europe/Lisbon', NULL);
+$intlcal = new IntlGregorianCalendar('Europe/Lisbon', null);
 var_dump($intlcal->getTimeZone()->getId());
 var_dump($intlcal->getLocale(1));
 
-$intlcal = new IntlGregorianCalendar(NULL, 'pt_PT');
+$intlcal = new IntlGregorianCalendar(null, 'pt_PT');
 var_dump($intlcal->getTimeZone()->getId());
 var_dump($intlcal->getLocale(1));
 
@@ -27,11 +27,12 @@ $intlcal = new IntlGregorianCalendar('Europe/Lisbon', 'pt_PT');
 var_dump($intlcal->getTimeZone()->getId());
 var_dump($intlcal->getLocale(1));
 
-$intlcal = new IntlGregorianCalendar('Europe/Paris', 'fr_CA', NULL, NULL, NULL, NULL);
+$intlcal = new IntlGregorianCalendar('Europe/Paris', 'fr_CA', null, null, null, null);
 var_dump($intlcal->getTimeZone()->getId());
 var_dump($intlcal->getLocale(1));
 
 var_dump($intlcal->getType());
+
 ?>
 --EXPECT--
 string(16) "Europe/Amsterdam"

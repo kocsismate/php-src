@@ -44,6 +44,7 @@ foreach ($values as $t => $val) {
 }
 
 echo "OK!";
+
 ?>
 --EXPECT--
 --

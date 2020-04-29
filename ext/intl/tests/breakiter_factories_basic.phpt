@@ -17,11 +17,13 @@ $t = 'Frase 1... Frase 2';
 foreach ($m as $method) {
     echo "===== $method =====\n";
     $o1 = IntlBreakIterator::$method('ja');
-    $o2 = IntlBreakIterator::$method(NULL);
+    $o2 = IntlBreakIterator::$method(null);
     $o3 = IntlBreakIterator::$method();
     var_dump($o1 == $o2 && $o2 == $o3);
     echo "\n";
 }
+
+?>
 --EXPECT--
 ===== createWordInstance =====
 bool(true)

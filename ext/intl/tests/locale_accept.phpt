@@ -21,7 +21,7 @@ function ut_main()
         'none',
     );
 
-     foreach($http_acc as $http) {
+    foreach ($http_acc as $http) {
         $res = ut_loc_accept_http($http);
         $res_str .= @"Accepting $http: $res\n";
     }
@@ -29,7 +29,7 @@ function ut_main()
     return $res_str;
 }
 
-include_once( 'ut_common.inc' );
+include_once('ut_common.inc');
 ut_run();
 
 ?>
