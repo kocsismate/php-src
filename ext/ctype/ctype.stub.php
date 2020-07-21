@@ -2,24 +2,24 @@
 
 /** @generate-function-entries */
 
-function ctype_alnum($text): bool {}
+function ctype_alnum(string|int $input): bool {}
 
-function ctype_alpha($text): bool {}
+function ctype_alpha(string|int $input): bool {}
 
-function ctype_cntrl($text): bool {}
+function ctype_cntrl(string|int $input): bool {}
 
-function ctype_digit($text): bool {}
+function ctype_digit(string|int $input): bool {}
 
-function ctype_lower($text): bool {}
+function ctype_lower(string|int $input): bool {}
 
-function ctype_graph($text): bool {}
+function ctype_graph(string|int $input): bool {}
 
-function ctype_print($text): bool {}
+function ctype_print(string|int $input): bool {}
 
-function ctype_punct($text): bool {}
+function ctype_punct(string|int $input): bool {}
 
-function ctype_space($text): bool {}
+function ctype_space(string|int $input): bool {}
 
-function ctype_upper($text): bool {}
+function ctype_upper(string|int $input): bool {}
 
-function ctype_xdigit($text): bool {}
+function ctype_xdigit(string|int $input): bool {}

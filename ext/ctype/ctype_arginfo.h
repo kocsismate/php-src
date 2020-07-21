@@ -1,8 +1,8 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: a5de84e1cb6919e7dfc69a42b7f05967ebca24c3 */
+ * Stub hash: 277f7c513510a4d53514d4fc12e6be6f24b4a161 */
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ctype_alnum, 0, 1, _IS_BOOL, 0)
-	ZEND_ARG_INFO(0, text)
+	ZEND_ARG_TYPE_MASK(0, input, MAY_BE_STRING|MAY_BE_LONG, NULL)
 ZEND_END_ARG_INFO()
 
 #define arginfo_ctype_alpha arginfo_ctype_alnum

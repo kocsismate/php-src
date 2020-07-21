@@ -85,9 +85,14 @@ $inputs = array(
 $iterator = 1;
 foreach($inputs as $input) {
   echo "\n-- Iteration $iterator --\n";
-  var_dump( ctype_digit($input) );
+
+  try {
+    var_dump(ctype_digit($input));
+  } catch (TypeError $exception) {
+    echo $exception->getMessage() . "\n";
+  }
   $iterator++;
-};
+}
 
 fclose($fp);
 
@@ -115,7 +120,7 @@ bool(false)
 bool(false)
 
 -- Iteration 7 --
-bool(false)
+bool(true)
 
 -- Iteration 8 --
 bool(false)
@@ -148,7 +153,7 @@ bool(false)
 bool(false)
 
 -- Iteration 18 --
-bool(false)
+ctype_digit(): Argument #1 ($input) must be of type string|int, array given
 
 -- Iteration 19 --
 bool(true)
@@ -160,7 +165,7 @@ bool(true)
 bool(true)
 
 -- Iteration 22 --
-bool(false)
+bool(true)
 
 -- Iteration 23 --
 bool(false)
@@ -169,4 +174,4 @@ bool(false)
 bool(false)
 
 -- Iteration 25 --
-bool(false)
+ctype_digit(): Argument #1 ($input) must be of type string|int, resource given

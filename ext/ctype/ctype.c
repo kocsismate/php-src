@@ -63,22 +63,13 @@ static PHP_MINFO_FUNCTION(ctype)
 
 /* {{{ ctype */
 #define CTYPE(iswhat, allow_digits, allow_minus) \
-	zval *c; \
+	zend_string *c_str; \
+	zend_long c_long; \
 	ZEND_PARSE_PARAMETERS_START(1, 1); \
-		Z_PARAM_ZVAL(c) \
+		Z_PARAM_STR_OR_LONG(c_str, c_long) \
 	ZEND_PARSE_PARAMETERS_END(); \
-	if (Z_TYPE_P(c) == IS_LONG) { \
-		if (Z_LVAL_P(c) <= 255 && Z_LVAL_P(c) >= 0) { \
-			RETURN_BOOL(iswhat((int)Z_LVAL_P(c))); \
-		} else if (Z_LVAL_P(c) >= -128 && Z_LVAL_P(c) < 0) { \
-			RETURN_BOOL(iswhat((int)Z_LVAL_P(c) + 256)); \
-		} else if (Z_LVAL_P(c) >= 0) { \
-			RETURN_BOOL(allow_digits); \
-		} else { \
-			RETURN_BOOL(allow_minus); \
-		} \
-	} else if (Z_TYPE_P(c) == IS_STRING) { \
-		char *p = Z_STRVAL_P(c), *e = Z_STRVAL_P(c) + Z_STRLEN_P(c); \
+	if (c_str) { \
+		char *p = ZSTR_VAL(c_str), *e = ZSTR_VAL(c_str) + ZSTR_LEN(c_str); \
 		if (e == p) {	\
 			RETURN_FALSE;	\
 		}	\
@@ -89,8 +80,16 @@ static PHP_MINFO_FUNCTION(ctype)
 		} \
 		RETURN_TRUE; \
 	} else { \
-		RETURN_FALSE; \
-	} \
+		if (c_long <= 255 && c_long >= 0) { \
+			RETURN_BOOL(iswhat((int) c_long)); \
+		} else if (c_long >= -128 && c_long < 0) { \
+			RETURN_BOOL(iswhat((int) c_long + 256)); \
+		} else if (c_long >= 0) { \
+			RETURN_BOOL(allow_digits); \
+		} else { \
+			RETURN_BOOL(allow_minus); \
+		} \
+	}
 
 /* }}} */
 
