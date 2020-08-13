@@ -1,5 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: 6da0ff3370cecc919fccf7c6791828a81b44156d */
+ * Stub hash: f9e394c2bf447fb39862a904dc91b8163eb49f64 */
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_MASK_EX(arginfo_hash, 0, 2, MAY_BE_STRING|MAY_BE_FALSE)
 	ZEND_ARG_TYPE_INFO(0, algo, IS_STRING, 0)
@@ -108,10 +108,9 @@ ZEND_END_ARG_INFO()
 #endif
 
 #if defined(PHP_MHASH_BC)
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_MASK_EX(arginfo_mhash, 0, 2, MAY_BE_STRING|MAY_BE_FALSE)
-	ZEND_ARG_TYPE_INFO(0, hash, IS_LONG, 0)
-	ZEND_ARG_TYPE_INFO(0, data, IS_STRING, 0)
-	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_MASK_EX(arginfo_mhash, 0, 1, MAY_BE_STRING|MAY_BE_FALSE)
+	ZEND_ARG_INFO(0, hash)
+	ZEND_ARG_VARIADIC_INFO(0, params)
 ZEND_END_ARG_INFO()
 #endif
 

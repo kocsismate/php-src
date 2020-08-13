@@ -43,7 +43,11 @@ function mhash_keygen_s2k(int $hash, string $input_password, string $salt, int $
 
 function mhash_count(): int {}
 
-function mhash(int $hash, string $data, string $key = UNKNOWN): string|false {}
+/**
+ * @param int|string $hash
+ * @param string|bool $params
+ */
+function mhash($hash, ...$params): string|false {}
 #endif
 
 final class HashContext
