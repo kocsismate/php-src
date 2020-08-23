@@ -558,6 +558,13 @@ static inline void zend_assign_to_variable_reference(zval *variable_ptr, zval *v
 
 static zend_never_inline zval* zend_assign_to_typed_property_reference(zend_property_info *prop_info, zval *prop, zval *value_ptr EXECUTE_DATA_DC)
 {
+	if (prop_info && prop_info->flags & ZEND_ACC_INITONLY) {
+		zend_throw_error(NULL, "Cannot assign to initonly property %s::$%s by reference",
+			ZSTR_VAL(prop_info->ce->name), zend_get_unmangled_property_name(prop_info->name)
+		);
+		return &EG(uninitialized_zval);
+	}
+
 	if (!zend_verify_prop_assignable_by_ref(prop_info, value_ptr, EX_USES_STRICT_TYPES())) {
 		return &EG(uninitialized_zval);
 	}
@@ -659,6 +666,11 @@ static zend_never_inline ZEND_COLD void ZEND_FASTCALL zend_throw_non_object_erro
 	if (UNEXPECTED(RETURN_VALUE_USED(opline))) {
 		ZVAL_NULL(EX_VAR(opline->result.var));
 	}
+}
+
+static zend_never_inline ZEND_COLD void zend_initonly_property_assignment_error(zend_class_entry *ce, const char *property_name)
+{
+	zend_throw_error(NULL, "Cannot modify initonly property %s::$%s after initialization", ZSTR_VAL(ce->name), property_name);
 }
 
 static ZEND_COLD void zend_verify_type_error_common(
@@ -922,6 +934,12 @@ static zend_never_inline zval* zend_assign_to_typed_prop(zend_property_info *inf
 
 	ZVAL_DEREF(value);
 	ZVAL_COPY(&tmp, value);
+
+	if (UNEXPECTED(info->flags & ZEND_ACC_INITONLY && Z_PROP_FLAG_P(&tmp) != IS_PROP_UNINIT)) {
+		zend_initonly_property_assignment_error(info->ce, zend_get_unmangled_property_name(info->name));
+		zval_ptr_dtor(&tmp);
+		return &EG(uninitialized_zval);
+	}
 
 	if (UNEXPECTED(!i_zend_verify_property_type(info, &tmp, EX_USES_STRICT_TYPES()))) {
 		zval_ptr_dtor(&tmp);
@@ -1323,6 +1341,11 @@ static zend_never_inline void zend_binary_assign_op_typed_prop(zend_property_inf
 {
 	zval z_copy;
 
+	if (UNEXPECTED(prop_info->flags & ZEND_ACC_INITONLY)) {
+		zend_initonly_property_assignment_error(prop_info->ce, zend_get_unmangled_property_name(prop_info->name));
+		return;
+	}
+
 	zend_binary_op(&z_copy, zptr, value OPLINE_CC);
 	if (EXPECTED(zend_verify_property_type(prop_info, &z_copy, EX_USES_STRICT_TYPES()))) {
 		zval_ptr_dtor(zptr);
@@ -1626,6 +1649,14 @@ static ZEND_COLD zend_long zend_throw_incdec_prop_error(zend_property_info *prop
 	}
 }
 
+static ZEND_COLD void zend_throw_final_property_incdec_error(zend_property_info *prop OPLINE_DC) {
+	if (ZEND_IS_INCREMENT(opline->opcode)) {
+		zend_throw_error(NULL, "Cannot increment initonly property %s::$%s", ZSTR_VAL(prop->ce->name), zend_get_unmangled_property_name(prop->name));
+	} else {
+		zend_throw_error(NULL, "Cannot decrement initonly property %s::$%s", ZSTR_VAL(prop->ce->name), zend_get_unmangled_property_name(prop->name));
+	}
+}
+
 static void zend_incdec_typed_ref(zend_reference *ref, zval *copy OPLINE_DC EXECUTE_DATA_DC)
 {
 	zval tmp;
@@ -1662,6 +1693,11 @@ static void zend_incdec_typed_prop(zend_property_info *prop_info, zval *var_ptr,
 {
 	zval tmp;
 
+	if (UNEXPECTED(prop_info->flags & ZEND_ACC_INITONLY)) {
+		zend_throw_final_property_incdec_error(prop_info OPLINE_CC);
+		return;
+	}
+
 	if (!copy) {
 		copy = &tmp;
 	}
@@ -1691,11 +1727,17 @@ static void zend_incdec_typed_prop(zend_property_info *prop_info, zval *var_ptr,
 static void zend_pre_incdec_property_zval(zval *prop, zend_property_info *prop_info OPLINE_DC EXECUTE_DATA_DC)
 {
 	if (EXPECTED(Z_TYPE_P(prop) == IS_LONG)) {
+		if (UNEXPECTED(prop_info && prop_info->flags & ZEND_ACC_INITONLY)) {
+			zend_throw_final_property_incdec_error(prop_info OPLINE_CC);
+			return;
+		}
+
 		if (ZEND_IS_INCREMENT(opline->opcode)) {
 			fast_long_increment_function(prop);
 		} else {
 			fast_long_decrement_function(prop);
 		}
+
 		if (UNEXPECTED(Z_TYPE_P(prop) != IS_LONG) && UNEXPECTED(prop_info)
 				&& !(ZEND_TYPE_FULL_MASK(prop_info->type) & MAY_BE_DOUBLE)) {
 			zend_long val = zend_throw_incdec_prop_error(prop_info OPLINE_CC);
@@ -1730,11 +1772,18 @@ static void zend_post_incdec_property_zval(zval *prop, zend_property_info *prop_
 {
 	if (EXPECTED(Z_TYPE_P(prop) == IS_LONG)) {
 		ZVAL_LONG(EX_VAR(opline->result.var), Z_LVAL_P(prop));
+
+		if (UNEXPECTED(prop_info && prop_info->flags & ZEND_ACC_INITONLY)) {
+			zend_throw_final_property_incdec_error(prop_info OPLINE_CC);
+			return;
+		}
+
 		if (ZEND_IS_INCREMENT(opline->opcode)) {
 			fast_long_increment_function(prop);
 		} else {
 			fast_long_decrement_function(prop);
 		}
+
 		if (UNEXPECTED(Z_TYPE_P(prop) != IS_LONG) && UNEXPECTED(prop_info)
 				&& !(ZEND_TYPE_FULL_MASK(prop_info->type) & MAY_BE_DOUBLE)) {
 			zend_long val = zend_throw_incdec_prop_error(prop_info OPLINE_CC);
@@ -1770,7 +1819,7 @@ static zend_never_inline void zend_post_incdec_overloaded_property(zend_object *
 	zval z_copy;
 
 	GC_ADDREF(object);
-	z =object->handlers->read_property(object, name, BP_VAR_R, cache_slot, &rv);
+	z = object->handlers->read_property(object, name, BP_VAR_R, cache_slot, &rv);
 	if (UNEXPECTED(EG(exception))) {
 		OBJ_RELEASE(object);
 		ZVAL_UNDEF(EX_VAR(opline->result.var));
@@ -2670,8 +2719,32 @@ static zend_never_inline zend_bool zend_handle_fetch_obj_flags(
 						break;
 					}
 				}
+
+				if (prop_info->flags & ZEND_ACC_INITONLY && Z_PROP_FLAG_P(ptr) != IS_PROP_UNINIT) {
+					zend_throw_error(NULL, "Cannot modify initonly property %s::$%s after initialization",
+						ZSTR_VAL(prop_info->ce->name), zend_get_unmangled_property_name(prop_info->name)
+					);
+					if (result) ZVAL_ERROR(result);
+					return 0;
+				}
+
 				if (!check_type_array_assignable(prop_info->type)) {
 					zend_throw_auto_init_in_prop_error(prop_info, "array");
+					if (result) ZVAL_ERROR(result);
+					return 0;
+				}
+			} else if (Z_TYPE_P(ptr) == IS_ARRAY) {
+				if (!prop_info) {
+					prop_info = zend_object_fetch_property_type_info(obj, ptr);
+					if (!prop_info) {
+						break;
+					}
+				}
+
+				if (prop_info->flags & ZEND_ACC_INITONLY) {
+					zend_throw_error(NULL, "Cannot modify initonly property %s::$%s after initialization",
+						ZSTR_VAL(prop_info->ce->name), zend_get_unmangled_property_name(prop_info->name)
+					);
 					if (result) ZVAL_ERROR(result);
 					return 0;
 				}
@@ -2685,6 +2758,15 @@ static zend_never_inline zend_bool zend_handle_fetch_obj_flags(
 						break;
 					}
 				}
+
+				if (prop_info->flags & ZEND_ACC_INITONLY) {
+					zend_throw_error(NULL, "Cannot acquire reference to initonly property %s::$%s",
+						ZSTR_VAL(prop_info->ce->name), zend_get_unmangled_property_name(prop_info->name)
+					);
+					if (result) ZVAL_ERROR(result);
+					return 0;
+				}
+
 				if (Z_TYPE_P(ptr) == IS_UNDEF) {
 					if (!ZEND_TYPE_ALLOW_NULL(prop_info->type)) {
 						zend_throw_access_uninit_prop_by_ref_error(prop_info);
@@ -2696,6 +2778,22 @@ static zend_never_inline zend_bool zend_handle_fetch_obj_flags(
 
 				ZVAL_NEW_REF(ptr, ptr);
 				ZEND_REF_ADD_TYPE_SOURCE(Z_REF_P(ptr), prop_info);
+			}
+			break;
+		case ZEND_FETCH_DIM_UNSET_FLAG:
+			if (!prop_info) {
+				prop_info = zend_object_fetch_property_type_info(obj, ptr);
+				if (!prop_info) {
+					break;
+				}
+			}
+
+			if (prop_info->flags & ZEND_ACC_INITONLY && Z_PROP_FLAG_P(ptr) != IS_PROP_UNINIT) {
+				zend_throw_error(NULL, "Cannot modify initonly property %s::$%s after initialization",
+					ZSTR_VAL(prop_info->ce->name), zend_get_unmangled_property_name(prop_info->name)
+				);
+				if (result) ZVAL_ERROR(result);
+				return 0;
 			}
 			break;
 		EMPTY_SWITCH_DEFAULT_CASE()
@@ -3201,10 +3299,12 @@ ZEND_API zval* zend_assign_to_typed_ref(zval *variable_ptr, zval *orig_value, ze
 
 ZEND_API zend_bool ZEND_FASTCALL zend_verify_prop_assignable_by_ref(zend_property_info *prop_info, zval *orig_val, zend_bool strict) {
 	zval *val = orig_val;
+
 	if (Z_ISREF_P(val) && ZEND_REF_HAS_TYPE_SOURCES(Z_REF_P(val))) {
 		int result;
 
 		val = Z_REFVAL_P(val);
+
 		result = i_zend_verify_type_assignable_zval(prop_info, val, strict);
 		if (result > 0) {
 			return 1;
@@ -3225,6 +3325,7 @@ ZEND_API zend_bool ZEND_FASTCALL zend_verify_prop_assignable_by_ref(zend_propert
 		}
 	} else {
 		ZVAL_DEREF(val);
+
 		if (i_zend_check_property_type(prop_info, val, strict)) {
 			return 1;
 		}

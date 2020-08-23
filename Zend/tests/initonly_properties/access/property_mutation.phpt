@@ -1,0 +1,85 @@
+--TEST--
+Test that initonly properties can't be mutated
+--FILE--
+<?php
+
+class Foo
+{
+    initonly public int $property1;
+    initonly protected string $property2 = "Foo";
+    initonly public array $property3;
+    initonly public stdClass $property4;
+
+    public function __construct()
+    {
+        $this->property1 = 1;
+        $this->property4 = new stdClass();
+    }
+
+    public function getProperty1(): int
+    {
+        return $this->property1;
+    }
+
+    public function withProperty1(int $property): Foo
+    {
+        $this->property1 = $property;
+
+        return $this;
+    }
+
+    public function getProperty2(): string
+    {
+        return $this->property2;
+    }
+
+    public function withProperty2(string $property): Foo
+    {
+        $this->property2 = $property;
+
+        return $this;
+    }
+}
+
+$foo = new Foo();
+
+try {
+    $foo = $foo->withProperty1(1);
+} catch (Error $exception) {
+    echo $exception->getMessage() . "\n";
+}
+
+try {
+    $foo = $foo->withProperty2("Bar");
+} catch (Error $exception) {
+    echo $exception->getMessage() . "\n";
+}
+
+$foo->property3[] = 1;
+
+try {
+    $foo->property3[] = 1;
+} catch (Error $exception) {
+    echo $exception->getMessage() . "\n";
+}
+
+try {
+    $foo->property3["foo"] = 1;
+} catch (Error $exception) {
+    echo $exception->getMessage() . "\n";
+}
+
+var_dump($foo->property3);
+
+$foo->property4->foo = "foo";
+
+?>
+--EXPECT--
+Cannot modify initonly property Foo::$property1 after initialization
+Cannot modify initonly property Foo::$property2 after initialization
+Cannot modify initonly property Foo::$property3 after initialization
+Cannot modify initonly property Foo::$property3 after initialization
+array(1) {
+  [0]=>
+  int(1)
+}

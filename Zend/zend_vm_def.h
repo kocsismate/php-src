@@ -2298,7 +2298,10 @@ ZEND_VM_HANDLER(97, ZEND_FETCH_OBJ_UNSET, VAR|UNUSED|THIS|CV, CONST|TMPVAR|CV, C
 	container = GET_OP1_OBJ_ZVAL_PTR_PTR_UNDEF(BP_VAR_UNSET);
 	property = GET_OP2_ZVAL_PTR(BP_VAR_R);
 	result = EX_VAR(opline->result.var);
-	zend_fetch_property_address(result, container, OP1_TYPE, property, OP2_TYPE, ((OP2_TYPE == IS_CONST) ? CACHE_ADDR(opline->extended_value) : NULL), BP_VAR_UNSET, 0, 1 OPLINE_CC EXECUTE_DATA_CC);
+	zend_fetch_property_address(result, container, OP1_TYPE, property, OP2_TYPE,
+		((OP2_TYPE == IS_CONST) ? CACHE_ADDR(opline->extended_value) : NULL), BP_VAR_UNSET,
+		opline->extended_value & ZEND_FETCH_DIM_UNSET_FLAG, 1 OPLINE_CC EXECUTE_DATA_CC
+	);
 	FREE_OP2();
 	if (OP1_TYPE == IS_VAR) {
 		FREE_VAR_PTR_AND_EXTRACT_RESULT_IF_NECESSARY(opline->op1.var);
@@ -6858,15 +6861,23 @@ ZEND_VM_HANDLER(126, ZEND_FE_FETCH_RW, VAR, ANY, JMP_ADDR)
 						value_type = Z_TYPE_INFO_P(value);
 						if (EXPECTED(value_type != IS_UNDEF)
 						 && EXPECTED(zend_check_property_access(Z_OBJ_P(array), p->key, 0) == SUCCESS)) {
-							if ((value_type & Z_TYPE_MASK) != IS_REFERENCE) {
-								zend_property_info *prop_info =
-									zend_get_typed_property_info_for_slot(Z_OBJ_P(array), value);
-								if (UNEXPECTED(prop_info)) {
+						 	zend_property_info *prop_info = zend_get_typed_property_info_for_slot(Z_OBJ_P(array), value);
+							if (UNEXPECTED(prop_info)) {
+								if (UNEXPECTED(prop_info->flags & ZEND_ACC_INITONLY)) {
+									zend_throw_error(NULL, "Cannot acquire reference to initonly property %s::$%s",
+										ZSTR_VAL(prop_info->ce->name), zend_get_unmangled_property_name(prop_info->name)
+									);
+									UNDEF_RESULT();
+									HANDLE_EXCEPTION();
+                                }
+
+								if ((value_type & Z_TYPE_MASK) != IS_REFERENCE) {
 									ZVAL_NEW_REF(value, value);
 									ZEND_REF_ADD_TYPE_SOURCE(Z_REF_P(value), prop_info);
 									value_type = IS_REFERENCE_EX;
 								}
 							}
+
 							break;
 						}
 					} else if (EXPECTED(Z_OBJCE_P(array)->default_properties_count == 0)

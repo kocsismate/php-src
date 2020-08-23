@@ -1048,6 +1048,16 @@ static void do_inherit_property(zend_property_info *parent_info, zend_string *ke
 				child_info->offset = parent_info->offset;
 			}
 
+			if (UNEXPECTED(child_info->flags & ZEND_ACC_INITONLY && !(parent_info->flags & ZEND_ACC_INITONLY))) {
+				zend_error_noreturn(E_COMPILE_ERROR,
+					"Cannot redeclare non-initonly property %s::$%s as initonly %s::$%s",
+					ZSTR_VAL(parent_info->ce->name),
+					ZSTR_VAL(key),
+					ZSTR_VAL(ce->name),
+					ZSTR_VAL(key)
+				);
+			}
+
 			if (UNEXPECTED(ZEND_TYPE_IS_SET(parent_info->type))) {
 				inheritance_status status = property_types_compatible(parent_info, child_info);
 				if (status == INHERITANCE_ERROR) {
@@ -2040,7 +2050,7 @@ static void zend_do_traits_property_binding(zend_class_entry *ce, zend_class_ent
 				}
 			}
 
-			/* property not found, so lets add it */
+			/* property not found, so let's add it */
 			if (flags & ZEND_ACC_STATIC) {
 				prop_value = &traits[i]->default_static_members_table[property_info->offset];
 				ZEND_ASSERT(Z_TYPE_P(prop_value) != IS_INDIRECT);

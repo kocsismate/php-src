@@ -828,6 +828,10 @@ uint32_t zend_add_member_modifier(uint32_t flags, uint32_t new_flag) /* {{{ */
 		zend_throw_exception(zend_ce_compile_error, "Multiple final modifiers are not allowed", 0);
 		return 0;
 	}
+	if ((flags & ZEND_ACC_INITONLY) && (new_flag & ZEND_ACC_INITONLY)) {
+		zend_throw_exception(zend_ce_compile_error, "Multiple initonly modifiers are not allowed", 0);
+		return 0;
+	}
 	if ((new_flags & ZEND_ACC_ABSTRACT) && (new_flags & ZEND_ACC_FINAL)) {
 		zend_throw_exception(zend_ce_compile_error,
 			"Cannot use the final modifier on an abstract class member", 0);
@@ -2742,6 +2746,8 @@ static zend_op *zend_delayed_compile_dim(znode *result, zend_ast *ast, uint32_t 
 	opline = zend_delayed_compile_var(&var_node, var_ast, type, 0);
 	if (opline && type == BP_VAR_W && (opline->opcode == ZEND_FETCH_STATIC_PROP_W || opline->opcode == ZEND_FETCH_OBJ_W)) {
 		opline->extended_value |= ZEND_FETCH_DIM_WRITE;
+	} else if (opline && type == BP_VAR_UNSET && (opline->opcode == ZEND_FETCH_STATIC_PROP_UNSET || opline->opcode == ZEND_FETCH_OBJ_UNSET)) {
+		/*opline->extended_value |= ZEND_FETCH_DIM_UNSET_FLAG;*/
 	}
 
 	zend_separate_if_call_and_write(&var_node, var_ast, type);
@@ -6778,6 +6784,12 @@ zend_string *zend_begin_method_decl(zend_op_array *op_array, zend_string *name, 
 			ZSTR_VAL(ce->name), ZSTR_VAL(name));
 	}
 
+	if (op_array->fn_flags & ZEND_ACC_INITONLY) {
+		zend_error_noreturn(E_COMPILE_ERROR, "Cannot declare function %s::$%s initonly, "
+			"the initonly modifier is allowed only for properties",
+			ZSTR_VAL(ce->name), ZSTR_VAL(name));
+	}
+
 	op_array->scope = ce;
 	op_array->function_name = zend_string_copy(name);
 
@@ -7018,6 +7030,11 @@ void zend_compile_prop_decl(zend_ast *ast, zend_ast *type_ast, uint32_t flags, z
 					"Property %s::$%s cannot have type %s",
 					ZSTR_VAL(ce->name), ZSTR_VAL(name), ZSTR_VAL(str));
 			}
+		} else if (flags & ZEND_ACC_INITONLY) {
+			zend_error_noreturn(E_COMPILE_ERROR,
+				"initonly property %s::$%s must have a type",
+				ZSTR_VAL(ce->name), ZSTR_VAL(name)
+			);
 		}
 
 		/* Doc comment has been appended as last element in ZEND_AST_PROP_ELEM ast */
@@ -7090,6 +7107,8 @@ static void zend_check_const_and_trait_alias_attr(uint32_t attr, const char* ent
 		zend_error_noreturn(E_COMPILE_ERROR, "Cannot use 'abstract' as %s modifier", entity);
 	} else if (attr & ZEND_ACC_FINAL) {
 		zend_error_noreturn(E_COMPILE_ERROR, "Cannot use 'final' as %s modifier", entity);
+	} else if (attr & ZEND_ACC_INITONLY) {
+		zend_error_noreturn(E_COMPILE_ERROR, "Cannot use 'initonly' as %s modifier", entity);
 	}
 }
 /* }}} */
@@ -7115,7 +7134,7 @@ void zend_compile_class_const_decl(zend_ast *ast, uint32_t flags, zend_ast *attr
 		zend_string *doc_comment = doc_comment_ast ? zend_string_copy(zend_ast_get_str(doc_comment_ast)) : NULL;
 		zval value_zv;
 
-		if (UNEXPECTED(flags & (ZEND_ACC_STATIC|ZEND_ACC_ABSTRACT|ZEND_ACC_FINAL))) {
+		if (UNEXPECTED(flags & (ZEND_ACC_STATIC|ZEND_ACC_ABSTRACT|ZEND_ACC_FINAL|ZEND_ACC_INITONLY))) {
 			zend_check_const_and_trait_alias_attr(flags, "constant");
 		}
 

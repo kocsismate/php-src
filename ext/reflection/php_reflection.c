@@ -1470,6 +1470,9 @@ ZEND_METHOD(Reflection, getModifierNames)
 	if (modifiers & ZEND_ACC_FINAL) {
 		add_next_index_stringl(return_value, "final", sizeof("final")-1);
 	}
+	if (modifiers & ZEND_ACC_INITONLY) {
+		add_next_index_stringl(return_value, "initonly", sizeof("initonly")-1);
+	}
 
 	/* These are mutually exclusive */
 	switch (modifiers & ZEND_ACC_PPP_MASK) {
@@ -5266,7 +5269,14 @@ ZEND_METHOD(ReflectionProperty, isProtected)
 }
 /* }}} */
 
-/* {{{ Returns whether this property is static */
+/* Returns whether this property is final */
+ZEND_METHOD(ReflectionProperty, isInitonly)
+{
+	_property_check_flag(INTERNAL_FUNCTION_PARAM_PASSTHRU, ZEND_ACC_INITONLY);
+}
+/* }}} */
+
+/* Returns whether this property is static */
 ZEND_METHOD(ReflectionProperty, isStatic)
 {
 	_property_check_flag(INTERNAL_FUNCTION_PARAM_PASSTHRU, ZEND_ACC_STATIC);
@@ -5299,7 +5309,7 @@ ZEND_METHOD(ReflectionProperty, getModifiers)
 {
 	reflection_object *intern;
 	property_reference *ref;
-	uint32_t keep_flags = ZEND_ACC_PPP_MASK | ZEND_ACC_STATIC;
+	uint32_t keep_flags = ZEND_ACC_PPP_MASK | ZEND_ACC_STATIC | ZEND_ACC_FINAL;
 
 	if (zend_parse_parameters_none() == FAILURE) {
 		RETURN_THROWS();

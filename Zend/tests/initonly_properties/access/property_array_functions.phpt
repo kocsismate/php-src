@@ -1,0 +1,26 @@
+--TEST--
+Test that initonly properties can be used with key() and current(), but not with next()
+--FILE--
+<?php
+
+class Foo
+{
+    initonly public array $property1 = ["foo", "bar", "baz"];
+}
+
+$foo = new Foo();
+
+var_dump(current($foo->property1));
+var_dump(key($foo->property1));
+
+try {
+    next($foo->property1);
+} catch (Error $exception) {
+    echo $exception->getMessage() . "\n";
+}
+
+?>
+--EXPECT--
+string(3) "foo"
+int(0)
+Cannot acquire reference to initonly property Foo::$property1

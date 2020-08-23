@@ -221,6 +221,9 @@ typedef struct _zend_oparray_context {
 /* Final class or method                                  |     |     |     */
 #define ZEND_ACC_FINAL                   (1 <<  5) /*  X  |  X  |     |     */
 /*                                                        |     |     |     */
+/* initonly property                                      |     |     |     */
+#define ZEND_ACC_INITONLY                (1 <<  7) /*     |     |  X  |     */
+/*                                                        |     |     |     */
 /* Abstract method                                        |     |     |     */
 #define ZEND_ACC_ABSTRACT                (1 <<  6) /*  X  |  X  |     |     */
 #define ZEND_ACC_EXPLICIT_ABSTRACT_CLASS (1 <<  6) /*  X  |     |     |     */
@@ -937,9 +940,10 @@ ZEND_API zend_string *zend_type_to_string(zend_type type);
 #define ZEND_FETCH_TYPE_MASK	0xe
 
 /* Only one of these can ever be in use */
-#define ZEND_FETCH_REF			1
-#define ZEND_FETCH_DIM_WRITE	2
-#define ZEND_FETCH_OBJ_FLAGS	3
+#define ZEND_FETCH_REF				1
+#define ZEND_FETCH_DIM_WRITE		2
+#define ZEND_FETCH_DIM_UNSET_FLAG	3
+#define ZEND_FETCH_OBJ_FLAGS		3
 
 #define ZEND_ISEMPTY			(1<<0)
 
