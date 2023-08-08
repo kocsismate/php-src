@@ -2,13 +2,15 @@
 odbc_exec(): Getting accurate unicode data from query
 --EXTENSIONS--
 odbc
+mbstring
 --SKIPIF--
-<?php include 'skipif.inc'; ?>
 <?php
     if ("unixODBC" != ODBC_TYPE) {
         die("skip ODBC_TYPE != unixODBC");
     }
 ?>
+--XFAIL--
+Uses syntax incompatible with MS SQL (CREATE DATABASE ... ENCODING)
 --FILE--
 <?php
 
