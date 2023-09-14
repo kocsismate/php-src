@@ -16,6 +16,7 @@ $pipes = [];
 $cmd = 'cmd.exe "/c START ^"^" /WAIT ' . getenv('TEST_PHP_EXECUTABLE_ESCAPED') . ' -r ^"var_dump(fgets(STDIN));"';
 $proc = proc_open($cmd, $descriptorspec, $pipes);
 var_dump($proc);
+var_dump(proc_get_status($proc));
 $pid = proc_get_status($proc)['pid'];
 sleep(3);
 $bug_is_present = !proc_get_status($proc)['running'];
@@ -24,8 +25,8 @@ if (!$bug_is_present) {
     // thus cmd is still running and we should kill it
     shell_exec("taskkill /T /F /PID {$pid} 2>nul");
 }
-fclose($pipes[0]);
-fclose($pipes[1]);
+//fclose($pipes[0]);
+//fclose($pipes[1]);
 proc_close($proc);
 var_dump($bug_is_present);
 ?>
