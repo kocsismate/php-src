@@ -1,5 +1,8 @@
 <?php
 
+/** @var int */
+const DUMMY = 1;
+
 /** @generate-class-entries */
 
 /** @refcount 1 */
