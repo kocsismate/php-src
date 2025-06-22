@@ -72,6 +72,7 @@
 # include <uriparser/Uri.h>
 # include "UriCommon.h"
 # include "UriMemory.h"
+# include "UriNormalize.h"
 # include "UriCopy.h"
 #endif
 
@@ -102,13 +103,13 @@ static void URI_FUNC(PreventLeakageAfterCopy)(URI_TYPE(Uri) * uri,
 
 int URI_FUNC(CopyUriMm)(URI_TYPE(Uri) * destUri,
 		 const URI_TYPE(Uri) * sourceUri, UriMemoryManager * memory) {
-	if (sourceUri == NULL) {
+	unsigned int doneMask = URI_NORMALIZED;
+
+	if (sourceUri == NULL || destUri == NULL) {
 		return URI_ERROR_NULL;
 	}
 
 	URI_CHECK_MEMORY_MANAGER(memory); /* may return */
-
-	unsigned int doneMask = URI_NORMALIZED;
 
 	if (URI_FUNC(CopyRangeAsNeeded)(&destUri->scheme, &sourceUri->scheme, URI_FALSE, memory) == URI_FALSE) {
 		return URI_ERROR_MALLOC;
@@ -141,8 +142,6 @@ int URI_FUNC(CopyUriMm)(URI_TYPE(Uri) * destUri,
 		*(destUri->hostData.ip4) = *(sourceUri->hostData.ip4);
 	}
 
-	doneMask |= URI_NORMALIZE_HOST;
-
 	if (sourceUri->hostData.ip6 == NULL) {
 		destUri->hostData.ip6 = NULL;
 	} else {
@@ -166,47 +165,44 @@ int URI_FUNC(CopyUriMm)(URI_TYPE(Uri) * destUri,
 
 	doneMask |= URI_NORMALIZE_PORT;
 
-	if (sourceUri->pathHead != NULL && sourceUri->pathTail != NULL) {
-		URI_TYPE(PathSegment) *walker;
-		URI_TYPE(PathSegment) *walkerNew;
+	destUri->pathHead = NULL;
+	destUri->pathTail = NULL;
 
-		destUri->pathHead = memory->malloc(memory, sizeof(URI_TYPE(PathSegment)));
-		if (destUri->pathHead == NULL) {
-			URI_FUNC(PreventLeakageAfterCopy)(destUri, doneMask, memory);
-			return URI_ERROR_MALLOC;
-		}
+	if (sourceUri->pathHead != NULL) {
+		URI_TYPE(PathSegment) * sourceWalker = sourceUri->pathHead;
+		URI_TYPE(PathSegment) * destPrev = NULL;
 
-		if (URI_FUNC(CopyRangeAsNeeded)(&destUri->pathHead->text, &sourceUri->pathHead->text, URI_TRUE, memory) == URI_FALSE) {
-			URI_FUNC(PreventLeakageAfterCopy)(destUri, doneMask, memory);
-			memory->free(memory, destUri->pathHead);
-			return URI_ERROR_MALLOC;
-		}
-		destUri->pathHead->reserved = NULL;
-
-		doneMask |= URI_NORMALIZE_PATH;
-
-		walker = sourceUri->pathHead->next;
-		walkerNew = destUri->pathHead;
-		while (walker != NULL && (walker->text.first != walker->text.afterLast || walker->text.first == URI_FUNC(SafeToPointTo))) {
-			walkerNew->next = memory->malloc(memory, sizeof(URI_TYPE(PathSegment)));
-			if (walkerNew->next == NULL) {
+		while (sourceWalker != NULL) {
+			URI_TYPE(PathSegment) * destWalker = memory->malloc(memory, sizeof(URI_TYPE(PathSegment)));
+			if (destWalker == NULL) {
 				URI_FUNC(PreventLeakageAfterCopy)(destUri, doneMask, memory);
 				return URI_ERROR_MALLOC;
 			}
 
-			walkerNew = walkerNew->next;
-			if (URI_FUNC(CopyRangeAsNeeded)(&walkerNew->text, &walker->text, URI_TRUE, memory) == URI_FALSE) {
+			destWalker->text.first = NULL;
+			destWalker->text.afterLast = NULL;
+			destWalker->next = NULL;
+			destWalker->reserved = NULL;
+
+			if (destUri->pathHead == NULL) {
+				destUri->pathHead = destWalker;
+				doneMask |= URI_NORMALIZE_PATH;
+			}
+
+			if (URI_FUNC(CopyRangeAsNeeded)(&destWalker->text, &sourceWalker->text, URI_TRUE, memory) == URI_FALSE) {
 				URI_FUNC(PreventLeakageAfterCopy)(destUri, doneMask, memory);
 				return URI_ERROR_MALLOC;
 			}
-			walkerNew->reserved = NULL;
-			walker = walker->next;
+
+			if (destPrev != NULL) {
+				destPrev->next = destWalker;
+			}
+
+			destPrev = destWalker;
+			sourceWalker = sourceWalker->next;
+
+			destUri->pathTail = destPrev;
 		}
-		walkerNew->next = NULL;
-		destUri->pathTail = walkerNew;
-	} else {
-		destUri->pathHead = NULL;
-		destUri->pathTail = NULL;
 	}
 
 	if (URI_FUNC(CopyRangeAsNeeded)(&destUri->query, &sourceUri->query, URI_FALSE, memory) == URI_FALSE) {

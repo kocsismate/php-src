@@ -1,8 +1,8 @@
 /*
  * uriparser - RFC 3986 URI parsing library
  *
- * Copyright (C) 2007, Weijia Song <songweijia@gmail.com>
- * Copyright (C) 2007, Sebastian Pipping <sebastian@pipping.org>
+ * Copyright (C) 2018, Weijia Song <songweijia@gmail.com>
+ * Copyright (C) 2018, Sebastian Pipping <sebastian@pipping.org>
  * Copyright (C) 2025, Máté Kocsis <kocsismate@php.net>
  * All rights reserved.
  *
@@ -47,32 +47,30 @@
 /* Include SELF twice */
 # ifdef URI_ENABLE_ANSI
 #  define URI_PASS_ANSI 1
-#  include "UriCopy.h"
+#  include "UriNormalize.h"
 #  undef URI_PASS_ANSI
 # endif
 # ifdef URI_ENABLE_UNICODE
 #  define URI_PASS_UNICODE 1
-#  include "UriCopy.h"
+#  include "UriNormalize.h"
 #  undef URI_PASS_UNICODE
 # endif
 /* Only one pass for each encoding */
-#elif (defined(URI_PASS_ANSI) && !defined(URI_COPY_H_ANSI) \
+#elif (defined(URI_PASS_ANSI) && !defined(URI_NORMALIZE_H_ANSI) \
 	&& defined(URI_ENABLE_ANSI)) || (defined(URI_PASS_UNICODE) \
-	&& !defined(URI_COPY_H_UNICODE) && defined(URI_ENABLE_UNICODE))
+	&& !defined(URI_NORMALIZE_H_UNICODE) && defined(URI_ENABLE_UNICODE))
 # ifdef URI_PASS_ANSI
-#  define URI_COPY_H_ANSI 1
+#  define URI_NORMALIZE_H_ANSI 1
 #  include <uriparser/UriDefsAnsi.h>
 # else
-#  define URI_COPY_H_UNICODE 1
+#  define URI_NORMALIZE_H_UNICODE 1
 #  include <uriparser/UriDefsUnicode.h>
 # endif
 
 
 
-int URI_FUNC(CopyUriMm)(URI_TYPE(Uri) * destUri,
-		const URI_TYPE(Uri) * sourceUri, UriMemoryManager * memory);
-int URI_FUNC(CopyUri)(URI_TYPE(Uri) * destUri,
-		const URI_TYPE(Uri) * sourceUri);
+void URI_FUNC(PreventLeakage)(URI_TYPE(Uri) * uri,
+		unsigned int revertMask, UriMemoryManager * memory);
 
 #endif
 #endif
