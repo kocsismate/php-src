@@ -106,5 +106,6 @@ void URI_FUNC(FixEmptyTrailSegment)(URI_TYPE(Uri) * uri,
 		UriMemoryManager * memory);
 
 
+
 #endif
 #endif
