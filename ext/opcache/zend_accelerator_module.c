@@ -596,7 +596,7 @@ zend_module_entry opcache_module_entry = {
 	ext_functions,
 	ZEND_MINIT(zend_accelerator),
 	ZEND_MSHUTDOWN(zend_accelerator),
-	ZEND_RINIT(zend_accelerator),
+	NULL,
 	NULL,
 	zend_accel_info,
 	PHP_VERSION,
