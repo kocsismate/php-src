@@ -26,21 +26,6 @@
 #define LXB_URL_BUFFER_SIZE 4096
 #define LXB_URL_BUFFER_NUM_SIZE 128
 
-
-typedef enum {
-    LXB_URL_MAP_UNDEF         = 0x00,
-    LXB_URL_MAP_C0            = 0x01,
-    LXB_URL_MAP_FRAGMENT      = 0x02,
-    LXB_URL_MAP_QUERY         = 0x04,
-    LXB_URL_MAP_SPECIAL_QUERY = 0x08,
-    LXB_URL_MAP_PATH          = 0x10,
-    LXB_URL_MAP_USERINFO      = 0x20,
-    LXB_URL_MAP_COMPONENT     = 0x40,
-    LXB_URL_MAP_X_WWW_FORM    = 0x80,
-    LXB_URL_MAP_ALL           = 0xff
-}
-lxb_url_map_type_t;
-
 typedef enum {
     LXB_URL_HOST_OPT_UNDEF       = 0 << 0,
     LXB_URL_HOST_OPT_NOT_SPECIAL = 1 << 0,
@@ -568,13 +553,6 @@ lxb_url_percent_encode_after_encoding(const lxb_char_t *data,
                                       bool space_as_plus);
 
 static lxb_status_t
-lxb_url_percent_encode_after_utf_8(const lxb_char_t *data,
-                                   const lxb_char_t *end, lexbor_str_t *str,
-                                   lexbor_mraw_t *mraw,
-                                   lxb_url_map_type_t enmap,
-                                   bool space_as_plus);
-
-static lxb_status_t
 lxb_url_host_parse(lxb_url_parser_t *parser, const lxb_char_t *data,
                    const lxb_char_t *end, lxb_url_host_t *host,
                    lexbor_mraw_t *mraw, lxb_url_host_opt_t opt);
@@ -858,12 +836,6 @@ lxb_url_is_url_codepoint(lxb_codepoint_t cp)
     }
 
     return lxb_url_codepoint_alphanumeric[(lxb_char_t) cp] != 0xFF;
-}
-
-lxb_inline bool
-lxb_url_is_special(const lxb_url_t *url)
-{
-    return url->scheme.type != LXB_URL_SCHEMEL_TYPE__UNKNOWN;
 }
 
 lxb_inline const lxb_url_scheme_data_t *
@@ -3259,7 +3231,7 @@ lxb_url_percent_encode_after_encoding(const lxb_char_t *data,
     return LXB_STATUS_OK;
 }
 
-static lxb_status_t
+lxb_status_t
 lxb_url_percent_encode_after_utf_8(const lxb_char_t *data,
                                    const lxb_char_t *end, lexbor_str_t *str,
                                    lexbor_mraw_t *mraw,

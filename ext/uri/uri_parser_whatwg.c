@@ -30,6 +30,38 @@ ZEND_TLS lxb_unicode_idna_t lexbor_idna = {0};
 
 static const size_t lexbor_mraw_byte_size = 8192;
 
+ZEND_ATTRIBUTE_NONNULL zend_string *php_uri_parser_whatwg_percent_encode_user_info(const zend_string *str)
+{
+	/* The C0 control percent-encode set are the C0 controls and all code points greater than U+007E (~). */
+
+	lexbor_str_t lexbor_result = {0};
+
+	lxb_status_t status = lxb_url_percent_encode_after_utf_8((const lxb_char_t *) ZSTR_VAL(str), (const lxb_char_t *) ZSTR_VAL(str) + ZSTR_LEN(str),
+		&lexbor_result, &lexbor_mraw, LXB_URL_MAP_USERINFO, false);
+
+	if (status != LXB_STATUS_OK) {
+		return NULL;
+	}
+
+	return zend_string_init((const char *) lexbor_result.data, lexbor_result.length, false);
+}
+
+ZEND_ATTRIBUTE_NONNULL zend_string *php_uri_parser_whatwg_percent_encode_path(const zend_string *str)
+{
+	/* UTF-8 percent-encode c using the "path percent-encode set" */
+
+	lexbor_str_t lexbor_result = {0};
+
+	lxb_status_t status = lxb_url_percent_encode_after_utf_8((const lxb_char_t *) ZSTR_VAL(str), (const lxb_char_t *) ZSTR_VAL(str) + ZSTR_LEN(str),
+		&lexbor_result, &lexbor_mraw, LXB_URL_MAP_PATH, false);
+
+	if (status != LXB_STATUS_OK) {
+		return NULL;
+	}
+
+	return zend_string_init((const char *) lexbor_result.data, lexbor_result.length, false);
+}
+
 static zend_always_inline void zval_string_or_null_to_lexbor_str(zval *value, lexbor_str_t *lexbor_str)
 {
 	if (Z_TYPE_P(value) == IS_STRING && Z_STRLEN_P(value) > 0) {
@@ -274,6 +306,11 @@ static zend_result php_uri_parser_whatwg_scheme_write(void *uri, zval *value, zv
 	return SUCCESS;
 }
 
+ZEND_ATTRIBUTE_NONNULL bool php_uri_parser_whatwg_is_special(lxb_url_t *lexbor_uri)
+{
+	return lxb_url_is_special(lexbor_uri);
+}
+
 /* 4.2. URL miscellaneous: A URL includes credentials if its username or password is not the empty string. */
 static bool includes_credentials(const lxb_url_t *lexbor_uri)
 {
@@ -382,6 +419,33 @@ static zend_result php_uri_parser_whatwg_host_read(void *uri, php_uri_component_
 	return SUCCESS;
 }
 
+ZEND_ATTRIBUTE_NONNULL void php_uri_parser_whatwg_host_type_read(void *uri, php_uri_component_read_mode read_mode, zval *retval)
+{
+	const lxb_url_t *lexbor_uri = uri;
+
+	switch (lexbor_uri->host.type) {
+		case LXB_URL_HOST_TYPE_IPV4:
+			ZVAL_OBJ_COPY(retval, zend_enum_get_case_cstr(php_uri_ce_whatwg_url_host_type, "IPv4"));
+			return;
+		case LXB_URL_HOST_TYPE_IPV6:
+			ZVAL_OBJ_COPY(retval, zend_enum_get_case_cstr(php_uri_ce_whatwg_url_host_type, "IPv6"));
+			return;
+		case LXB_URL_HOST_TYPE_DOMAIN:
+			ZVAL_OBJ_COPY(retval, zend_enum_get_case_cstr(php_uri_ce_whatwg_url_host_type, "Domain"));
+			return;
+		case LXB_URL_HOST_TYPE_EMPTY:
+			ZVAL_OBJ_COPY(retval, zend_enum_get_case_cstr(php_uri_ce_whatwg_url_host_type, "Empty"));
+			return;
+		case LXB_URL_HOST_TYPE_OPAQUE:
+			ZVAL_OBJ_COPY(retval, zend_enum_get_case_cstr(php_uri_ce_whatwg_url_host_type, "Opaque"));
+			return;
+		case LXB_URL_HOST_TYPE__UNDEF:
+			ZVAL_NULL(retval);
+			return;
+		EMPTY_SWITCH_DEFAULT_CASE()
+	}
+}
+
 static zend_result php_uri_parser_whatwg_host_write(void *uri, zval *value, zval *errors)
 {
 	lxb_url_t *lexbor_uri = uri;
@@ -440,6 +504,19 @@ static zend_result php_uri_parser_whatwg_path_read(void *uri, php_uri_component_
 	return SUCCESS;
 }
 
+ZEND_ATTRIBUTE_NONNULL zend_result php_uri_parser_whatwg_path_segments_read(void *uri, php_uri_component_read_mode read_mode, zval *retval)
+{
+	const lxb_url_t *lexbor_uri = uri;
+
+	if (lexbor_uri->path.str.length) {
+		ZVAL_EMPTY_ARRAY(retval);
+	} else {
+		ZVAL_EMPTY_ARRAY(retval);
+	}
+
+	return SUCCESS;
+}
+
 static zend_result php_uri_parser_whatwg_path_write(void *uri, zval *value, zval *errors)
 {
 	lxb_url_t *lexbor_uri = uri;
@@ -469,12 +546,65 @@ static zend_result php_uri_parser_whatwg_query_read(void *uri, php_uri_component
 	return SUCCESS;
 }
 
+ZEND_ATTRIBUTE_NONNULL zend_result php_uri_parser_whatwg_query_params_read(void *uri, php_uri_component_read_mode read_mode, zval *retval)
+{
+	const lxb_url_t *lexbor_uri = uri;
+
+	if (lexbor_uri->query.data != NULL) {
+		lxb_url_search_params_t *query_params = php_uri_whatwg_url_query_params_from_str(
+			(const char *) lexbor_uri->query.data,
+			lexbor_uri->query.length,
+			false
+		);
+
+		if (query_params == NULL) {
+			lxb_url_search_params_destroy(query_params);
+			return FAILURE;
+		}
+
+		object_init_ex(retval, php_uri_ce_whatwg_url_query_params);
+		php_uri_parser_whatwg_url_query_params_object *url_query_params_object = Z_URL_QUERY_PARAMS_OBJECT_P(retval);
+
+		url_query_params_object->query_params = query_params;
+		url_query_params_object->is_initialized = true;
+	} else {
+		ZVAL_NULL(retval);
+	}
+
+	return SUCCESS;
+}
+
 static zend_result php_uri_parser_whatwg_query_write(void *uri, zval *value, zval *errors)
 {
 	lxb_url_t *lexbor_uri = uri;
 	lexbor_str_t str = {0};
 
 	zval_string_or_null_to_lexbor_str(value, &str);
+
+	if (lxb_url_api_search_set(lexbor_uri, &lexbor_parser, str.data, str.length) != LXB_STATUS_OK) {
+		throw_invalid_url_exception_during_write(errors, "query string");
+
+		return FAILURE;
+	}
+
+	return SUCCESS;
+}
+
+ZEND_ATTRIBUTE_NONNULL zend_result php_uri_parser_whatwg_query_params_write(void *uri, zval *value, zval *errors)
+{
+	lxb_url_t *lexbor_uri = uri;
+	lexbor_str_t str = {0};
+
+	if (Z_TYPE_P(value) == IS_NULL) {
+		zval_string_or_null_to_lexbor_str(value, &str);
+	} else {
+		ZEND_ASSERT(Z_TYPE_P(value) == IS_OBJECT && instanceof_function(Z_OBJCE_P(value), php_uri_ce_whatwg_url_query_params));
+		php_uri_parser_whatwg_url_query_params_object *url_query_params_object = Z_URL_QUERY_PARAMS_OBJECT_P(value);
+		zend_string *query_string = php_uri_whatwg_url_query_params_to_string(url_query_params_object->query_params);
+
+		str.data = (lxb_char_t *) ZSTR_VAL(query_string);
+		str.length = ZSTR_LEN(query_string);
+	}
 
 	if (lxb_url_api_search_set(lexbor_uri, &lexbor_parser, str.data, str.length) != LXB_STATUS_OK) {
 		throw_invalid_url_exception_during_write(errors, "query string");
@@ -625,6 +755,107 @@ static void php_uri_parser_whatwg_destroy(void *uri)
 	lxb_url_t *lexbor_uri = uri;
 
 	lxb_url_destroy(lexbor_uri);
+}
+
+PHPAPI ZEND_ATTRIBUTE_NONNULL void php_uri_whatwg_url_query_params_free(php_uri_parser_whatwg_url_query_params_object *url_query_params_object)
+{
+	if (url_query_params_object->query_params != NULL) {
+		lxb_url_search_params_destroy(url_query_params_object->query_params);
+		url_query_params_object->query_params = NULL;
+		url_query_params_object->is_initialized = false;
+	}
+}
+
+PHPAPI ZEND_ATTRIBUTE_NONNULL void php_uri_whatwg_url_query_params_object_handler_free(zend_object *object)
+{
+	php_uri_parser_whatwg_url_query_params_object *url_query_params_object = php_uri_whatwg_url_query_params_object_from_obj(object);
+
+	php_uri_whatwg_url_query_params_free(url_query_params_object);
+
+	zend_object_std_dtor(&url_query_params_object->std);
+}
+
+PHPAPI ZEND_ATTRIBUTE_NONNULL zend_object *php_uri_whatwg_url_query_params_object_handler_clone(zend_object *object)
+{
+	php_uri_parser_whatwg_url_query_params_object *url_query_params_object = php_uri_whatwg_url_query_params_object_from_obj(object);
+
+	php_uri_parser_whatwg_url_query_params_object *new_url_query_params_object = php_uri_whatwg_url_query_params_object_from_obj(
+		object->ce->create_object(object->ce)
+	);
+
+	new_url_query_params_object->query_params = url_query_params_object->query_params; // TODO Fix
+
+	zend_objects_clone_members(&new_url_query_params_object->std, &url_query_params_object->std);
+
+	return &new_url_query_params_object->std;
+}
+
+ZEND_ATTRIBUTE_NONNULL lxb_url_search_params_t *php_uri_whatwg_url_query_params_from_str(const char *query_str, size_t query_str_len, bool silent)
+{
+	lxb_url_search_params_t *query_params = lxb_url_search_params_init(&lexbor_mraw, (const lxb_char_t *) query_str, query_str_len);
+
+	if (query_params == NULL) {
+		if (!silent) {
+			zend_throw_exception(php_uri_ce_exception, "Failed to parse the specified query string", 0);
+		}
+	}
+
+	return query_params;
+}
+
+ZEND_ATTRIBUTE_NONNULL zend_result php_uri_whatwg_url_query_params_append(lxb_url_search_params_t *query_params,
+	const char *name, size_t name_len, const char *value, size_t value_len
+) {
+	lxb_url_search_entry_t * entry = lxb_url_search_params_append(query_params, (lxb_char_t *) name, name_len,
+		(lxb_char_t *) value, value_len);
+
+	return entry == NULL ? FAILURE : SUCCESS;
+}
+
+ZEND_ATTRIBUTE_NONNULL_ARGS(1, 2) void php_uri_whatwg_url_query_params_delete(lxb_url_search_params_t *query_params,
+	const char *name, size_t name_len, const char *value, size_t value_len
+) {
+	lxb_url_search_params_delete(query_params, (lxb_char_t *) name, name_len, (lxb_char_t *) value, value_len);
+}
+
+ZEND_ATTRIBUTE_NONNULL_ARGS(1, 2) bool php_uri_whatwg_url_query_params_exists(lxb_url_search_params_t *query_params,
+	const char *name, size_t name_len, const char *value, size_t value_len
+) {
+	return lxb_url_search_params_has(query_params, (lxb_char_t *) name, name_len, (lxb_char_t *) value, value_len);
+}
+
+ZEND_ATTRIBUTE_NONNULL zend_string *php_uri_whatwg_url_query_params_get_first(lxb_url_search_params_t *query_params,
+	const char *name, size_t name_len
+) {
+	lexbor_str_t *lxb_str = lxb_url_search_params_get(query_params, (lxb_char_t *) name, name_len);
+	if (lxb_str == NULL) {
+		return NULL;
+	}
+
+	return zend_string_init((const char *) lxb_str->data, lxb_str->length, false);
+}
+
+ZEND_ATTRIBUTE_NONNULL zend_string *php_uri_whatwg_url_query_params_to_string(lxb_url_search_params_t *query_params)
+{
+	smart_str query_str = {0};
+
+	lxb_url_search_params_serialize(query_params, serialize_to_smart_str_callback, &query_str);
+
+	return smart_str_extract(&query_str);
+}
+
+HashTable *php_uri_whatwg_url_query_params_get_debug_properties(php_uri_parser_whatwg_url_query_params_object *object)
+{
+	const HashTable *std_properties = zend_std_get_properties(&object->std);
+	HashTable *result = zend_array_dup(std_properties);
+
+	for (lxb_url_search_entry_t *param = object->query_params->first; param != NULL; param = param->next) {
+		zval tmp;
+		ZVAL_STRINGL(&tmp, (const char *) param->value.data, param->value.length);
+		zend_hash_str_add_new(result, (const char *) param->name.data, param->name.length, &tmp);
+	}
+
+	return result;
 }
 
 PHPAPI const php_uri_parser php_uri_parser_whatwg = {

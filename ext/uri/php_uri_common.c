@@ -19,6 +19,25 @@
 #include "Zend/zend_exceptions.h"
 #include "php_uri_common.h"
 
+zend_class_entry *php_uri_ce_rfc3986_uri;
+zend_class_entry *php_uri_ce_whatwg_url;
+zend_class_entry *php_uri_ce_comparison_mode;
+zend_class_entry *php_uri_ce_exception;
+zend_class_entry *php_uri_ce_error;
+zend_class_entry *php_uri_ce_invalid_uri_exception;
+zend_class_entry *php_uri_ce_rfc3986_uri_query_params;
+zend_class_entry *php_uri_ce_rfc3986_uri_type;
+zend_class_entry *php_uri_ce_rfc3986_uri_host_type;
+zend_class_entry *php_uri_ce_rfc3986_uri_percent_encoding_mode;
+zend_class_entry *php_uri_ce_whatwg_invalid_url_exception;
+zend_class_entry *php_uri_ce_whatwg_url_validation_error_type;
+zend_class_entry *php_uri_ce_whatwg_url_validation_error;
+zend_class_entry *php_uri_ce_whatwg_url_query_params;
+zend_class_entry *php_uri_ce_whatwg_url_host_type;
+zend_class_entry *php_uri_ce_whatwg_url_percent_encoding_mode;
+
+zend_array uri_parsers;
+
 static zend_string *get_known_string_by_property_name(php_uri_property_name property_name)
 {
 	switch (property_name) {
@@ -57,7 +76,7 @@ void php_uri_property_read_helper(INTERNAL_FUNCTION_PARAMETERS, php_uri_property
 	}
 }
 
-static void php_uri_property_write_helper(INTERNAL_FUNCTION_PARAMETERS, php_uri_property_name property_name, zval *property_zv)
+void php_uri_property_write_helper(INTERNAL_FUNCTION_PARAMETERS, php_uri_property_name property_name, zval *property_zv)
 {
 	php_uri_object *old_uri_object = Z_URI_OBJECT_P(ZEND_THIS);
 	ZEND_ASSERT(old_uri_object->uri != NULL);
