@@ -11,6 +11,8 @@ PHP_ARG_WITH([external-uriparser],
 PHP_INSTALL_HEADERS([ext/uri], m4_normalize([
   php_uri.h
   php_uri_common.h
+  php_uri_parser.h
+  php_uri_query.h
   uri_parser_rfc3986.h
   uri_parser_whatwg.h
   uri_parser_php_parse_url.h
@@ -38,7 +40,7 @@ else
   PHP_EVAL_INCLINE([$LIBURIPARSER_CFLAGS])
 fi
 
-PHP_NEW_EXTENSION(uri, [php_uri.c php_uri_common.c uri_parser_rfc3986.c uri_parser_whatwg.c uri_parser_php_parse_url.c $URIPARSER_SOURCES], [no],,[$URI_CFLAGS -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1])
+PHP_NEW_EXTENSION(uri, [php_uri.c php_uri_common.c php_uri_parser.c php_uri_query.c uri_parser_rfc3986.c uri_parser_whatwg.c uri_parser_php_parse_url.c $URIPARSER_SOURCES], [no],,[$URI_CFLAGS -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1])
 PHP_ADD_EXTENSION_DEP(uri, lexbor)
 
 if test "$PHP_EXTERNAL_URIPARSER" = "no"; then

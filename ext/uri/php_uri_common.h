@@ -23,9 +23,18 @@ extern zend_class_entry *php_uri_ce_comparison_mode;
 extern zend_class_entry *php_uri_ce_exception;
 extern zend_class_entry *php_uri_ce_error;
 extern zend_class_entry *php_uri_ce_invalid_uri_exception;
+extern zend_class_entry *php_uri_ce_rfc3986_uri_query_params;
+extern zend_class_entry *php_uri_ce_rfc3986_uri_type;
+extern zend_class_entry *php_uri_ce_rfc3986_uri_host_type;
+extern zend_class_entry *php_uri_ce_rfc3986_uri_percent_encoding_mode;
 extern zend_class_entry *php_uri_ce_whatwg_invalid_url_exception;
 extern zend_class_entry *php_uri_ce_whatwg_url_validation_error_type;
 extern zend_class_entry *php_uri_ce_whatwg_url_validation_error;
+extern zend_class_entry *php_uri_ce_whatwg_url_query_params;
+extern zend_class_entry *php_uri_ce_whatwg_url_host_type;
+extern zend_class_entry *php_uri_ce_whatwg_url_percent_encoding_mode;
+
+extern zend_array uri_parsers;
 
 typedef enum php_uri_recomposition_mode {
 	PHP_URI_RECOMPOSITION_MODE_RAW_ASCII,
@@ -160,6 +169,7 @@ PHPAPI zend_object *php_uri_object_handler_clone(zend_object *object);
 #define PHP_URI_PARSER_WHATWG "Uri\\WhatWg\\Url"
 #define PHP_URI_PARSER_PHP_PARSE_URL "parse_url"
 #define PHP_URI_SERIALIZE_URI_FIELD_NAME "uri"
+#define PHP_URI_SERIALIZE_URI_QUERY_PARAM_FIELD_NAME "query"
 
 static inline const php_uri_property_handler *php_uri_parser_property_handler_by_name(const php_uri_parser *parser, php_uri_property_name property_name)
 {
@@ -188,5 +198,6 @@ void php_uri_property_read_helper(INTERNAL_FUNCTION_PARAMETERS, php_uri_property
 void php_uri_property_write_str_helper(INTERNAL_FUNCTION_PARAMETERS, php_uri_property_name property_name);
 void php_uri_property_write_str_or_null_helper(INTERNAL_FUNCTION_PARAMETERS, php_uri_property_name property_name);
 void php_uri_property_write_long_or_null_helper(INTERNAL_FUNCTION_PARAMETERS, php_uri_property_name property_name);
+void php_uri_property_write_helper(INTERNAL_FUNCTION_PARAMETERS, php_uri_property_name property_name, zval *property_zv);
 
 #endif

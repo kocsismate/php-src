@@ -193,10 +193,32 @@ typedef struct {
 }
 lxb_url_search_params_t;
 
+typedef enum {
+	LXB_URL_MAP_UNDEF         = 0x00,
+	LXB_URL_MAP_C0            = 0x01,
+	LXB_URL_MAP_FRAGMENT      = 0x02,
+	LXB_URL_MAP_QUERY         = 0x04,
+	LXB_URL_MAP_SPECIAL_QUERY = 0x08,
+	LXB_URL_MAP_PATH          = 0x10,
+	LXB_URL_MAP_USERINFO      = 0x20,
+	LXB_URL_MAP_COMPONENT     = 0x40,
+	LXB_URL_MAP_X_WWW_FORM    = 0x80,
+	LXB_URL_MAP_ALL           = 0xff
+}
+lxb_url_map_type_t;
+
+
 typedef lexbor_action_t
 (*lxb_url_search_params_match_f)(lxb_url_search_params_t *sp,
                                  lxb_url_search_entry_t *entry, void *ctx);
 
+
+LXB_API lxb_status_t
+lxb_url_percent_encode_after_utf_8(const lxb_char_t *data,
+								   const lxb_char_t *end, lexbor_str_t *str,
+								   lexbor_mraw_t *mraw,
+								   lxb_url_map_type_t enmap,
+								   bool space_as_plus);
 
 /*
  * Create lxb_url_parser_t object.
@@ -771,6 +793,12 @@ lxb_inline const lexbor_str_t *
 lxb_url_scheme(const lxb_url_t *url)
 {
     return &url->scheme.name;
+}
+
+lxb_inline bool
+lxb_url_is_special(const lxb_url_t *url)
+{
+	return url->scheme.type != LXB_URL_SCHEMEL_TYPE__UNKNOWN;
 }
 
 lxb_inline const lexbor_str_t *

@@ -1120,6 +1120,16 @@ URI_PUBLIC void URI_FUNC(FreeQueryList)(URI_TYPE(QueryList) * queryList);
 URI_PUBLIC int URI_FUNC(FreeQueryListMm)(URI_TYPE(QueryList) * queryList,
                                          UriMemoryManager * memory);
 
+
+
+/* TODO custom modification */
+UriBool URI_FUNC(AppendQueryItem)(URI_TYPE(QueryList) ** prevNext,
+	int * itemCount, const URI_CHAR * keyFirst, const URI_CHAR * keyAfter,
+	const URI_CHAR * valueFirst, const URI_CHAR * valueAfter,
+	UriBool plusToSpace, UriBreakConversion breakConversion, UriMemoryManager * memory);
+
+
+
 /**
  * Makes the %URI hold copies of strings so that it no longer depends
  * on the original %URI string.  If the %URI is already owner of copies,

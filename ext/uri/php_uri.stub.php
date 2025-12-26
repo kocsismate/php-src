@@ -29,9 +29,15 @@ namespace Uri\Rfc3986 {
     /** @strict-properties */
     final readonly class Uri
     {
+        public static function percentEncode(string $input, \Uri\Rfc3986\UriPercentEncodingMode $mode): string {}
+
+        public static function percentDecode(string $input, \Uri\Rfc3986\UriPercentEncodingMode $mode): string {}
+
         public static function parse(string $uri, ?\Uri\Rfc3986\Uri $baseUrl = null): ?static {}
 
         public function __construct(string $uri, ?\Uri\Rfc3986\Uri $baseUrl = null) {}
+
+        public function getUriType(): ?\Uri\Rfc3986\UriType {}
 
         public function getScheme(): ?string {}
 
@@ -57,6 +63,8 @@ namespace Uri\Rfc3986 {
 
         public function getRawHost(): ?string {}
 
+        public function getHostType(): ?\Uri\Rfc3986\UriHostType {}
+
         public function withHost(?string $host): static {}
 
         public function getPort(): ?int {}
@@ -67,13 +75,25 @@ namespace Uri\Rfc3986 {
 
         public function getRawPath(): string {}
 
+        public function getRawPathSegments(): ?array {}
+
+        public function getPathSegments(): array {}
+
         public function withPath(string $path): static {}
+
+        public function withPathSegments(array $segments, bool $addLeadingSlashForNonEmptyRelativeUri = true): static {}
 
         public function getQuery(): ?string {}
 
         public function getRawQuery(): ?string {}
 
+        public function getRawQueryParams(): ?\Uri\Rfc3986\UriQueryParams {}
+
+        public function getQueryParams(): ?\Uri\Rfc3986\UriQueryParams {}
+
         public function withQuery(?string $query): static {}
+
+        public function withQueryParams(?\Uri\Rfc3986\UriQueryParams $queryParams): static {}
 
         public function getFragment(): ?string {}
 
@@ -94,6 +114,105 @@ namespace Uri\Rfc3986 {
         public function __unserialize(array $data): void {}
 
         public function __debugInfo(): array {}
+    }
+
+    final class UriQueryParams implements \Countable
+    {
+        public static function parseRfc3986(string $queryString): ?\Uri\Rfc3986\UriQueryParams {}
+
+        public static function parseFormData(string $queryString): \Uri\Rfc3986\UriQueryParams {}
+
+        public static function fromArray(array $queryParams): \Uri\Rfc3986\UriQueryParams {}
+
+        public function __construct() {}
+
+        public function append(string $name, mixed $value): static {}
+
+        public function delete(string $name): static {}
+
+        public function deleteValue(string $name, mixed $value): static {}
+
+        public function has(string $name): bool {}
+
+        public function hasValue(string $name, mixed $value): bool {}
+
+        public function getFirst(string $name): ?string {}
+
+        public function getLast(string $name): ?string {}
+
+        public function getAll(?string $name = null): array {}
+
+        public function count(): int {}
+
+        public function set(string $name, mixed $value): static {}
+
+        public function sort(): static {}
+
+        public function toRfc3986String(): string {}
+
+        public function toFormDataString(): string {}
+
+        public function __serialize(): array {}
+
+        public function __unserialize(array $data): void {}
+
+        public function __debugInfo(): array {}
+    }
+
+/*
+    final class UriBuilder
+    {
+        public function __construct() {}
+
+        public function setScheme(?string $scheme): static {}
+
+        public function setUserInfo(#[\SensitiveParameter] ?string $userInfo): static {}
+
+        public function setHost(?string $host): static {}
+
+        public function setPath(string $path): static {}
+
+        public function setPathSegments(?array $segments): static {}
+
+        public function setQuery(?string $query): static {}
+
+        public function setQueryParams(\Uri\Rfc3986\UriQueryParams $queryParams): static {}
+
+        public function setFragment(?string $fragment): static {}
+
+        public function build(?\Uri\Rfc3986\Uri $baseUrl = null): \Uri\Rfc3986\Uri {}
+    }
+*/
+
+    enum UriPercentEncodingMode
+    {
+        case UserInfo;
+        case Host;
+        case RelativeReferencePath;
+        case RelativeReferenceFirstPathSegment;
+        case Path;
+        case PathSegment;
+        case Query;
+        case FormQuery;
+        case Fragment;
+        case AllReservedCharacters;
+        case All;
+    }
+
+    enum UriType
+    {
+        case AbsolutePathReference;
+        case RelativePathReference;
+        case NetworkPathReference;
+        case Uri;
+    }
+
+    enum UriHostType
+    {
+        case IPv4;
+        case IPv6;
+        case IPvFuture;
+        case RegisteredName;
     }
 }
 
@@ -152,6 +271,10 @@ namespace Uri\WhatWg {
     /** @strict-properties */
     final readonly class Url
     {
+        public static function percentEncode(string $input, \Uri\WhatWg\UrlPercentEncodingMode $mode): string {}
+
+        public static function percentDecode(string $input, \Uri\WhatWg\UrlPercentEncodingMode $mode): string {}
+
         /** @param array $errors */
         public static function parse(string $uri, ?\Uri\WhatWg\Url $baseUrl = null, &$errors = null): ?static {}
 
@@ -161,6 +284,8 @@ namespace Uri\WhatWg {
         public function getScheme(): string {}
 
         public function withScheme(string $scheme): static {}
+
+        public function isSpecialScheme(): bool {}
 
         /** @implementation-alias Uri\Rfc3986\Uri::getUsername */
         public function getUsername(): ?string {}
@@ -176,6 +301,8 @@ namespace Uri\WhatWg {
 
         public function getUnicodeHost(): ?string {}
 
+        public function getHostType(): ?\Uri\WhatWg\UrlHostType {}
+
         /** @implementation-alias Uri\Rfc3986\Uri::withHost */
         public function withHost(?string $host): static {}
 
@@ -188,14 +315,22 @@ namespace Uri\WhatWg {
         /** @implementation-alias Uri\Rfc3986\Uri::getPath */
         public function getPath(): string {}
 
+        public function getPathSegments(): array {}
+
         /** @implementation-alias Uri\Rfc3986\Uri::withPath */
         public function withPath(string $path): static {}
+
+        public function withPathSegments(array $segments): static {}
 
         /** @implementation-alias Uri\Rfc3986\Uri::getQuery */
         public function getQuery(): ?string {}
 
+        public function getQueryParams(): ?\Uri\WhatWg\UrlQueryParams {}
+
         /** @implementation-alias Uri\Rfc3986\Uri::withQuery */
         public function withQuery(?string $query): static {}
+
+        public function withQueryParams(?\Uri\WhatWg\UrlQueryParams $queryParams): static {}
 
         /** @implementation-alias Uri\Rfc3986\Uri::getFragment */
         public function getFragment(): ?string {}
@@ -217,5 +352,94 @@ namespace Uri\WhatWg {
         public function __unserialize(array $data): void {}
 
         public function __debugInfo(): array {}
+    }
+
+    final readonly class UrlQueryParams implements \Countable
+    {
+        public static function parse(string $queryString): \Uri\WhatWg\UrlQueryParams {}
+
+        public static function fromArray(array $queryParams): \Uri\WhatWg\UrlQueryParams {}
+
+        private function __construct() {}
+
+        public function append(string $name, mixed $value): static {}
+
+        public function delete(string $name): static {}
+
+        public function deleteValue(string $name, mixed $value): static {}
+
+        public function has(string $name): bool {}
+
+        public function hasValue(string $name, mixed $value): bool {}
+
+        public function getFirst(string $name): ?string {}
+
+        public function getLast(string $name): ?string {}
+
+        public function getAll(?string $name = null): array {}
+
+        public function count(): int {}
+
+        public function set(string $name, mixed $value): static {}
+
+        public function sort(): static {}
+
+        public function toString(): string {}
+
+        public function __serialize(): array {}
+
+        public function __unserialize(array $data): void {}
+
+        public function __debugInfo(): array {}
+    }
+
+/*
+    final class UrlBuilder
+    {
+        public function __construct() {}
+
+        public function setScheme(?string $scheme): static {}
+
+        public function setUsername(?string $username): static {}
+
+        public function setPassword(#[\SensitiveParameter] ?string $password): static {}
+
+        public function setHost(?string $host): static {}
+
+        public function setPath(string $path): static {}
+
+        public function setQuery(?string $query): static {}
+
+        public function setQueryParams(\Uri\WhatWg\UrlQueryParams $queryParams): static {}
+
+        public function setFragment(?string $fragment): static {}
+
+        /** @param array $errors
+        public function build(?\Uri\WhatWg\Url $baseUrl = null, &$errors = null): \Uri\WhatWg\Url {}
+    }
+*/
+
+    enum UrlPercentEncodingMode
+    {
+        case UserInfo;          // Let encodedCodePoints be the result of running UTF-8 percent-encode codePoint using the "userinfo percent-encode set"
+        case Host;
+        case OpaqueHost;        // UTF-8 percent-encode on input using the C0 control percent-encode set
+        case Path;              // UTF-8 percent-encode c using the "path percent-encode set"
+        case PathSegment;       // UTF-8 percent-encode c using the "path percent-encode set"
+        case OpaquePath;        // UTF-8 percent-encode c using the "C0 control percent-encode set"
+        case OpaquePathSegment; // UTF-8 percent-encode c using the "C0 control percent-encode set"
+        case Query;             // Percent-encode after encoding, with encoding, buffer, and "query percent-encode set"
+        case SpecialQuery;      // Percent-encode after encoding, with encoding, buffer, and "special-query percent-encode set"
+        case FormQuery;
+        case Fragment;          // UTF-8 percent-encode c using the fragment percent-encode set
+    }
+
+    enum UrlHostType
+    {
+        case IPv4;
+        case IPv6;
+        case Domain;
+        case Opaque;
+        case Empty;
     }
 }
